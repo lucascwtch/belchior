@@ -160,3 +160,41 @@ body{
     background-color: #a66754;
     border-radius: 30px;
 }
+
+.form-items input[type="email"]{
+    outline: none;
+    border: none;
+    height: 40px;
+    width: 14rem;
+    box-shadow: 5px 8px 8px rgba(0, 0, 0, 0.408);
+    font-size: 13px;
+    margin-bottom: 40px;
+    margin-top: 10px;
+    border-radius: 20px;
+    padding: 10px;
+
+}
+
+.form-items input[type="password"]{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    font-size: 13px;
+    outline: none;
+    border: none;
+    height: 40px;
+    width: 14rem;
+    box-shadow: 5px 8px 8px rgba(0, 0, 0, 0.408);
+    margin-bottom: 20px;
+    margin-top: 10px;
+    border-radius: 20px;
+
+}
+
+
+
+.form-items label{
+    color: #73614B ;
+    font-size: 24px;
+}
