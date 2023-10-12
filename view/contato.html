@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato - Belchior</title>
+    <link rel="stylesheet" href="../assets/css/style_contato.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="bootstrap.min.css.map">
+</head>
+<body>
+  <!-- Navbar -->
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Belchior</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="../index.html">Início</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./sobre.html">Sobre</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Serviços</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./contato.html">Contato</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="login_page.html">Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header>
+      <div class="title">
+        <h1>Tem alguma dúvida sobre o nosso site?</h1>
+        <h2>Entre em contato e esclareceremos o mais rápido possível!</h2>
+      </div>
+  </header>
+
+  <section>
+
+    <div class="container">
+      <form class="row g-3">
+        <div class="col-md-6">
+          <label for="inputEmail" class="form-label">Email</label>
+          <input type="email" class="form-control" id="inputEmail">
+        </div>
+        <div class="col-md-6">
+          <label for="inputSubject" class="form-label">Assunto</label>
+          <input type="text" class="form-control" id="inputSubject">
+        </div>
+        <div class="col-8">
+          <label for="inputName" class="form-label">Nome Completo</label>
+          <input type="text" class="form-control" id="inputName" placeholder="Ex: Josualdo Guerreiro da Silva">
+        </div>
+        <div class="col-md-4">
+          <label for="inputReason" class="form-label">Motivo</label>
+          <select id="inputReason" class="form-select">
+            <option selected>Selecione: </option>
+            <option>Dúvida</option>
+            <option>Erro</option>
+            <option>Problema ao realizar compra</option>
+            <option>Quero ser um vendedor</option>
+          </select>
+        </div>
+        <div class="col-md-12">
+          <label for="inputContato" class="form-label">Escreva:</label>
+         <textarea type="text" class="form-control" rows="5" id="inputContact"></textarea>
+        </div>
+        <div class="col-12">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="gridCheck">
+            <label class="form-check-label" for="gridCheck">
+              Desejo receber a resposta por email
+            </label>
+          </div>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Enviar</button>
+        </div>
+      </form>
+
+  </section>
+
+  <br><br><br>
+  <footer class="py-3 my-4 footer">
+    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Inicio</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Produtos</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Contato</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Login</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Cadastrar</a></li>
+    </ul>
+    <p class="text-center text-muted">© 2022 Belchior, Inc</p>
+  </footer>
+</body>
+</html>
