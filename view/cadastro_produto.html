@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulário de Produto</title>
+</head>
+<body>
+    <h1>Cadastro de Produto</h1>
+    <form action="../model/inserir_produto.php" method="post" enctype="multipart/form-data">
+        <label for="tipo">Tipo do Produto:</label>
+        <input type="text" name="tipo" id="tipo" required><br><br>
+        
+        <label for="nome">Nome do Produto:</label>
+        <input type="text" name="nome" id="nome" required><br><br>
+        
+        <label for="imagem">Imagem do Produto:</label>
+        <input type="file" name="imagem" id="imagem" required><br><br>
+        
+        <label for="preco">Preço do Produto:</label>
+        <input type="text" name="preco" id="preco" required><br><br>
+        
+        <label for="especificacoes">Especificações do Produto:</label>
+        <textarea name="especificacoes" id="especificacoes" required></textarea><br><br>
+        
+        <input type="submit" value="Cadastrar Produto">
+    </form>
+</body>
+</html>

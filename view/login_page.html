@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <title> Login - Belchior </title>
+</head>
+<style>
+    /* Apply styles to the body and page */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+}
+
+/* Style the background and layout */
+.background {
+    display: flex;
+    height: 100vh;
+}
+
+.first-column {
+    flex: 1;
+    background-color: #007bff;
+    text-align: center;
+    padding: 2rem;
+}
+
+.first-column img {
+    max-width: 100%;
+    height: auto;
+}
+
+.second-column {
+    flex: 1;
+    background-color: #f0f0f0;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Style the form */
+.form {
+    max-width: 350px;
+    width: 100%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input {
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.links {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0;
+}
+
+a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Style the icons */
+.icons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.icons a {
+    font-size: 30px;
+    margin: 0 10px;
+    color: #007bff;
+}
+
+/* Adjust other styles as needed */
+</style>
+
+<body>
+
+    <div class="background">
+        <div class="first-column">
+            <img src="../assets/img/design_login.png" />
+        </div>
+        <div class="second-column">
+            <div class="form">
+                <form method="POST" action="../model/login.php">
+                    <div class="tit">
+                        <h1>Login</h1>
+                    </div>
+
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Digite Seu Email">
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" name="senha" placeholder="Digite sua Senha">
+                    <div class="links">
+                        <a href="siginup_page.html">Não Possui Login?</a>
+                        <a href="#">Esqueci a Senha</a>
+                    </div>
+                    <div class="button">
+                        <button id="enviar">Entrar</button>
+                        <h1>Outras Opções</h1>
+                        <div class="icons">
+
+                            <a><i class="devicon-facebook-plain"></i></a>
+                            <a><i class="devicon-google-plain"></i></a>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
