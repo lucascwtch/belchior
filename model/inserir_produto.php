@@ -18,5 +18,5 @@ if (move_uploaded_file($imagem_temp, $imagem_destino)) {
 }
 
 echo "<script language='javascript' type='text/javascript'>
-                alert('Produto cadastrado!');window.location ='../index.html'</script>";
+                alert('Produto cadastrado!');window.location ='../index.php'</script>";
 ?>
