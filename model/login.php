@@ -1,5 +1,6 @@
 <?php
 require("../controller/config.php");
+session_start();
 
 if (isset($_POST['email']) && isset($_POST['senha']) && $conexao != null) {
     $senha = $_POST['senha'];
@@ -9,37 +10,39 @@ if (isset($_POST['email']) && isset($_POST['senha']) && $conexao != null) {
     $query->execute(array($email));
 
     if ($query->rowCount() > 0) {
-        $user = $query->fetchAll(PDO::FETCH_ASSOC)[0];
+        $user = $query->fetch(PDO::FETCH_ASSOC); // Utilize `fetch` para obter uma única linha
         $senha_hash_banco = $user['senha'];
 
         if (password_verify($senha, $senha_hash_banco)) {
-            session_start();
-            $_SESSION['usuario'] = array($user['nome'], $user['adm']);
-            $welcome_message = "Bem-vindo, " . $user['nome']; // Mensagem de boas-vindas personalizada
+            $_SESSION['user_logged_in'] = true;
+            $_SESSION['user_profile_name'] = $user['nome'];
+            $_SESSION['user_adm'] = $user['adm'];
+
+            $welcome_message = "Bem-vindo, " . $user['nome'];
 
             echo "<script language='javascript' type='text/javascript'>
                 var welcomeMessage = '$welcome_message';
-                alert(welcomeMessage); // Exibir uma caixa de alerta com a mensagem de boas-vindas
+                alert(welcomeMessage);
                 window.location = '../index.php';
             </script>";
         } else {
             echo "<script language='javascript' type='text/javascript'>
                 alert('Senha ou Email Incorretos!');
                 setTimeout(function() {
-                    window.location = '../vew/login_page.html';
-                }, 3000); // Redireciona após 3 segundos
+                    window.location = '../view/login_page.html';
+                }, 3000);
             </script>";
         }
     } else {
         echo "<script language='javascript' type='text/javascript'>
             alert('Realize Login!');
             setTimeout(function() {
-                window.location = '../vew/login_page.html';
-            }, 3000); // Redireciona após 3 segundos
+                window.location = '../view/login_page.html'; // Corrigido o diretório
+            }, 3000);
         </script>";
     }
 } else {
     // Redireciona para a página de login se não houver informações de login
-    header("Location: login.php");
+    header("Location: ../view/login_page.html"); // Corrigido o redirecionamento
 }
 ?>
