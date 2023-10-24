@@ -3,11 +3,29 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+    <script src="https://kit.fontawesome.com/057ae39a47.js" crossorigin="anonymous"></script>
+  
+    <title>Belchior</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="icon" href="assets/img/favicon.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
 
+    <link rel="stylesheet" href="../assets/css/ionicons.min.css">
+    <link rel="stylesheet" href="../assets/css/flaticon.css">
+    <link rel="stylesheet" href="../assets/css/icomoon.css">
+    <link rel="stylesheet" href="../assets/css/animate.css">
+  
+    <link rel="stylesheet" href="../assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../assets/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="../assets/css/aos.css">
+  
+  
+    <link rel="stylesheet" href="../assets/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/animate.css">
     <title> Login - Belchior </title>
 </head>
 <style>
@@ -30,7 +48,7 @@ html {
 
 .first-column {
     flex: 1;
-    background-color: #007bff;
+    background-color: #675bef;
     text-align: center;
     padding: 2rem;
 }
@@ -38,6 +56,8 @@ html {
 .first-column img {
     max-width: 100%;
     height: auto;
+    text-align: center;
+    align-items: center;
 }
 
 .second-column {
@@ -90,11 +110,11 @@ input {
 
 a {
     text-decoration: none;
-    color: #007bff;
+    color: #675bef;
 }
 
 button {
-    background-color: #007bff;
+    background-color: #675bef;
     color: #fff;
     padding: 10px;
     border: none;
@@ -103,7 +123,7 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #675bef;
 }
 
 /* Style the icons */
@@ -116,17 +136,47 @@ button:hover {
 .icons a {
     font-size: 30px;
     margin: 0 10px;
-    color: #007bff;
+    color: #675bef;
+}
+
+.botao-enviar {
+    width: 100%;
 }
 
 /* Adjust other styles as needed */
 </style>
 
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+          <a class="navbar-brand mx-auto" href="#">Belchior</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="../index.php">Início</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Produtos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contato.html">Contato</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="siginup_page.html">Cadastrar</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
 
     <div class="background">
         <div class="first-column">
-            <img src="../assets/img/design_login.png" />
+            <img src="../assets/img/logo_transparent.png" />
         </div>
         <div class="second-column">
             <div class="form">
@@ -141,16 +191,13 @@ button:hover {
                     <input type="password" id="senha" name="senha" placeholder="Digite sua Senha">
                     <div class="links">
                         <a href="siginup_page.html">Não Possui Login?</a>
-                        <a href="esqueci_senha.html">Esqueci a Senha</a>
+                        <a href="#">Esqueci a Senha</a>
                     </div>
                     <div class="button">
-                        <button id="enviar">Entrar</button>
+                        <button id="enviar" class="botao-enviar">Entrar</button>
+                        <br><br>
                         <h1>Outras Opções</h1>
                         <div class="icons">
-                            <li class='nav-item'>
-                                <a class='nav-link' href='../index.php'>inicio</a>
-                                   </li>
-
                             <a><i class="devicon-facebook-plain"></i></a>
                             <a><i class="devicon-google-plain"></i></a>
                         </div>
