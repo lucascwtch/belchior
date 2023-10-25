@@ -1,6 +1,5 @@
 <?php
 
-require "controller/config.php";
 include_once "model/logica_perfil_index.php";
 
 ?>
