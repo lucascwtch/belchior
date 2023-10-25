@@ -86,7 +86,7 @@
                     alert('Erro ao Inserir os Dados!');
                     document.getElementById('loading').classList.remove('hidden'); // Mostrar o círculo de carregamento
                     setTimeout(function() {
-                        window.location = '../view/siginup_page.html';
+                        window.location = '../view/cadastro.html';
                     }, 3000); // Redireciona após 2 segundos
                 </script>";
             }
@@ -104,7 +104,7 @@
         echo "<script language='javascript' type='text/javascript'>
             alert('Erro!');
             setTimeout(function() {
-                window.location = '../view/siginup_page.html';
+                window.location = '../view/cadastro.html';
             }, 2000); // Redireciona após 2 segundos
         </script>";
     }

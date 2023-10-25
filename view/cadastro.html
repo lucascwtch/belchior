@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/login.css">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-    <title>Document</title>
+    <title>Cadastrar - Belchior</title>
 
     <link rel="stylesheet" href="../assets/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -30,13 +30,8 @@
     <link rel="stylesheet" href="../assets/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/animate.css">
 </head>
-<style>
-    .navbar {
-        padding-bottom: 10px !important;
-    }
-</style>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: rgba(255, 255, 255, 0.5);">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container">
             <a class="navbar-brand mx-auto" href="#">Belchior</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
@@ -58,35 +53,37 @@
                         <a class="nav-link" href="#">Contato</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="cadastro.html">Cadastrar</a>
+                        <a class="nav-link" href="login_page.html">Login</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-    
     <div class="wrapper">
-        <form  method="post" action="../model/login.php">
-            <h1>Login</h1>
+        <form  method="post" action="../model/cadastrar.php">
+            <h1>Cadastrar</h1>
             <div class="input-box">
-                <input type="e-mail" placeholder="E-mail" id="email" name="email"required>
+                <input type="text" placeholder="Nome Completo" id="nome" name="nome"required>
                 <i class="bx bxs-user"></i>
             </div>
             <div class="input-box">
-                <input type="password" placeholder="Password" id="senha" name="senha" required>
+                <input type="email" placeholder="E-mail" id="email" name="email"required>
+                <i class="ion-md-mail"></i>
+            </div>
+            <div class="input-box">
+                <input type="password" placeholder="Password" id="senha" name="password" required>
+                <i class="bx bxs-lock-alt"></i>
+            </div>
+            <div class="input-box">
+                <input type="password" placeholder="Password" id="confirm_password" name="confirm_password" required>
                 <i class="bx bxs-lock-alt"></i>
             </div>
 
-            <div class="remember-forgot">
-                <label><input type="checkbox">Lembrar de mim</label>
-                <a href="#">Esqueceu a senha?</a>
-            </div>
-
-            <button type="submit" class="btn" id="enviar">Login</button>
-
+            <button type="submit" class="btn" id="enviar">Cadastrar</button>
++
             <div class="register-link">
-                <p>Não tem uma conta?
-                    <a href="cadastro.html">Cadastrar</a>
+                <p>Já possui uma conta?
+                    <a href="login_page.html">Entrar</a>
                 </p>
             </div>
         </form>
