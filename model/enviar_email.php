@@ -2,12 +2,21 @@
 require("../controller/config.php");
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+
 require '../PHPMailer-master/src/Exception.php';
 require '../PHPMailer-master/src/PHPMailer.php';
 require '../PHPMailer-master/src/SMTP.php';
 
-// Configurar o PHPMailer para enviar e-mails
-$mail = new PHPMailer(true);
+class EmailSender {
+    private $conexao;
+
+    public function __construct($conexao) {
+        $this->conexao = $conexao;
+    }
+
+    public function sendEmails() {
+        // Configuração do PHPMailer para enviar e-mails
+        $mail = new PHPMailer(true);
         $mail->isSMTP();
         $mail->SMTPDebug = 0; // Defina 2 para depurar
         $mail->Host = 'smtp.gmail.com';
@@ -21,21 +30,27 @@ $mail = new PHPMailer(true);
         $mail->Subject = 'TESTE EMAIL';
         $mail->Body = 'teste email';
 
-// Consultar o banco de dados para obter os e-mails
-$query = $conexao->prepare("SELECT email FROM email");
-$query->execute();
-$emails = $query->fetchAll(PDO::FETCH_COLUMN, 0);
+        // Consulta o banco de dados para obter os e-mails
+        $query = $this->conexao->prepare("SELECT email FROM email");
+        $query->execute();
+        $emails = $query->fetchAll(PDO::FETCH_COLUMN, 0);
 
-// Enviar a mensagem para cada e-mail
-foreach ($emails as $email) {
-    $mail->clearAddresses(); // Limpar os endereços anteriores
-    $mail->addAddress($email);
-    
-    if ($mail->send()) {
-        echo "Mensagem enviada com sucesso para $email<br>";
-    } else {
-        echo "Erro ao enviar mensagem para $email: " . $mail->ErrorInfo . "<br>";
+        // Envia a mensagem para cada e-mail
+        foreach ($emails as $email) {
+            $mail->clearAddresses(); // Limpa os endereços anteriores
+            $mail->addAddress($email);
+
+            if ($mail->send()) {
+                echo "Mensagem enviada com sucesso para $email<br>";
+            } else {
+                echo "Erro ao enviar mensagem para $email: " . $mail->ErrorInfo . "<br>";
+            }
+        }
     }
 }
 
+$emailSender = new EmailSender($conexao);
+
+// Chama o método para enviar e-mails
+$emailSender->sendEmails();
 ?>

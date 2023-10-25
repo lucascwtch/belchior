@@ -1,24 +1,32 @@
 <?php
 
+class ConexaoBD {
+    private $conexao;
+
+    public function __construct($servidor, $banco, $usuario, $senha) {
+        try {
+            $this->conexao = new PDO("mysql:host=$servidor;dbname=$banco", $usuario, $senha);
+            $this->conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $erro) {
+            echo "Erro de Conexão: {$erro->getMessage()}";
+            $this->conexao = null;
+        }
+    }
+
+    public function getConexao() {
+        return $this->conexao;
+    }
+}
+
+// Configurações de conexão
 $servidor = "localhost";
 $banco = "belchior";
 $usuario = "root";
 $senha = "";
 
-try{
-$conexao = new PDO("mysql:host=$servidor;dbname=$banco", $usuario, $senha );
-$conexao -> setAttribute(PDO ::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-}catch(PDOException $erro){
+// Criar uma instância da classe para estabelecer a conexão
+$gerenciadorConexao = new ConexaoBD($servidor, $banco, $usuario, $senha);
 
-echo "Erro de Conexão: {$erro->getMessage()}"; 
-$conexao = null;
-
-}
-
-
-
-
-
-
-
+// Obter a conexão ativa
+$conexao = $gerenciadorConexao->getConexao();
 ?>

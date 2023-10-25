@@ -1,32 +1,47 @@
 <?php
-// Conexão com o banco de dados
 require("../controller/config.php");
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+
 require '../PHPMailer-master/src/Exception.php';
 require '../PHPMailer-master/src/PHPMailer.php';
 require '../PHPMailer-master/src/SMTP.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = $_POST['email'];
+class PasswordResetRequester {
+    private $conexao;
 
-    // Verifique se o e-mail existe no banco de dados
-    $query = $conexao->prepare("SELECT * FROM usuarios WHERE email = :email");
-    $query->bindParam(':email', $email, PDO::PARAM_STR);
-    $query->execute();
-    $usuario_existe = $query->fetch(PDO::FETCH_ASSOC);
+    public function __construct($conexao) {
+        $this->conexao = $conexao;
+    }
 
-    if ($usuario_existe) {
-        // Gere um token de redefinição de senha (por exemplo, usando a função password_hash)
-        $token = password_hash(uniqid(), PASSWORD_DEFAULT);
+    public function requestPasswordReset($email) {
+        // Verifique se a solicitação é um POST
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Verifique se o e-mail existe no banco de dados
+            $query = $this->conexao->prepare("SELECT * FROM usuarios WHERE email = :email");
+            $query->bindParam(':email', $email, PDO::PARAM_STR);
+            $query->execute();
+            $usuario_existe = $query->fetch(PDO::FETCH_ASSOC);
 
-        // Salve o token no banco de dados associado ao e-mail do usuário
-        $query = $conexao->prepare("UPDATE usuarios SET token = :token WHERE email = :email");
-        $query->bindParam(':token', $token, PDO::PARAM_STR);
-        $query->bindParam(':email', $email, PDO::PARAM_STR);
-        $query->execute();
+            if ($usuario_existe) {
+                // Gere um token de redefinição de senha (por exemplo, usando a função password_hash)
+                $token = password_hash(uniqid(), PASSWORD_DEFAULT);
 
-        // Envie um e-mail com o link de redefinição usando o PHPMailer
+                // Salve o token no banco de dados associado ao e-mail do usuário
+                $updateQuery = $this->conexao->prepare("UPDATE usuarios SET token = :token WHERE email = :email");
+                $updateQuery->bindParam(':token', $token, PDO::PARAM_STR);
+                $updateQuery->bindParam(':email', $email, PDO::PARAM_STR);
+                $updateQuery->execute();
+
+                // Envie um e-mail com o link de redefinição usando o PHPMailer
+                $this->sendResetEmail($email, $token);
+            } else {
+                echo 'E-mail não encontrado.';
+            }
+        }
+    }
+
+    private function sendResetEmail($email, $token) {
         $mail = new PHPMailer(true);
 
         try {
@@ -54,8 +69,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } catch (Exception $e) {
             echo 'O email não pôde ser enviado. Erro: ', $mail->ErrorInfo;
         }
-    } else {
-        echo 'E-mail não encontrado.';
     }
+}
+
+$passwordResetRequester = new PasswordResetRequester($conexao);
+
+// Verifica se o e-mail foi enviado via POST
+if (isset($_POST['email'])) {
+    $email = $_POST['email'];
+
+    // Chama o método para solicitar a redefinição de senha
+    $passwordResetRequester->requestPasswordReset($email);
 }
 ?>

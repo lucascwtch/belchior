@@ -1,16 +1,7 @@
 <?php
 
 require "controller/config.php";
-session_start();
-// Verifique se o usuário está logado e se há um nome de perfil na sessão
-if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] && isset($_SESSION['user_profile_name'])) {
-    $profileName = $_SESSION['user_profile_name'];
-    $profileLink = 'view/perfil.php'; // Link para o perfil quando o usuário está logado
-    
-} else {
-    $profileName = 'Login';
-    $profileLink = 'view/login_page.html'; // Link para a página de login quando o usuário não está logado
-}
+include_once "model/logica_perfil_index.php";
 
 ?>
 <!DOCTYPE html>

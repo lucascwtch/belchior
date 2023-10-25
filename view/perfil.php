@@ -2,14 +2,7 @@
 
 require("../controller/config.php");
 
-session_start();
-
-// Verifique se o usuário está logado e se há um nome de perfil na sessão
-if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] && isset($_SESSION['user_profile_name'])) {
-    $profileName = $_SESSION['user_profile_name'];
-} else {
-    $profileName = 'Login'; // Caso o usuário não esteja logado
-}
+include_once("../model/logica_perfil.php");
 
 ?>
 
