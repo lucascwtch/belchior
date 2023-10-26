@@ -8,75 +8,704 @@ include_once("../model/logica_perfil.php");
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil</title>
+    <script src="https://kit.fontawesome.com/057ae39a47.js" crossorigin="anonymous"></script>
+
+    <title>Perfil - Belchior</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="icon" href="assets/img/favicon.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/ionicons.min.css">
+    <link rel="stylesheet" href="assets/css/flaticon.css">
+    <link rel="stylesheet" href="assets/css/icomoon.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/aos.css">
+
+
+    <link rel="stylesheet" href="assets/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
+        .img-account-profile {
+            height: 10rem;
         }
 
-        .profile-container {
-            background-color: #fff;
-            width: 400px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            text-align: center;
+        .rounded-circle {
+            border-radius: 50% !important;
         }
 
-        .profile-image {
-            border-top-left-radius: 8px;
-            border-top-right-radius: 8px;
-            overflow: hidden;
+        .card {
+            box-shadow: 0 0.15rem 1.75rem 0 rgb(33 40 50 / 15%);
         }
 
-        .profile-image img {
+        .card .card-header {
+            font-weight: 500;
+        }
+
+        .card-header:first-child {
+            border-radius: 0.35rem 0.35rem 0 0;
+        }
+
+        .card-header {
+            padding: 1rem 1.35rem;
+            margin-bottom: 0;
+            background-color: rgba(33, 40, 50, 0.03);
+            border-bottom: 1px solid rgba(33, 40, 50, 0.125);
+        }
+
+        .form-control,
+        .dataTable-input {
+            display: block;
             width: 100%;
-            height: auto;
+            padding: 0.875rem 1.125rem;
+            font-size: 0.875rem;
+            font-weight: 400;
+            line-height: 1;
+            color: #69707a;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #c5ccd6;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border-radius: 0.35rem;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
         }
 
-        .profile-info {
-            padding: 20px;
+        .custom-nav .nav-link.active {
+            color: #0061f2;
+            border-bottom-color: #0061f2;
         }
 
-        .profile-info h1 {
-            font-size: 24px;
-            margin: 0;
+        .custom-nav .nav-link {
+            color: #69707a;
+            border-bottom-width: 0.125rem;
+            border-bottom-style: solid;
+            border-bottom-color: transparent;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            padding-left: 0;
+            padding-right: 0;
+            margin-left: 1rem;
+            margin-right: 1rem;
         }
 
-        .profile-info p {
-            font-size: 18px;
-            margin: 10px 0;
+
+        .btn-danger-soft {
+            color: #000;
+            background-color: #fff !important;
+            border-color: #f1e0e3;
         }
 
-        .purchase-status {
-            font-weight: bold;
-            color: green;
+        .hidden {
+            display: none;
+        }
+
+        .btn {
+            background-color: #671af5;
+            ;
         }
     </style>
 </head>
+
 <body>
-    <div class="profile-container">
-        <div class="profile-image">
-            <img src="../assets/img/belchior.png" alt="Imagem de Perfil">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand mx-auto" href="#">Belchior</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="../index.php">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Produtos</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="contato.html">Contato</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <?php echo $profileName; ?>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="profileDropdown">
+                            <!-- Botão de Logout -->
+                            <form action="../model/logout.php" method="post">
+                                <a href="">Logout</button>
+                            </form>
+                            <!-- Outros itens de menu do perfil, se necessário -->
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
         </div>
-        <div class="profile-info">
-            <h1><?php echo $profileName;?></h1>
-            <p>Email: usuario@email.com</p>
-            <p>Status da Compra: <span class="purchase-status">Ativo</span></p>
+    </nav>
+    <br><br>
+    <div class="container-xl px-4 mt-4">
+        <!-- Account page navigation-->
+        <div class="custom-nav">
+            <a class="nav-link ms-0 d-inline" href="#profileSection" onclick="showProfile()">Perfil</a>
+            <a class="nav-link d-inline" href="#billingSection" onclick="showBilling()">Pagamento</a>
+            <a class="nav-link d-inline" href="#securitySection" onclick="showSecurity()">Segurança</a>
+            <a class="nav-link d-inline" href="#notificationSection" onclick="showNotifications()">Notificações</a>
         </div>
-         <!-- Botão de Logout -->
-         <form action="../model/logout.php" method="post">
-                <button type="submit">Logout</button>
-            </form>
+
+        <hr class="mt-0 mb-4">
+
+        <div id="profileSection" class="">
+            <!-- Profile section content -->
+            <div class="row">
+                <div class="col-xl-4">
+                    <!-- Profile picture card-->
+                    <div class="card mb-4 mb-xl-0">
+                        <div class="card-header">Foto de Perfil</div>
+                        <div class="card-body text-center">
+                            <!-- Profile picture image-->
+                            <img class="img-account-profile rounded-circle mb-2" src="../assets/img/perfil-user.png" alt="">
+                            <!-- Profile picture help block-->
+                            <div class="small font-italic text-muted mb-4">JPG ou PNG não pode ser maior que 5 MB</div>
+                            <!-- Profile picture upload button-->
+                            <button class="btn btn-primary" type="button">Trocar de Imagem</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-8">
+                    <!-- Account details card-->
+                    <div class="card mb-4">
+                        <div class="card-header">Detalhes da Conta</div>
+                        <div class="card-body">
+                            <form>
+                                <!-- Form Group (username)-->
+                                <div class="mb-3">
+                                    <label class="small mb-1" for="inputUsername">Apelido</label>
+                                    <input class="form-control" id="inputUsername" type="text" placeholder="Digite seu apelido">
+                                </div>
+                                <!-- Form Row-->
+                                <div class="row gx-3 mb-3">
+                                    <!-- Form Group (first name)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="inputFirstName">Primeiro Nome</label>
+                                        <input class="form-control" id="inputFirstName" type="text" placeholder="Digite seu primeiro nome">
+                                    </div>
+                                    <!-- Form Group (last name)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="inputLastName">Sobrenome</label>
+                                        <input class="form-control" id="inputLastName" type="text" placeholder="Digite seu sobrenome">
+                                    </div>
+                                </div>
+                                <!-- Form Row        -->
+                                <div class="row gx-3 mb-3">
+                                    <!-- Form Group (organization name)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="inputOrgName">Nome da Empresa</label>
+                                        <input class="form-control" id="inputOrgName" type="text" placeholder="Digite o nome da sua empresa">
+                                    </div>
+                                    <!-- Form Group (location)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="inputLocation">Local</label>
+                                        <input class="form-control" id="inputLocation" type="text" placeholder="Digite o local">
+                                    </div>
+                                </div>
+                                <!-- Form Group (email address)-->
+                                <div class="mb-3">
+                                    <label class="small mb-1" for="inputEmailAddress">Endereço de E-mail</label>
+                                    <input class="form-control" id="inputEmailAddress" type="email" placeholder="Digite seu endereço de e-mail">
+                                </div>
+                                <!-- Form Row-->
+                                <div class="row gx-3 mb-3">
+                                    <!-- Form Group (phone number)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="inputPhone">Número de Telefone</label>
+                                        <input class="form-control" id="inputPhone" type="tel" placeholder="Digite seu número de telefone">
+                                    </div>
+                                    <!-- Form Group (birthday)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="inputBirthday">Data de Nascimento</label>
+                                        <input class="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Digite sua data de nascimento">
+                                    </div>
+                                </div>
+
+                                <!-- Save changes button-->
+                                <button class="btn btn-primary" type="button">Salvar Alterações</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="billingSection" class="hidden">
+            <!-- Conteúdo da seção de faturamento -->
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <!-- Cartão de faturamento 1 -->
+                    <div class="card h-100 border-start-lg border-start-primary">
+                        <div class="card-body">
+                            <div class="small text-muted">Fatura mensal atual</div>
+                            <div class="h3">$20,00</div>
+                            <a class="text-arrow-icon small" href="#!">
+                                Mudar para faturamento anual
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <!-- Cartão de faturamento 2 -->
+                    <div class="card h-100 border-start-lg border-start-secondary">
+                        <div class="card-body">
+                            <div class="small text-muted">Próximo pagamento devido em</div>
+                            <div class="h3">15 de julho</div>
+                            <a class="text-arrow-icon small text-secondary" href="#!">
+                                Ver histórico de pagamentos
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <!-- Cartão de faturamento 3 -->
+                    <div class="card h-100 border-start-lg border-start-success">
+                        <div class="card-body">
+                            <div class="small text-muted">Plano atual</div>
+                            <div class="h3 d-flex align-items-center">Freelancer</div>
+                            <a class="text-arrow-icon small text-success" href="#!">
+                                Atualizar plano
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Adicione o restante do conteúdo da seção de faturamento conforme fornecido -->
+            </div>
+
+            <!-- Cartão de métodos de pagamento -->
+            <div class="card card-header-actions mb-4">
+                <div class="card-header">
+                    Métodos de Pagamento
+                    <button class="btn btn-sm btn-primary" type="button">Adicionar Método de Pagamento</button>
+                </div>
+                <div class="card-body px-0">
+                    <!-- Método de pagamento 1 -->
+                    <div class="d-flex align-items-center justify-content-between px-4">
+                        <div class="d-flex align-items-center">
+                            <i class="fab fa-cc-visa fa-2x cc-color-visa"></i>
+                            <div class="ms-4">
+                                <div class="small">Visa terminando em 1234</div>
+                                <div class="text-xs text-muted">Expira em 04/2024</div>
+                            </div>
+                        </div>
+                        <div class="ms-4 small">
+                            <div class="badge bg-light text-dark me-3">Padrão</div>
+                            <a href="#!">Editar</a>
+                        </div>
+                    </div>
+                    <hr>
+                    <!-- Método de pagamento 2 -->
+                    <div class="d-flex align-items-center justify-content-between px-4">
+                        <div class="d-flex align-items-center">
+                            <i class="fab fa-cc-mastercard fa-2x cc-color-mastercard"></i>
+                            <div class="ms-4">
+                                <div class="small">Mastercard terminando em 5678</div>
+                                <div class="text-xs text-muted">Expira em 05/2022</div>
+                            </div>
+                        </div>
+                        <div class="ms-4 small">
+                            <a class="text-muted me-3" href="#!">Tornar Padrão</a>
+                            <a href="#!">Editar</a>
+                        </div>
+                    </div>
+                    <hr>
+                    <!-- Método de pagamento 3 -->
+                    <div class="d-flex align-items-center justify-content-between px-4">
+                        <div class="d-flex align-items-center">
+                            <i class="fab fa-cc-amex fa-2x cc-color-amex"></i>
+                            <div class="ms-4">
+                                <div class="small">American Express terminando em 9012</div>
+                                <div class="text-xs text-muted">Expira em 01/2026</div>
+                            </div>
+                        </div>
+                        <div class="ms-4 small">
+                            <a class="text-muted me-3" href="#!">Tornar Padrão</a>
+                            <a href="#!">Editar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cartão de histórico de faturamento -->
+            <div class="card mb-4">
+                <div class="card-header">Histórico de Faturamento</div>
+                <div class="card-body p-0">
+                    <!-- Tabela de histórico de faturamento -->
+                    <div class="table-responsive table-billing-history">
+                        <table class="table mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="border-gray-200" scope="col">ID da Transação</th>
+                                    <th class="border-gray-200" scope="col">Data</th>
+                                    <th class="border-gray-200" scope="col">Valor</th>
+                                    <th class="border-gray-200" scope="col">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#39201</td>
+                                    <td>15/06/2021</td>
+                                    <td>$29,99</td>
+                                    <td><span class="badge bg-light text-dark">Pendente</span></td>
+                                </tr>
+                                <tr>
+                                    <td>#38594</td>
+                                    <td>15/05/2021</td>
+                                    <td>$29,99</td>
+                                    <td><span class="badge bg-success">Pago</span></td>
+                                </tr>
+                                <tr>
+                                    <td>#38223</td>
+                                    <td>15/04/2021</td>
+                                    <td>$29,99</td>
+                                    <td><span class="badge bg-success">Pago</span></td>
+                                </tr>
+                                <tr>
+                                    <td>#38125</td>
+                                    <td>15/03/2021</td>
+                                    <td>$29,99</td>
+                                    <td><span class="badge bg-success">Pago</span></td>
+                                </tr>
+                                <!-- Adicione mais linhas de histórico de faturamento conforme necessário -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="securitySection" class="hidden">
+            <div class="row">
+                <div class="col-lg-8">
+                    <!-- Cartão de Alteração de Senha -->
+                    <div class="card mb-4">
+                        <div class="card-header">Alterar Senha</div>
+                        <div class="card-body">
+                            <form>
+                                <!-- Grupo de Formulário (senha atual) -->
+                                <div class="mb-3">
+                                    <label class="small mb-1" for="currentPassword">Senha Atual</label>
+                                    <input class="form-control" id="currentPassword" type="password" placeholder="Digite a senha atual">
+                                </div>
+                                <!-- Grupo de Formulário (nova senha) -->
+                                <div class="mb-3">
+                                    <label class="small mb-1" for="newPassword">Nova Senha</label>
+                                    <input class="form-control" id="newPassword" type="password" placeholder="Digite a nova senha">
+                                </div>
+                                <!-- Grupo de Formulário (confirmar senha) -->
+                                <div class="mb-3">
+                                    <label class="small mb-1" for="confirmPassword">Confirmar Nova Senha</label>
+                                    <input class="form-control" id="confirmPassword" type="password" placeholder="Confirmar a nova senha">
+                                </div>
+                                <button class="btn btn-primary" type="button">Salvar</button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Cartão de Preferências de Segurança -->
+                    <div class="card mb-4">
+                        <div class="card-header">Preferências de Segurança</div>
+                        <div class="card-body">
+                            <!-- Opções de Privacidade da Conta -->
+                            <h5 class="mb-1">Privacidade da Conta</h5>
+                            <p class="small text-muted">Ao definir sua conta como privada, suas informações de perfil e
+                                postagens não serão visíveis para usuários fora de seus grupos de usuários.</p>
+                            <form>
+                                <div class="form-check">
+                                    <input class="form-check-input" id="radioPrivacy1" type="radio" name="radioPrivacy" checked="">
+                                    <label class="form-check-label" for="radioPrivacy1">Público (postagens disponíveis
+                                        para todos os usuários)</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" id="radioPrivacy2" type="radio" name="radioPrivacy">
+                                    <label class="form-check-label" for="radioPrivacy2">Privado (postagens disponíveis
+                                        apenas para usuários de seus grupos)</label>
+                                </div>
+                            </form>
+                            <hr class="my-4">
+                            <!-- Opções de Compartilhamento de Dados -->
+                            <h5 class="mb-1">Compartilhamento de Dados</h5>
+                            <p class="small text-muted">Compartilhar dados de uso pode nos ajudar a melhorar nossos
+                                produtos e atender melhor nossos usuários enquanto navegam em nossa aplicação. Quando
+                                você concorda em compartilhar dados de uso conosco, relatórios de falhas e análises de
+                                uso serão automaticamente enviados para nossa equipe de desenvolvimento para
+                                investigação.</p>
+                            <form>
+                                <div class="form-check">
+                                    <input class="form-check-input" id="radioUsage1" type="radio" name="radioUsage" checked="">
+                                    <label class="form-check-label" for="radioUsage1">Sim, compartilhar dados e
+                                        relatórios de falhas com os desenvolvedores de aplicativos</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" id="radioUsage2" type="radio" name="radioUsage">
+                                    <label class="form-check-label" for="radioUsage2">Não, limitar meu compartilhamento
+                                        de dados com os desenvolvedores de aplicativos</label>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <!-- Cartão de Autenticação de Dois Fatores -->
+                    <div class="card mb-4">
+                        <div class="card-header">Autenticação de Dois Fatores</div>
+                        <div class="card-body">
+                            <p>Adicione um nível adicional de segurança à sua conta ativando a autenticação de dois
+                                fatores. Enviaremos uma mensagem de texto para verificar suas tentativas de login em
+                                dispositivos e navegadores não reconhecidos.</p>
+                            <form>
+                                <div class="form-check">
+                                    <input class="form-check-input" id="twoFactorOn" type="radio" name="twoFactor" checked="">
+                                    <label class="form-check-label" for="twoFactorOn">Ligado</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" id="twoFactorOff" type="radio" name="twoFactor">
+                                    <label class="form-check-label" for="twoFactorOff">Desligado</label>
+                                </div>
+                                <div class="mt-3">
+                                    <label class="small mb-1" for="twoFactorSMS">Número de SMS</label>
+                                    <input class="form-control" id="twoFactorSMS" type="tel" placeholder="Digite um número de telefone" value="555-123-4567">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Cartão de Exclusão de Conta -->
+                    <div class="card mb-4">
+                        <div class="card-header">Excluir Conta</div>
+                        <div class="card-body">
+                            <p>Excluir sua conta é uma ação permanente e não pode ser desfeita. Se você tem certeza de
+                                que deseja excluir sua conta, selecione o botão abaixo.</p>
+                            <button class="btn btn-danger-soft text-danger" type="button">Entendi, excluir minha
+                                conta</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="notificationSection" class="hidden">
+            <div class="row">
+                <div class="col-lg-8">
+                    <!-- Cartão de Preferências de Notificações por Email -->
+                    <div class="card card-header-actions mb-4">
+                        <div class="card-header">
+                            Notificações por Email
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" id="flexSwitchCheckChecked" type="checkbox" checked="">
+                                <label class="form-check-label" for="flexSwitchCheckChecked"></label>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <!-- Grupo de Formulário (email de notificação padrão) -->
+                                <div class="mb-3">
+                                    <label class="small mb-1" for="inputNotificationEmail">Email de notificação
+                                        padrão</label>
+                                    <input class="form-control" id="inputNotificationEmail" type="email" value="nome@exemplo.com" disabled="">
+                                </div>
+                                <!-- Grupo de Formulário (caixas de seleção de atualizações de email) -->
+                                <div class="mb-0">
+                                    <label class="small mb-2">Escolha quais tipos de atualizações por email você deseja
+                                        receber</label>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" id="checkAccountChanges" type="checkbox" checked="">
+                                        <label class="form-check-label" for="checkAccountChanges">Alterações feitas na
+                                            sua
+                                            conta</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" id="checkAccountGroups" type="checkbox" checked="">
+                                        <label class="form-check-label" for="checkAccountGroups">Alterações feitas em
+                                            grupos dos quais você faz parte</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" id="checkProductUpdates" type="checkbox" checked="">
+                                        <label class="form-check-label" for="checkProductUpdates">Atualizações de
+                                            produtos para
+                                            produtos que você comprou ou marcou como favorito</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" id="checkProductNew" type="checkbox" checked="">
+                                        <label class="form-check-label" for="checkProductNew">Informações sobre novos
+                                            produtos e serviços</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" id="checkPromotional" type="checkbox">
+                                        <label class="form-check-label" for="checkPromotional">Ofertas de marketing e
+                                            promoções</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" id="checkSecurity" type="checkbox" checked="" disabled="">
+                                        <label class="form-check-label" for="checkSecurity">Alertas de segurança</label>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Cartão de Preferências de Notificações Push por SMS -->
+                    <div class="card card-header-actions mb-4">
+                        <div class="card-header">
+                            Notificações Push por SMS
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" id="smsToggleSwitch" type="checkbox" checked="">
+                                <label class="form-check-label" for="smsToggleSwitch"></label>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <!-- Grupo de Formulário (número SMS padrão) -->
+                                <div class="mb-3">
+                                    <label class="small mb-1" for="inputNotificationSms">Número SMS padrão</label>
+                                    <input class="form-control" id="inputNotificationSms" type="tel" value="123-456-7890" disabled="">
+                                </div>
+                                <!-- Grupo de Formulário (caixas de seleção de atualizações por SMS) -->
+                                <div class="mb-0">
+                                    <label class="small mb-2">Escolha quais tipos de notificações push por SMS você
+                                        deseja receber</label>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" id="checkSmsComment" type="checkbox" checked="">
+                                        <label class="form-check-label" for="checkSmsComment">Alguém comenta em sua
+                                            postagem</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" id="checkSmsShare" type="checkbox">
+                                        <label class="form-check-label" for="checkSmsShare">Alguém compartilha sua
+                                            postagem</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" id="checkSmsFollow" type="checkbox" checked="">
+                                        <label class="form-check-label" for="checkSmsFollow">Um usuário segue sua
+                                            conta</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" id="checkSmsGroup" type="checkbox">
+                                        <label class="form-check-label" for="checkSmsGroup">Novas postagens em grupos
+                                            dos quais
+                                            você faz parte</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" id="checkSmsPrivateMessage" type="checkbox" checked="">
+                                        <label class="form-check-label" for="checkSmsPrivateMessage">Você recebe uma
+                                            mensagem privada</label>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <!-- Cartão de Preferências de Notificações -->
+                    <div class="card">
+                        <div class="card-header">Preferências de Notificação</div>
+                        <div class="card-body">
+                            <form>
+                                <!-- Grupo de Formulário (caixas de seleção de preferências de notificação) -->
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" id="checkAutoGroup" type="checkbox" checked="">
+                                    <label class="form-check-label" for="checkAutoGroup">Inscrever-se automaticamente
+                                        nas
+                                        notificações de grupo</label>
+                                </div>
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" id="checkAutoProduct" type="checkbox">
+                                    <label class="form-check-label" for="checkAutoProduct">Inscrever-se automaticamente
+                                        nas
+                                        notificações de novos produtos</label>
+                                </div>
+                                <!-- Botão de envio -->
+                                <button class="btn btn-danger-soft text-danger">Cancelar inscrição de todas as
+                                    notificações</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </div>
+
 </body>
+<script>
+    // Função para mostrar a seção de Perfil
+    function showProfile() {
+        document.getElementById("profileSection").classList.remove("hidden");
+        document.getElementById("billingSection").classList.add("hidden");
+        document.getElementById("securitySection").classList.add("hidden");
+        document.getElementById("notificationSection").classList.add("hidden");
+    }
+
+    // Função para mostrar a seção de Cobrança
+    function showBilling() {
+        document.getElementById("profileSection").classList.add("hidden");
+        document.getElementById("billingSection").classList.remove("hidden");
+        document.getElementById("securitySection").classList.add("hidden");
+        document.getElementById("notificationSection").classList.add("hidden");
+    }
+
+    // Função para mostrar a seção de Segurança
+    function showSecurity() {
+        document.getElementById("profileSection").classList.add("hidden");
+        document.getElementById("billingSection").classList.add("hidden");
+        document.getElementById("securitySection").classList.remove("hidden");
+        document.getElementById("notificationSection").classList.add("hidden");
+    }
+
+    // Função para mostrar a seção de Notificações
+    function showNotifications() {
+        document.getElementById("profileSection").classList.add("hidden");
+        document.getElementById("billingSection").classList.add("hidden");
+        document.getElementById("securitySection").classList.add("hidden");
+        document.getElementById("notificationSection").classList.remove("hidden");
+    }
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.5.0/js/bootstrap.min.js"></script>
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/jquery-migrate-3.0.1.min.js"></script>
+<script src="../assets/js/popper.min.js"></script>
+<script src="../assets/js/bootstrap.min.js"></script>
+<script src="../assets/js/jquery.easing.1.3.js"></script>
+<script src="../assets/js/jquery.waypoints.min.js"></script>
+<script src="../assets/js/jquery.stellar.min.js"></script>
+<script src="../assets/js/owl.carousel.min.js"></script>
+<script src="../assets/js/jquery.magnific-popup.min.js"></script>
+<script src="../assets/js/aos.js"></script>
+<script src="../assets/js/jquery.animateNumber.min.js"></script>
+<script src="../assets/js/bootstrap-datepicker.js"></script>
+<script src="../assets/js/scrollax.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+<script src="../assets/js/google-map.js"></script>
+<script src="../assets/js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
 </html>

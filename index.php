@@ -34,32 +34,31 @@ include_once "model/logica_perfil_index.php";
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <div class="container">
-            <a class="navbar-brand mx-auto" href="#">Belchior</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Início</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Produtos</a>
-                    </li>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container">
+      <a class="navbar-brand mx-auto" href="#">Belchior</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Início</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Produtos</a>
+          </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="./view/contato.html">Contato</a>
-                    </li>
-                    <li class='nav-item'>
-                        <a class='nav-link' href='<?php echo $profileLink; ?>'><?php echo $profileName; ?></a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+          <li class="nav-item">
+            <a class="nav-link" href="./view/contato.html">Contato</a>
+          </li>
+          <li class='nav-item'>
+            <a class='nav-link' href='<?php echo $profileLink; ?>'><?php echo $profileName; ?></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
   <main>
     <section class="py-5">
@@ -282,8 +281,7 @@ include_once "model/logica_perfil_index.php";
                 <p class="price"><span>R$300.00</span></p>
               </div>
               <p class="bottom-area d-flex px-3">
-                <a href="#" class="add-to-cart text-center py-2 mr-1"><span>Carrinho <i
-                      class="ion-ios-add ml-1"></i></span></a>
+                <a href="#" class="add-to-cart text-center py-2 mr-1"><span>Carrinho <i class="ion-ios-add ml-1"></i></span></a>
                 <a href="#" class="buy-now text-center py-2">COMPRAR AGORA<span><i class="ion-ios-cart ml-1"></i></span></a>
               </p>
             </div>
@@ -315,8 +313,7 @@ include_once "model/logica_perfil_index.php";
                 <p class="price"><span class="mr-2 price-dc">R$550.00</span><span class="price-sale">$225.00</span></p>
               </div>
               <p class="bottom-area d-flex px-3">
-                <a href="#" class="add-to-cart text-center py-2 mr-1"><span>Carrinho <i
-                      class="ion-ios-add ml-1"></i></span></a>
+                <a href="#" class="add-to-cart text-center py-2 mr-1"><span>Carrinho <i class="ion-ios-add ml-1"></i></span></a>
                 <a href="#" class="buy-now text-center py-2">COMPRAR AGORA<span><i class="ion-ios-cart ml-1"></i></span></a>
               </p>
             </div>
@@ -347,8 +344,7 @@ include_once "model/logica_perfil_index.php";
                 <p class="price"><span>R$43.00</span></p>
               </div>
               <p class="bottom-area d-flex px-3">
-                <a href="#" class="add-to-cart text-center py-2 mr-1"><span>Carrinho <i
-                      class="ion-ios-add ml-1"></i></span></a>
+                <a href="#" class="add-to-cart text-center py-2 mr-1"><span>Carrinho <i class="ion-ios-add ml-1"></i></span></a>
                 <a href="#" class="buy-now text-center py-2">COMPRAR AGORA<span><i class="ion-ios-cart ml-1"></i></span></a>
               </p>
             </div>
@@ -379,8 +375,7 @@ include_once "model/logica_perfil_index.php";
                 <p class="price"><span>R$70.00</span></p>
               </div>
               <p class="bottom-area d-flex px-3">
-                <a href="#" class="add-to-cart text-center py-2 mr-1"><span>Carrinho <i
-                      class="ion-ios-add ml-1"></i></span></a>
+                <a href="#" class="add-to-cart text-center py-2 mr-1"><span>Carrinho <i class="ion-ios-add ml-1"></i></span></a>
                 <a href="#" class="buy-now text-center py-2">COMPRAR AGORA<span><i class="ion-ios-cart ml-1"></i></span></a>
               </p>
             </div>
@@ -412,8 +407,7 @@ include_once "model/logica_perfil_index.php";
                 <p class="price"><span>R$35.00</span></p>
               </div>
               <p class="bottom-area d-flex px-3">
-                <a href="#" class="add-to-cart text-center py-2 mr-1"><span>Carrinho <i
-                      class="ion-ios-add ml-1"></i></span></a>
+                <a href="#" class="add-to-cart text-center py-2 mr-1"><span>Carrinho <i class="ion-ios-add ml-1"></i></span></a>
                 <a href="#" class="buy-now text-center py-2">COMPRAR AGORA<span><i class="ion-ios-cart ml-1"></i></span></a>
               </p>
             </div>
@@ -445,8 +439,7 @@ include_once "model/logica_perfil_index.php";
                 <p class="price"><span class="mr-2 price-dc">R$80.00</span><span class="price-sale">R$40.00</span></p>
               </div>
               <p class="bottom-area d-flex px-3">
-                <a href="#" class="add-to-cart text-center py-2 mr-1"><span>Carrinho <i
-                      class="ion-ios-add ml-1"></i></span></a>
+                <a href="#" class="add-to-cart text-center py-2 mr-1"><span>Carrinho <i class="ion-ios-add ml-1"></i></span></a>
                 <a href="#" class="buy-now text-center py-2">COMPRAR AGORA<span><i class="ion-ios-cart ml-1"></i></span></a>
               </p>
             </div>
@@ -477,8 +470,7 @@ include_once "model/logica_perfil_index.php";
                 <p class="price"><span>R$15.00</span></p>
               </div>
               <p class="bottom-area d-flex px-3">
-                <a href="#" class="add-to-cart text-center py-2 mr-1"><span>Carrinho <i
-                      class="ion-ios-add ml-1"></i></span></a>
+                <a href="#" class="add-to-cart text-center py-2 mr-1"><span>Carrinho <i class="ion-ios-add ml-1"></i></span></a>
                 <a href="#" class="buy-now text-center py-2">COMPRAR AGORA<span><i class="ion-ios-cart ml-1"></i></span></a>
               </p>
             </div>
@@ -509,8 +501,7 @@ include_once "model/logica_perfil_index.php";
                 <p class="price"><span>R$7.00</span></p>
               </div>
               <p class="bottom-area d-flex px-3">
-                <a href="#" class="add-to-cart text-center py-2 mr-1"><span>Carrinho <i
-                      class="ion-ios-add ml-1"></i></span></a>
+                <a href="#" class="add-to-cart text-center py-2 mr-1"><span>Carrinho <i class="ion-ios-add ml-1"></i></span></a>
                 <a href="#" class="buy-now text-center py-2">COMPRAR AGORA<span><i class="ion-ios-cart ml-1"></i></span></a>
               </p>
             </div>
@@ -575,8 +566,7 @@ include_once "model/logica_perfil_index.php";
               <ul>
                 <li><span class="icon icon-map-marker"> </span><span class="text">Rua Carlos De Carvalho, 200</span></li>
                 <li><a href="#"><span class="icon icon-phone"> </span><span class="text">+2 392 3929 210</span></a></li>
-                <li><a href="#"><span class="icon icon-envelope"> </span><span
-                      class="text">contato@belchior.com</span></a>
+                <li><a href="#"><span class="icon icon-envelope"> </span><span class="text">contato@belchior.com</span></a>
                 </li>
               </ul>
             </div>
@@ -588,8 +578,9 @@ include_once "model/logica_perfil_index.php";
 
           <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
             Copyright &copy;
-            <script>document.write(new Date().getFullYear());</script> All rights reserved <i
-              class="icon-heart color-danger" aria-hidden="true"></i> by <a href="#" target="_blank">Belchior</a>
+            <script>
+              document.write(new Date().getFullYear());
+            </script> All rights reserved <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="#" target="_blank">Belchior</a>
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
           </p>
         </div>
@@ -602,8 +593,7 @@ include_once "model/logica_perfil_index.php";
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
       <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
-      <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
-        stroke="#F96D00" />
+      <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" />
     </svg></div>
 
 
@@ -620,8 +610,7 @@ include_once "model/logica_perfil_index.php";
   <script src="assets/js/jquery.animateNumber.min.js"></script>
   <script src="assets/js/bootstrap-datepicker.js"></script>
   <script src="assets/js/scrollax.min.js"></script>
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="assets/js/google-map.js"></script>
   <script src="assets/js/main.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
