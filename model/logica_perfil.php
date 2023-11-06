@@ -12,10 +12,8 @@
     public function __construct() {
         session_start();
         if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] && 
-        isset($_SESSION['user_profile_name'])  && isset($_SESSION['user_id']) && 
-        isset($_SESSION['user_sobrenome']) && isset($_SESSION['user_email']) &&
-        isset($_SESSION['user_apelido']) && isset($_SESSION['user_telefone']) &&
-        isset($_SESSION['user_data_nascimento'])){
+        isset($_SESSION['user_profile_name'])  && isset($_SESSION['user_id']) && isset($_SESSION['user_email']))
+        {
 
             $this->profileName = $_SESSION['user_profile_name'];
             $this->profileId = $_SESSION['user_id'];
