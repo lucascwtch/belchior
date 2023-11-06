@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 25-Out-2023 às 15:36
+-- Tempo de geração: 06-Nov-2023 às 23:35
 -- Versão do servidor: 10.4.25-MariaDB
 -- versão do PHP: 8.1.10
 
@@ -93,19 +93,24 @@ INSERT INTO `produtos` (`id_produto`, `titulo`, `categoria`, `preco`, `tamanho`,
 CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
   `nome` varchar(120) NOT NULL,
+  `sobrenome` varchar(120) DEFAULT NULL,
   `email` varchar(120) NOT NULL,
   `senha` char(100) NOT NULL,
+  `apelido` varchar(120) NOT NULL,
+  `perfil_image` blob NOT NULL,
   `adm` int(11) NOT NULL DEFAULT 1,
-  `token` char(100) NOT NULL
+  `token` char(100) NOT NULL,
+  `data_nascimento` date DEFAULT NULL,
+  `telefone` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `nome`, `email`, `senha`, `adm`, `token`) VALUES
-(20, 'Lucas Almeida', 'lucas.almeida@gmail.com', '$2y$10$t9nazwXzglnleio942ZTqejuv0baslKTw7Pw4Hd6S5fMXZZqXtRti', 1, '$2y$10$9LkydmclYbT893/580qGduwVR3m.ytmqcY2Fc8yqDYDIDlpHrciSS'),
-(21, 'Fabio Henrique Silva Falconeri Reis', 'freis1801@gmail.com', '$2y$10$F1ArPmlTsuIPs3Ti74vpBe6.pOyE0H.EH5hQDTKxXqHLS/bwxeTku', 1, '$2y$10$AM5pUqsRWxnWlZCN.qyi..B1ASnEBmhsNHq7trHNwe5cWobjAtnx6');
+INSERT INTO `usuarios` (`id`, `nome`, `sobrenome`, `email`, `senha`, `apelido`, `perfil_image`, `adm`, `token`, `data_nascimento`, `telefone`) VALUES
+(20, 'Lucas Almeida', NULL, 'lucas.almeida@gmail.com', '$2y$10$t9nazwXzglnleio942ZTqejuv0baslKTw7Pw4Hd6S5fMXZZqXtRti', '', '', 1, '$2y$10$9LkydmclYbT893/580qGduwVR3m.ytmqcY2Fc8yqDYDIDlpHrciSS', NULL, ''),
+(21, 'Fabio Henrique Silva Falconeri Reis', '', 'freis1801@gmail.com', '$2y$10$B4UBL7G.UKthG4M/ByX1YO/GAA0WWCStNX0I9o/tDu2I/OSRP3Kee', '', '', 1, '$2y$10$2bzLyfUpoRuyrLeQajNnbOgqEBVlMs/R2NlgV0ssZ4rXuyU4UefzW', '2003-01-18', '11970613928');
 
 --
 -- Índices para tabelas despejadas
