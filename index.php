@@ -50,7 +50,7 @@ include_once "model/logica_perfil_index.php";
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="./view/contato.html">Contato</a>
+            <a class="nav-link" href="./view/contato.php">Contato</a>
           </li>
           <li class='nav-item'>
             <a class='nav-link' href='<?php echo $profileLink; ?>'><?php echo $profileName; ?></a>
