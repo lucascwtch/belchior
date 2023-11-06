@@ -45,6 +45,13 @@ class Authenticator {
         $_SESSION['user_logged_in'] = true;
         $_SESSION['user_profile_name'] = $user['nome'];
         $_SESSION['user_adm'] = $user['adm'];
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['user_sobrenome'] = $user['sobrenome'];
+        $_SESSION['user_email'] = $user['email'];
+        $_SESSION['user_apelido'] = $user['apelido'];
+        $_SESSION['user_telefone'] = $user['telefone'];
+        $_SESSION['user_data_nascimento'] = $user['data_nascimento'];
+        
 
         $welcome_message = "Bem-vindo, " . $user['nome'];
 

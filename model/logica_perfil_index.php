@@ -8,7 +8,7 @@ class UserProfile {
 
     public function __construct() {
         session_start();
-        if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] && isset($_SESSION['user_profile_name'])) {
+        if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] && isset($_SESSION['user_profile_name']) && isset($_SESSION['user_apelido'])) {
             $this->profileName = $_SESSION['user_profile_name'];
             $this->profileLink = 'view/perfil.php'; // Link para o perfil quando o usuário está logado
         } else {
