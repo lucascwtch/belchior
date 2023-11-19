@@ -791,7 +791,6 @@ include_once "../model/logica_perfil.php";
 <script src="../assets/js/jquery.animateNumber.min.js"></script>
 <script src="../assets/js/bootstrap-datepicker.js"></script>
 <script src="../assets/js/scrollax.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 <script src="../assets/js/google-map.js"></script>
 <script src="../assets/js/main.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>

@@ -1,6 +1,6 @@
 <?php
 
-require "controller/config.php";
+require "controller/config.php"; 
 
 class UserProfile {
     private $profileName;
@@ -33,5 +33,4 @@ $userProfile = new UserProfile();
 $profileName = $userProfile->getProfileName();
 $profileLink = $userProfile->getProfileLink();
 
-// Agora você pode usar $profileName e $profileLink conforme necessário
 ?>

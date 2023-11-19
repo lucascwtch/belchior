@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contato - Belchior</title>
     <link rel="stylesheet" href="../assets/css/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/057ae39a47.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="bootstrap.min.css.map">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
@@ -47,16 +47,13 @@
                         <a class="nav-link" href="../index.php">Início</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./view/sobre.html">Sobre</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Produtos</a>
+                        <a class="nav-link" href="produtos.html">Produtos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Contato</a>
                     </li>
                     <li class='nav-item'>
-                        <a class='nav-link' href='<?php echo $profileLink; ?>'><?php echo $profileName; ?></a>
+                        NOME PERFIL
                     </li>
                 </ul>
             </div>
@@ -124,15 +121,14 @@
 
     <br><br><br>
 
+    <!-- Botão de Mouse no Footer -->
+    <div id="scrollToTop">
+        <i class="fa fa-angle-up" aria-hidden="true"></i>
+    </div>
+
+
     <footer class="ftco-footer ftco-section">
         <div class="container">
-            <div class="row">
-                <div class="mouse">
-                    <a href="#" class="mouse-icon">
-                        <div class="mouse-wheel"><span class="ion-ios-arrow-up"></span></div>
-                    </a>
-                </div>
-            </div>
             <div class="row mb-5">
                 <div class="col-md">
                     <div class="ftco-footer-widget mb-4">
@@ -188,14 +184,14 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12 text-center">
+                <div class="col-md-12 text-center" style="color: #fff">
 
-                    <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    <p>
                         Copyright &copy;
                         <script>
                             document.write(new Date().getFullYear());
                         </script> All rights reserved <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="#" target="_blank">Belchior</a>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+
                     </p>
                 </div>
             </div>
