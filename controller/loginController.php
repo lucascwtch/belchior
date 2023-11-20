@@ -61,7 +61,7 @@ class AuthController {
         echo "<script language='javascript' type='text/javascript'>
             " . ($message ? "alert('$message');" : "") . "
             setTimeout(function() {
-                window.location = '../view/login_page.php';
+                window.location = '../view/login_page.html';
             }, 3000);
         </script>";
     }

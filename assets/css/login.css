@@ -29,6 +29,7 @@ body{
 .wrapper h1 {
     font-size: 36px;
     text-align: center;
+    color: #fff
 }
 
 .wrapper .input-box {

@@ -6,10 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://kit.fontawesome.com/057ae39a47.js" crossorigin="anonymous"></script>
 
-  <title>Belchior</title>
+  <title>Produtos - Belchior</title>
+  <link rel="icon" href="../assets/img/favicon.png" type="image/x-icon">
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
   <link rel="icon" href="assets/img/favicon.png" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+
 
   <link rel="stylesheet" href="../assets/css/ionicons.min.css">
   <link rel="stylesheet" href="../assets/css/flaticon.css">
@@ -23,7 +26,6 @@
 
   <link rel="stylesheet" href="../assets/css/open-iconic-bootstrap.min.css">
   <link rel="stylesheet" href="../assets/css/animate.css">
-  <link rel="stylesheet" href="../assets/css/produtos_style.css">
   <link rel="stylesheet" href="../assets/css/style.css">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -55,87 +57,252 @@
           <li class="nav-item">
             <a class="nav-link" href="contato.php">Contato</a>
           </li>
-          <li class='nav-item'>
-            <a class='nav-link' href='<?php echo $profileLink; ?>'>
-              <?php echo $profileName; ?>
-            </a>
-          </li>
+          <li class="nav-item cta cta-colored"><a href="carrinho.html" class="nav-link"><span
+                class="icon-shopping_cart"></span>[0]</a></li>
+
         </ul>
       </div>
     </div>
   </nav>
 
-  <div class="wrapper">
-    <div class="banner">
-      <img src="../assets/img/belchior.png" alt="Banner" class="img-fluid banner-product">
-    </div>
-
-    <hr>
-
-
-    <section class="">
-      <div class="my-container">
-        <div class="row no-gutters ftco-services">
-          <div class="col-lg-4 text-center d-flex align-self-stretch ftco-animate">
-            <div class="media block-6 services p-4 py-md-5">
-              <div class="icon d-flex justify-content-center align-items-center mb-4">
-                <span class="flaticon-bag"></span>
-              </div>
-              <div class="media-body">
-                <h3 class="heading">Loja Online</h3>
-                <p>Faça a sua loja online em poucos minutos!</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 text-center d-flex align-self-stretch ftco-animate">
-            <div class="media block-6 services p-4 py-md-5">
-              <div class="icon d-flex justify-content-center align-items-center mb-4">
-                <span class="flaticon-customer-service"></span>
-              </div>
-              <div class="media-body">
-                <h3 class="heading">Suporte</h3>
-                <p>Se desejar ajuda com a loja, estamos a disposição!</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 text-center d-flex align-self-stretch ftco-animate">
-            <div class="media block-6 services p-4 py-md-5">
-              <div class="icon d-flex justify-content-center align-items-center mb-4">
-                <span class="flaticon-payment-security"></span>
-              </div>
-              <div class="media-body">
-                <h3 class="heading">Pagamentos Seguros</h3>
-                <p>Utilizamos o Mercado Pago, 100% seguro!</p>
-              </div>
-            </div>
-          </div>
+  <div class="hero-wrap hero-bread" style="background-image: url('../assets/img/bg_6.jpg');">
+    <div class="container">
+      <div class="row no-gutters slider-text align-items-center justify-content-center">
+        <div class="col-md-9 ftco-animate text-center">
+          <p class="breadcrumbs"><span class="mr-2"><a href="../index.html">Início</a></span> <span>PRODUTOS</span></p>
+          <h1 class="mb-0 bread">PRODUTOS</h1>
         </div>
-      </div>
-    </section>
-
-
-    <div class="my-container">
-      <div class="my-container text-center">
-        <h1>Está procurando por algum produto?</h1>
-        <div id="search-container">
-          <input type="search" id="search-input" placeholder="Buscar produtos, marcas, lojas e muito mais..." />
-          <button id="search">Search</button>
-        </div>
-        <div id="buttons">
-          <button class="button-value" onclick="filterProduct('todos')">Todos</button>
-          <button class="button-value" onclick="filterProduct('Camisetas')">Camisetas</button>
-          <button class="button-value" onclick="filterProduct('Calças')">Calças</button>
-          <button class="button-value" onclick="filterProduct('Bonés')">Bonés</button>
-          <button class="button-value" onclick="filterProduct('Relógios')">Relógios</button>
-        </div>
-      </div>
-
-      <div id="products" class="product-section">
-        <!-- Exemplo de card -->
-        <!-- Cards serão adicionados dinamicamente pelo script -->
       </div>
     </div>
   </div>
+
+  <section class="ftco-section bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-lg-10 order-md-last">
+          <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-4 ftco-animate d-flex">
+              <div class="product d-flex flex-column">
+                <a href="#" class="img-prod"><img class="img-fluid" src="../assets/img/product-1.png"
+                    alt="Colorlib Template">
+                  <div class="overlay"></div>
+                </a>
+                <div class="text py-3 pb-4 px-3">
+                  <div class="d-flex">
+                    <div class="cat">
+                      <span>Lifestyle</span>
+                    </div>
+                    <div class="rating">
+                      <p class="text-right mb-0">
+                        <a href="#"><span class="ion-ios-star-outline"></span></a>
+                        <a href="#"><span class="ion-ios-star-outline"></span></a>
+                        <a href="#"><span class="ion-ios-star-outline"></span></a>
+                        <a href="#"><span class="ion-ios-star-outline"></span></a>
+                        <a href="#"><span class="ion-ios-star-outline"></span></a>
+                      </p>
+                    </div>
+                  </div>
+                  <h3><a href="#">Nike Free RN 2019 iD</a></h3>
+                  <div class="pricing">
+                    <p class="price"><span>$120.00</span></p>
+                  </div>
+                  <p class="bottom-area d-flex px-3">
+                    <a href="#" class="add-to-cart text-center py-2 mr-1"><span>Add to cart <i
+                          class="ion-ios-add ml-1"></i></span></a>
+                    <a href="#" class="buy-now text-center py-2">Buy now<span><i
+                          class="ion-ios-cart ml-1"></i></span></a>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-4 ftco-animate d-flex">
+              <div class="product d-flex flex-column">
+                <a href="#" class="img-prod"><img class="img-fluid" src="../assets/img/product-2.png"
+                    alt="Colorlib Template">
+                  <span class="status">50% Off</span>
+                  <div class="overlay"></div>
+                </a>
+                <div class="text py-3 pb-4 px-3">
+                  <div class="d-flex">
+                    <div class="cat">
+                      <span>Lifestyle</span>
+                    </div>
+                    <div class="rating">
+                      <p class="text-right mb-0">
+                        <a href="#"><span class="ion-ios-star-outline"></span></a>
+                        <a href="#"><span class="ion-ios-star-outline"></span></a>
+                        <a href="#"><span class="ion-ios-star-outline"></span></a>
+                        <a href="#"><span class="ion-ios-star-outline"></span></a>
+                        <a href="#"><span class="ion-ios-star-outline"></span></a>
+                      </p>
+                    </div>
+                  </div>
+                  <h3><a href="#">Nike Free RN 2019 iD</a></h3>
+                  <div class="pricing">
+                    <p class="price"><span class="mr-2 price-dc">$120.00</span><span class="price-sale">$80.00</span>
+                    </p>
+                  </div>
+                  <p class="bottom-area d-flex px-3">
+                    <a href="#" class="add-to-cart text-center py-2 mr-1"><span>Add to cart <i
+                          class="ion-ios-add ml-1"></i></span></a>
+                    <a href="#" class="buy-now text-center py-2">Buy now<span><i
+                          class="ion-ios-cart ml-1"></i></span></a>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-4 ftco-animate d-flex">
+              <div class="product">
+                <a href="#" class="img-prod"><img class="img-fluid" src="../assets/img/product-3.png"
+                    alt="Colorlib Template">
+                  <div class="overlay"></div>
+                </a>
+                <div class="text py-3 pb-4 px-3">
+                  <div class="d-flex">
+                    <div class="cat">
+                      <span>Lifestyle</span>
+                    </div>
+                    <div class="rating">
+                      <p class="text-right mb-0">
+                        <a href="#"><span class="ion-ios-star-outline"></span></a>
+                        <a href="#"><span class="ion-ios-star-outline"></span></a>
+                        <a href="#"><span class="ion-ios-star-outline"></span></a>
+                        <a href="#"><span class="ion-ios-star-outline"></span></a>
+                        <a href="#"><span class="ion-ios-star-outline"></span></a>
+                      </p>
+                    </div>
+                  </div>
+                  <h3><a href="#">Nike Free RN 2019 iD</a></h3>
+                  <div class="pricing">
+                    <p class="price"><span>$120.00</span></p>
+                  </div>
+                  <p class="bottom-area d-flex px-3">
+                    <a href="#" class="add-to-cart text-center py-2 mr-1"><span>Add to cart <i
+                          class="ion-ios-add ml-1"></i></span></a>
+                    <a href="#" class="buy-now text-center py-2">Buy now<span><i
+                          class="ion-ios-cart ml-1"></i></span></a>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="row mt-5">
+            <div class="col text-center">
+              <div class="block-27">
+                <ul>
+                  <li><a href="#">&lt;</a></li>
+                  <li class="active"><span>1</span></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#">5</a></li>
+                  <li><a href="#">&gt;</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 col-lg-2">
+          <div class="sidebar">
+            <div class="sidebar-box-2">
+              <h2 class="heading">Categorias</h2>
+              <div class="fancy-collapse-panel">
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true"
+                          aria-controls="collapseOne">Calçados Masculinos
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                      <div class="panel-body">
+                        <ul>
+                          <li><a href="#">Esportivos</a></li>
+                          <li><a href="#">Casuais</a></li>
+                          <li><a href="#">Corrida</a></li>
+                          <li><a href="#">Jordan</a></li>
+                          <li><a href="#">Futebol</a></li>
+                          <li><a href="#">Futebol Americano</a></li>
+                          <li><a href="#">Estilo de Vida</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingTwo">
+                      <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"
+                          aria-expanded="false" aria-controls="collapseTwo">Calçados Femininos
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                      <div class="panel-body">
+                        <ul>
+                          <li><a href="#">Esportivos</a></li>
+                          <li><a href="#">Casuais</a></li>
+                          <li><a href="#">Corrida</a></li>
+                          <li><a href="#">Jordan</a></li>
+                          <li><a href="#">Futebol</a></li>
+                          <li><a href="#">Futebol Americano</a></li>
+                          <li><a href="#">Estilo de Vida</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingThree">
+                      <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree"
+                          aria-expanded="false" aria-controls="collapseThree">Acessórios
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel"
+                      aria-labelledby="headingThree">
+                      <div class="panel-body">
+                        <ul>
+                          <li><a href="#">Calças Jeans</a></li>
+                          <li><a href="#">Camisetas</a></li>
+                          <li><a href="#">Jaquetas</a></li>
+                          <li><a href="#">Calçados</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingFour">
+                      <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour"
+                          aria-expanded="false" aria-controls="collapseThree">Roupas
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel"
+                      aria-labelledby="headingFour">
+                      <div class="panel-body">
+                        <ul>
+                          <li><a href="#">Calças Jeans</a></li>
+                          <li><a href="#">Camisetas</a></li>
+                          <li><a href="#">Jaquetas</a></li>
+                          <li><a href="#">Calçados</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
 
   <!-- Botão de Mouse no Footer -->
   <div id="scrollToTop">
@@ -146,87 +313,93 @@
 
   <section class="ftco-section testimony-section">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-5">
-                <div class="services-flow">
-                    <div class="services-2 p-4 d-flex ftco-animate">
-                        <div class="icon">
-                            <span class="fas fa-shopping-bag"></span>
-                        </div>
-                        <div class="text">
-                            <h3>Frete Grátis</h3>
-                            <p class="mb-0">Desfrute de frete grátis em todas as suas compras. Seu produto chegará até você sem custos adicionais.</p>
-                        </div>
-                    </div>
-                    <div class="services-2 p-4 d-flex ftco-animate">
-                        <div class="icon">
-                            <span class="fas fa-heart"></span>
-                        </div>
-                        <div class="text">
-                            <h3>Presentes Valiosos</h3>
-                            <p class="mb-0">Receba presentes valiosos em cada compra. Queremos tornar sua experiência de compra ainda mais especial.</p>
-                        </div>
-                    </div>
-                    <div class="services-2 p-4 d-flex ftco-animate">
-                        <div class="icon">
-                            <span class="fas fa-credit-card"></span>
-                        </div>
-                        <div class="text">
-                            <h3>Suporte o Dia Todo</h3>
-                            <p class="mb-0">Nosso suporte está disponível 24 horas por dia, 7 dias por semana. Estamos aqui para ajudar em qualquer momento.</p>
-                        </div>
-                    </div>
-                    <div class="services-2 p-4 d-flex ftco-animate">
-                        <div class="icon">
-                            <span class="fas fa-headset"></span>
-                        </div>
-                        <div class="text">
-                            <h3>Suporte o Dia Todo</h3>
-                            <p class="mb-0">Conte com nosso suporte dedicado a qualquer momento. Estamos prontos para atendê-lo sempre que precisar.</p>
-                        </div>
-                    </div>
-                </div>
+      <div class="row">
+        <div class="col-lg-5">
+          <div class="services-flow">
+            <div class="services-2 p-4 d-flex ftco-animate">
+              <div class="icon">
+                <span class="fas fa-shopping-bag"></span>
+              </div>
+              <div class="text">
+                <h3>Frete Grátis</h3>
+                <p class="mb-0">Desfrute de frete grátis em todas as suas compras. Seu produto chegará até você sem
+                  custos adicionais.</p>
+              </div>
             </div>
-            <div class="col-lg-7">
-                <div class="heading-section ftco-animate mb-5">
-                    <h2 class="mb-4">O que nossos clientes satisfeitos dizem</h2>
-                    <p>Descubra o que nossos clientes têm a dizer sobre suas experiências de compra. </p>
-                </div>
-                <div class="carousel-testimony owl-carousel">
-                    <div class="item">
-                        <div class="testimony-wrap">
-                            <div class="user-img mb-4" style="background-image: url(../assets/img/person_1.jpg)">
-                                <span class="quote d-flex align-items-center justify-content-center">
-                                    <i class="fas fa-quote-left"></i>
-                                </span>
-                            </div>
-                            <div class="text">
-                                <p class="mb-4 pl-4 line">Estou impressionado com a qualidade dos produtos. O frete grátis foi um bônus adicional. Recomendo totalmente!</p>
-                                <p class="name">Garreth Smith</p>
-                                <span class="position">Gerente de Marketing</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="testimony-wrap">
-                            <div class="user-img mb-4" style="background-image: url(../assets/img/person_2.jpg)">
-                                <span class="quote d-flex align-items-center justify-content-center">
-                                    <i class="fas fa-quote-left"></i>
-                                </span>
-                            </div>
-                            <div class="text">
-                                <p class="mb-4 pl-4 line">A entrega foi rápida, e os presentes valiosos foram uma surpresa encantadora. Definitivamente, farei mais compras aqui!</p>
-                                <p class="name">Will Thinkerson</p>
-                                <span class="position">Designer de Interface</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Adicione mais depoimentos conforme necessário com ícones do Font Awesome -->
-                </div>
+            <div class="services-2 p-4 d-flex ftco-animate">
+              <div class="icon">
+                <span class="fas fa-heart"></span>
+              </div>
+              <div class="text">
+                <h3>Presentes Valiosos</h3>
+                <p class="mb-0">Receba presentes valiosos em cada compra. Queremos tornar sua experiência de compra
+                  ainda mais especial.</p>
+              </div>
             </div>
+            <div class="services-2 p-4 d-flex ftco-animate">
+              <div class="icon">
+                <span class="fas fa-credit-card"></span>
+              </div>
+              <div class="text">
+                <h3>Suporte o Dia Todo</h3>
+                <p class="mb-0">Nosso suporte está disponível 24 horas por dia, 7 dias por semana. Estamos aqui para
+                  ajudar em qualquer momento.</p>
+              </div>
+            </div>
+            <div class="services-2 p-4 d-flex ftco-animate">
+              <div class="icon">
+                <span class="fas fa-headset"></span>
+              </div>
+              <div class="text">
+                <h3>Suporte o Dia Todo</h3>
+                <p class="mb-0">Conte com nosso suporte dedicado a qualquer momento. Estamos prontos para atendê-lo
+                  sempre que precisar.</p>
+              </div>
+            </div>
+          </div>
         </div>
+        <div class="col-lg-7">
+          <div class="heading-section ftco-animate mb-5">
+            <h2 class="mb-4">O que nossos clientes satisfeitos dizem</h2>
+            <p>Descubra o que nossos clientes têm a dizer sobre suas experiências de compra. </p>
+          </div>
+          <div class="carousel-testimony owl-carousel">
+            <div class="item">
+              <div class="testimony-wrap">
+                <div class="user-img mb-4" style="background-image: url(../assets/img/person_1.jpg)">
+                  <span class="quote d-flex align-items-center justify-content-center">
+                    <i class="fas fa-quote-left"></i>
+                  </span>
+                </div>
+                <div class="text">
+                  <p class="mb-4 pl-4 line">Estou impressionado com a qualidade dos produtos. O frete grátis foi um
+                    bônus adicional. Recomendo totalmente!</p>
+                  <p class="name">Garreth Smith</p>
+                  <span class="position">Gerente de Marketing</span>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="testimony-wrap">
+                <div class="user-img mb-4" style="background-image: url(../assets/img/person_2.jpg)">
+                  <span class="quote d-flex align-items-center justify-content-center">
+                    <i class="fas fa-quote-left"></i>
+                  </span>
+                </div>
+                <div class="text">
+                  <p class="mb-4 pl-4 line">A entrega foi rápida, e os presentes valiosos foram uma surpresa
+                    encantadora. Definitivamente, farei mais compras aqui!</p>
+                  <p class="name">Will Thinkerson</p>
+                  <span class="position">Designer de Interface</span>
+                </div>
+              </div>
+            </div>
+            <!-- Adicione mais depoimentos conforme necessário com ícones do Font Awesome -->
+          </div>
+        </div>
+      </div>
     </div>
-</section>
+  </section>
 
 
   <br><br>

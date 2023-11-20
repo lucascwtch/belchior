@@ -52,9 +52,6 @@ require_once 'navbarView.php';
                     <li class="nav-item">
                         <a class="nav-link" href="#">Contato</a>
                     </li>
-                    <li class='nav-item'>
-                    <a class='nav-link' href='<?php echo $profileLink; ?>'><?php echo $profileName;  ?></a>
-                    </li>
                 </ul>
             </div>
         </div>
