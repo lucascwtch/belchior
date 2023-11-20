@@ -16,7 +16,6 @@ class ProdutoDAO {
         $query = "SELECT * FROM produtos";
         $result = $this->db->query($query);
         return $result->fetchAll(PDO::FETCH_ASSOC);
-        var_dump($result);
     }
     //adicionar outras consultas
 }

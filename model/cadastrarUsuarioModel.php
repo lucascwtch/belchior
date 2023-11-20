@@ -9,7 +9,7 @@ class RegistroModel {
     }
 
     public function manipularRegistro($dadosPost) {
-        // Sua lógica de manipulação de registro aqui
+        
         return $this->dao->manipularRegistro($dadosPost);
     }
 }

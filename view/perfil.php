@@ -3,7 +3,7 @@
 require_once "../controller/config.php";
 require_once '../view/navbarView.php';
 require_once "perfilView.php";
-require_once __DIR__ . '/../controller/perfilController.php';
+
 
 
 ?>
@@ -227,7 +227,7 @@ require_once __DIR__ . '/../controller/perfilController.php';
                     <div class="card mb-4">
                         <div class="card-header">Detalhes da Conta</div>
                         <div class="card-body">
-                            <form method="post" action="../model/update_perfil.php" onsubmit="return confirmarEnvio()" id="EdituserForm">
+                            <form method="post" action="../controller/updateSessionProfileController.php" onsubmit="return confirmarEnvio()" id="EdituserForm">
                                 <!-- Form Group (username)-->
                                 <div class="mb-3">
                                     <label class="small mb-1" for="inputUsername">Apelido</label>
