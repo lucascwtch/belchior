@@ -37,7 +37,10 @@ class EmailModel {
             $mail->addAddress($email);
 
             if ($mail->send()) {
-                echo "Mensagem enviada com sucesso para $email<br>";
+
+                echo "<script language='javascript' type='text/javascript'>
+                alert('Recebemos sua mensagem!');window.location ='../index.html'</script>";
+          
             } else {
                 echo "Erro ao enviar mensagem para $email: " . $mail->ErrorInfo . "<br>";
             }
