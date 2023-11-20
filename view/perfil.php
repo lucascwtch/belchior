@@ -1,8 +1,10 @@
 <?php
 
-require "../controller/config.php";
+require_once "../controller/config.php";
+require_once '../view/navbarView.php';
+require_once "perfilView.php";
+require_once __DIR__ . '/../controller/perfilController.php';
 
-include_once "../model/logica_perfil.php";
 
 ?>
 
@@ -179,7 +181,7 @@ include_once "../model/logica_perfil.php";
                         </a>
                         <div class="dropdown-menu" aria-labelledby="profileDropdown">
                             <!-- Botão de Logout -->
-                            <form action="../model/logout.php" method="post">
+                            <form action="../view/logoutView.php" method="post">
                                 <a><button>Logout</button></a>
                             </form>
                             <!-- Outros itens de menu do perfil, se necessário -->
@@ -236,12 +238,12 @@ include_once "../model/logica_perfil.php";
                                     <!-- Form Group (first name)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="inputFirstName">Primeiro Nome</label>
-                                        <input class="form-control" id="inputFirstName" name="inputFirstName" type="text" placeholder="Digite seu primeiro nome" value="<?php echo $profileName; ?>">
+                                        <input class="form-control" id="inputFirstName" name="inputFirstName" type="text" placeholder="Digite seu primeiro nome" value="<?php echo $profileNome; ?>">
                                     </div>
                                     <!-- Form Group (last name)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="inputLastName">Sobrenome</label>
-                                        <input class="form-control" id="inputLastName" name="inputLastName" type="text" placeholder="Digite seu sobrenome" value="<?php echo $profileSecondName; ?>">
+                                        <input class="form-control" id="inputLastName" name="inputLastName" type="text" placeholder="Digite seu sobrenome" value="<?php echo $profileSobrenome; ?>">
                                     </div>
                                 </div>
 
@@ -260,7 +262,7 @@ include_once "../model/logica_perfil.php";
                                     <!-- Form Group (birthday)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="inputBirthday">Data de Nascimento</label>
-                                        <input class="form-control" id="inputBirthday" name="inputBirthday" type="date" placeholder="Digite sua data de nascimento" value="<?php echo $profiledataNascimento; ?>">
+                                        <input class="form-control" id="inputBirthday" name="inputBirthday" type="date" placeholder="Digite sua data de nascimento" value="<?php echo $profileDataNascimento; ?>">
                                     </div>
                                 </div>
 

@@ -1,5 +1,5 @@
 <?php
-require("../controller/config.php");
+// EmailModel.php
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -7,18 +7,20 @@ require '../PHPMailer-master/src/Exception.php';
 require '../PHPMailer-master/src/PHPMailer.php';
 require '../PHPMailer-master/src/SMTP.php';
 
-class EmailSender {
-    private $conexao;
+
+class EmailModel {
+    private $dao;
 
     public function __construct($conexao) {
-        $this->conexao = $conexao;
+        $this->dao = new EmailDAO($conexao);
     }
 
     public function sendEmails() {
-        // Configuração do PHPMailer para enviar e-mails
+        $emails = $this->dao->getEmails();
+
         $mail = new PHPMailer(true);
         $mail->isSMTP();
-        $mail->SMTPDebug = 0; // Defina 2 para depurar
+        $mail->SMTPDebug = 0;
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
         $mail->Username = 'freis1801@gmail.com';
@@ -30,14 +32,8 @@ class EmailSender {
         $mail->Subject = 'TESTE EMAIL';
         $mail->Body = 'teste email';
 
-        // Consulta o banco de dados para obter os e-mails
-        $query = $this->conexao->prepare("SELECT email FROM email");
-        $query->execute();
-        $emails = $query->fetchAll(PDO::FETCH_COLUMN, 0);
-
-        // Envia a mensagem para cada e-mail
         foreach ($emails as $email) {
-            $mail->clearAddresses(); // Limpa os endereços anteriores
+            $mail->clearAddresses();
             $mail->addAddress($email);
 
             if ($mail->send()) {
@@ -48,9 +44,4 @@ class EmailSender {
         }
     }
 }
-
-$emailSender = new EmailSender($conexao);
-
-// Chama o método para enviar e-mails
-$emailSender->sendEmails();
 ?>

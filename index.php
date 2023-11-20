@@ -1,8 +1,12 @@
 <?php
 
-include_once "model/logica_perfil_index.php";
+require_once 'view/navbarView.php';
+
+
 
 ?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -53,7 +57,7 @@ include_once "model/logica_perfil_index.php";
             <a class="nav-link" href="./view/contato.php">Contato</a>
           </li>
           <li class='nav-item'>
-            <a class='nav-link' href='<?php echo $profileLink; ?>'><?php echo $profileName; ?></a>
+            <a class='nav-link' href='<?php echo $profileLink; ?>'><?php echo $profileName;  ?></a>
           </li>
         </ul>
       </div>

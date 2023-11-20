@@ -1,6 +1,6 @@
 <?php
 
-
+require_once 'navbarView.php';
 ?>
 
 <!DOCTYPE html>
@@ -53,7 +53,7 @@
                         <a class="nav-link" href="#">Contato</a>
                     </li>
                     <li class='nav-item'>
-                        NOME PERFIL
+                    <a class='nav-link' href='<?php echo $profileLink; ?>'><?php echo $profileName;  ?></a>
                     </li>
                 </ul>
             </div>
