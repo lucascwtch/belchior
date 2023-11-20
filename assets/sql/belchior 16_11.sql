@@ -41,4 +41,3 @@ CREATE TABLE `usuarios` (
   `telefoneUsuario` BIGNIT(14) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-
