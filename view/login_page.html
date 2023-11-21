@@ -1,43 +1,47 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/login.css">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-    <title>Document</title>
+    <title>Login - Belchior</title>
 
     <link rel="stylesheet" href="../assets/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="bootstrap.min.css.map">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="icon" href="../assets/img/favicon.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
-  
+
     <link rel="stylesheet" href="../assets/css/ionicons.min.css">
     <link rel="stylesheet" href="../assets/css/flaticon.css">
     <link rel="stylesheet" href="../assets/css/icomoon.css">
     <link rel="stylesheet" href="../assets/css/animate.css">
-  
+
     <link rel="stylesheet" href="../assets/css/owl.carousel.min.css">
     <link rel="stylesheet" href="../assets/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="../assets/css/magnific-popup.css">
     <link rel="stylesheet" href="../assets/css/aos.css">
-  
-  
+
+
     <link rel="stylesheet" href="../assets/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/animate.css">
 
-    
-    
+    <link rel="stylesheet" href="../assets/css/login.css">
+
+
+
+
 </head>
 <style>
     .navbar {
         padding-bottom: 10px !important;
     }
 </style>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: rgba(255, 255, 255, 0.5);">
         <div class="container">
@@ -52,13 +56,11 @@
                         <a class="nav-link" href="../index.php">Início</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./view/sobre.html">Sobre</a>
+                        <a class="nav-link" href="produtos.html">Produtos</a>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Produtos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contato</a>
+                        <a class="nav-link" href="contato.php">Contato</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="cadastro.html">Cadastrar</a>
@@ -67,16 +69,16 @@
             </div>
         </div>
     </nav>
-    
+
     <div class="wrapper">
-        <form  method="post" action="../model/login.php">
-            <h1>Login</h1>
+        <form method="post" action="../controller/loginController.php">
+            <h1>Entrar</h1>
             <div class="input-box">
-                <input type="e-mail" placeholder="E-mail" id="email" name="email"required>
+                <input type="e-mail" placeholder="E-mail" id="email" name="email" required>
                 <i class="bx bxs-user"></i>
             </div>
             <div class="input-box">
-                <input type="password" placeholder="Password" id="senha" name="senha" required>
+                <input type="password" placeholder="Senha" id="senha" name="senha" required>
                 <i class="bx bxs-lock-alt"></i>
             </div>
 
@@ -94,5 +96,8 @@
             </div>
         </form>
     </div>
+
+
 </body>
+
 </html>

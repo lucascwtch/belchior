@@ -1,8 +1,12 @@
 <?php
 
-include_once "model/logica_perfil_index.php";
+require_once 'view/navbarView.php';
+
+
 
 ?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -46,14 +50,14 @@ include_once "model/logica_perfil_index.php";
             <a class="nav-link" href="#">Início</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Produtos</a>
+            <a class="nav-link" href="./view/produtos.html">Produtos</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="./view/contato.html">Contato</a>
+            <a class="nav-link" href="./view/contato.php">Contato</a>
           </li>
           <li class='nav-item'>
-            <a class='nav-link' href='<?php echo $profileLink; ?>'><?php echo $profileName; ?></a>
+            <a class='nav-link' href='<?php echo $profileLink; ?>'><?php echo $profileName;  ?></a>
           </li>
         </ul>
       </div>
@@ -510,15 +514,14 @@ include_once "model/logica_perfil_index.php";
       </div>
     </div>
   </section>
+
+  <!-- Botão de Mouse no Footer -->
+  <div id="scrollToTop">
+    <i class="fa fa-angle-up" aria-hidden="true"></i>
+  </div>
+
   <footer class="ftco-footer ftco-section">
     <div class="container">
-      <div class="row">
-        <div class="mouse">
-          <a href="#" class="mouse-icon">
-            <div class="mouse-wheel"><span class="ion-ios-arrow-up"></span></div>
-          </a>
-        </div>
-      </div>
       <div class="row mb-5">
         <div class="col-md">
           <div class="ftco-footer-widget mb-4">
@@ -574,14 +577,14 @@ include_once "model/logica_perfil_index.php";
         </div>
       </div>
       <div class="row">
-        <div class="col-md-12 text-center">
+        <div class="col-md-12 text-center" style="color: #fff">
 
-          <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          <p>
             Copyright &copy;
             <script>
               document.write(new Date().getFullYear());
             </script> All rights reserved <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="#" target="_blank">Belchior</a>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+
           </p>
         </div>
       </div>

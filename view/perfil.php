@@ -1,8 +1,10 @@
 <?php
 
-require "../controller/config.php";
+require_once "../controller/config.php";
+require_once '../view/navbarView.php';
+require_once "perfilView.php";
 
-include_once "../model/logica_perfil.php";
+
 
 ?>
 
@@ -37,122 +39,120 @@ include_once "../model/logica_perfil.php";
 
 
 
- 
-<script>
 
-let valoresAnteriores = {};
+    <script>
+        let valoresAnteriores = {};
 
-function confirmarEnvio() {
-    var confirmacao = confirm("Tem certeza que deseja enviar este formulário?");
+        function confirmarEnvio() {
+            var confirmacao = confirm("Tem certeza que deseja enviar este formulário?");
 
-    if (confirmacao) {
-        return true; // Permite o envio do formulário
-    } else {
-        // Se o usuário clicou em "Cancelar", restaura os valores anteriores nos campos do formulário
-        document.getElementById('EdituserForm').reset(); // Limpa os campos
+            if (confirmacao) {
+                return true; // Permite o envio do formulário
+            } else {
+                // Se o usuário clicou em "Cancelar", restaura os valores anteriores nos campos do formulário
+                document.getElementById('EdituserForm').reset(); // Limpa os campos
 
-        for (let campo in valoresAnteriores) {
-            document.getElementsByName(campo)[0].value = valoresAnteriores[campo];
+                for (let campo in valoresAnteriores) {
+                    document.getElementsByName(campo)[0].value = valoresAnteriores[campo];
+                }
+
+                return false; // Impede o envio do formulário
+            }
         }
 
-        return false; // Impede o envio do formulário
-    }
-}
-
-// Salva os valores atuais antes de enviar o formulário
-document.getElementById('EdituserForm').addEventListener('submit', function(event) {
-    let inputs = this.getElementsByTagName('input');
-    for (let input of inputs) {
-        valoresAnteriores[input.name] = input.value;
-    }
-});
-
-</script>
+        // Salva os valores atuais antes de enviar o formulário
+        document.getElementById('EdituserForm').addEventListener('submit', function(event) {
+            let inputs = this.getElementsByTagName('input');
+            for (let input of inputs) {
+                valoresAnteriores[input.name] = input.value;
+            }
+        });
+    </script>
 
 
 
-</script>
+    </script>
 
     <style>
-    .img-account-profile {
-        height: 10rem;
-    }
+        .img-account-profile {
+            height: 10rem;
+        }
 
-    .rounded-circle {
-        border-radius: 50% !important;
-    }
+        .rounded-circle {
+            border-radius: 50% !important;
+        }
 
-    .card {
-        box-shadow: 0 0.15rem 1.75rem 0 rgb(33 40 50 / 15%);
-    }
+        .card {
+            box-shadow: 0 0.15rem 1.75rem 0 rgb(33 40 50 / 15%);
+        }
 
-    .card .card-header {
-        font-weight: 500;
-    }
+        .card .card-header {
+            font-weight: 500;
+        }
 
-    .card-header:first-child {
-        border-radius: 0.35rem 0.35rem 0 0;
-    }
+        .card-header:first-child {
+            border-radius: 0.35rem 0.35rem 0 0;
+        }
 
-    .card-header {
-        padding: 1rem 1.35rem;
-        margin-bottom: 0;
-        background-color: rgba(33, 40, 50, 0.03);
-        border-bottom: 1px solid rgba(33, 40, 50, 0.125);
-    }
+        .card-header {
+            padding: 1rem 1.35rem;
+            margin-bottom: 0;
+            background-color: rgba(33, 40, 50, 0.03);
+            border-bottom: 1px solid rgba(33, 40, 50, 0.125);
+        }
 
-    .form-control,
-    .dataTable-input {
-        display: block;
-        width: 100%;
-        padding: 0.875rem 1.125rem;
-        font-size: 0.875rem;
-        font-weight: 400;
-        line-height: 1;
-        color: #69707a;
-        background-color: #fff;
-        background-clip: padding-box;
-        border: 1px solid #c5ccd6;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        border-radius: 0.35rem;
-        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    }
+        .form-control,
+        .dataTable-input {
+            display: block;
+            width: 100%;
+            padding: 0.875rem 1.125rem;
+            font-size: 0.875rem;
+            font-weight: 400;
+            line-height: 1;
+            color: #69707a;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #c5ccd6;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border-radius: 0.35rem;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
 
-    .custom-nav .nav-link.active {
-        color: #0061f2;
-        border-bottom-color: #0061f2;
-    }
+        .custom-nav .nav-link.active {
+            color: #0061f2;
+            border-bottom-color: #0061f2;
+        }
 
-    .custom-nav .nav-link {
-        color: #69707a;
-        border-bottom-width: 0.125rem;
-        border-bottom-style: solid;
-        border-bottom-color: transparent;
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;
-        padding-left: 0;
-        padding-right: 0;
-        margin-left: 1rem;
-        margin-right: 1rem;
-    }
+        .custom-nav .nav-link {
+            color: #69707a;
+            border-bottom-width: 0.125rem;
+            border-bottom-style: solid;
+            border-bottom-color: transparent;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            padding-left: 0;
+            padding-right: 0;
+            margin-left: 1rem;
+            margin-right: 1rem;
+        }
 
 
-    .btn-danger-soft {
-        color: #000;
-        background-color: #fff !important;
-        border-color: #f1e0e3;
-    }
+        .btn-danger-soft {
+            color: #000;
+            background-color: #fff !important;
+            border-color: #f1e0e3;
+        }
 
-    .hidden {
-        display: none;
-    }
+        .hidden {
+            display: none;
+        }
 
-    .btn {
-        background-color: #671af5;
-        ;
-    }
+        .btn {
+            background-color: #671af5;
+            ;
+        }
     </style>
 </head>
 
@@ -160,8 +160,7 @@ document.getElementById('EdituserForm').addEventListener('submit', function(even
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container">
             <a class="navbar-brand mx-auto" href="#">Belchior</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -174,16 +173,15 @@ document.getElementById('EdituserForm').addEventListener('submit', function(even
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="contato.html">Contato</a>
+                        <a class="nav-link" href="contato.php">Contato</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <?php echo $profileName; ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="profileDropdown">
                             <!-- Botão de Logout -->
-                            <form action="../model/logout.php" method="post">
+                            <form action="../view/logoutView.php" method="post">
                                 <a><button>Logout</button></a>
                             </form>
                             <!-- Outros itens de menu do perfil, se necessário -->
@@ -202,6 +200,7 @@ document.getElementById('EdituserForm').addEventListener('submit', function(even
             <a class="nav-link d-inline" href="#billingSection" onclick="showBilling()">Pagamento</a>
             <a class="nav-link d-inline" href="#securitySection" onclick="showSecurity()">Segurança</a>
             <a class="nav-link d-inline" href="#notificationSection" onclick="showNotifications()">Notificações</a>
+            <a class="nav-link d-inline" href="#afiliarSection" onclick="showAfiliar()">Afiliar-se</a>
         </div>
 
         <hr class="mt-0 mb-4">
@@ -215,8 +214,7 @@ document.getElementById('EdituserForm').addEventListener('submit', function(even
                         <div class="card-header">Foto de Perfil</div>
                         <div class="card-body text-center">
                             <!-- Profile picture image-->
-                            <img class="img-account-profile rounded-circle mb-2" src="../assets/img/perfil-user.png"
-                                alt="">
+                            <img class="img-account-profile rounded-circle mb-2" src="../assets/img/perfil-user.png" alt="">
                             <!-- Profile picture help block-->
                             <div class="small font-italic text-muted mb-4">JPG ou PNG não pode ser maior que 5 MB</div>
                             <!-- Profile picture upload button-->
@@ -229,68 +227,42 @@ document.getElementById('EdituserForm').addEventListener('submit', function(even
                     <div class="card mb-4">
                         <div class="card-header">Detalhes da Conta</div>
                         <div class="card-body">
-                            <form method="post" action="../model/update_perfil.php" onsubmit="return confirmarEnvio()" id = "EdituserForm">
+                            <form method="post" action="../controller/updateSessionProfileController.php" onsubmit="return confirmarEnvio()" id="EdituserForm">
                                 <!-- Form Group (username)-->
                                 <div class="mb-3">
                                     <label class="small mb-1" for="inputUsername">Apelido</label>
-                                    <input class="form-control" id="inputUsername" name="inputUsername" type="text"
-                                        placeholder="Digite seu apelido" value="<?php echo $profileApelido; ?>">
+                                    <input class="form-control" id="inputUsername" name="inputUsername" type="text" placeholder="Digite seu apelido" value="<?php echo $profileApelido; ?>">
                                 </div>
                                 <!-- Form Row-->
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="inputFirstName">Primeiro Nome</label>
-                                        <input class="form-control" id="inputFirstName" name="inputFirstName"
-                                            type="text" placeholder="Digite seu primeiro nome"
-                                            value="<?php echo $profileName; ?>">
+                                        <input class="form-control" id="inputFirstName" name="inputFirstName" type="text" placeholder="Digite seu primeiro nome" value="<?php echo $profileNome; ?>">
                                     </div>
                                     <!-- Form Group (last name)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="inputLastName">Sobrenome</label>
-                                        <input class="form-control" id="inputLastName" name="inputLastName" type="text"
-                                            placeholder="Digite seu sobrenome"
-                                            value="<?php echo $profileSecondName; ?>">
+                                        <input class="form-control" id="inputLastName" name="inputLastName" type="text" placeholder="Digite seu sobrenome" value="<?php echo $profileSobrenome; ?>">
                                     </div>
                                 </div>
-                                <!-- Form Row        -->
-                                <div class="row gx-3 mb-3">
-                                    <!-- Form Group (organization name)-->
-                                   
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="inputOrgName">Nome da Empresa</label>
-                                        <input class="form-control" id="inputOrgName" name="inputOrgName" type="text"
-                                            placeholder="Digite o nome da sua empresa">
-                                    </div>
-                                    <!-- Form Group (location)-->
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="inputLocation">Local</label>
-                                        <input class="form-control" id="inputLocation" name="inputLocation" type="text"
-                                            placeholder="Digite o local">
-                                    </div>
-                                </div>
+
                                 <!-- Form Group (email address)-->
                                 <div class="mb-3">
                                     <label class="small mb-1" for="inputEmailAddress">Endereço de E-mail</label>
-                                    <input class="form-control" id="inputEmailAddress" name="inputEmailAddress"
-                                        type="email" placeholder="Digite seu endereço de e-mail"
-                                        value="<?php echo $profileEmail; ?>">
+                                    <input class="form-control" id="inputEmailAddress" name="inputEmailAddress" type="email" placeholder="Digite seu endereço de e-mail" value="<?php echo $profileEmail; ?>">
                                 </div>
                                 <!-- Form Row-->
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (phone number)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="inputPhone">Número de Telefone</label>
-                                        <input class="form-control" id="inputPhone" name="inputPhone" type="tel"
-                                            placeholder="Digite seu número de telefone"
-                                            value="<?php echo $profileTelefone; ?>">
+                                        <input class="form-control" id="inputPhone" name="inputPhone" type="tel" placeholder="Digite seu número de telefone" value="<?php echo $profileTelefone; ?>">
                                     </div>
                                     <!-- Form Group (birthday)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="inputBirthday">Data de Nascimento</label>
-                                        <input class="form-control" id="inputBirthday" name="inputBirthday" type="date"
-                                            placeholder="Digite sua data de nascimento"
-                                            value="<?php echo $profiledataNascimento; ?>">
+                                        <input class="form-control" id="inputBirthday" name="inputBirthday" type="date" placeholder="Digite sua data de nascimento" value="<?php echo $profileDataNascimento; ?>">
                                     </div>
                                 </div>
 
@@ -314,9 +286,7 @@ document.getElementById('EdituserForm').addEventListener('submit', function(even
                             <div class="h3">$20,00</div>
                             <a class="text-arrow-icon small" href="#!">
                                 Mudar para faturamento anual
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="feather feather-arrow-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right">
                                     <line x1="5" y1="12" x2="19" y2="12"></line>
                                     <polyline points="12 5 19 12 12 19"></polyline>
                                 </svg>
@@ -332,9 +302,7 @@ document.getElementById('EdituserForm').addEventListener('submit', function(even
                             <div class="h3">15 de julho</div>
                             <a class="text-arrow-icon small text-secondary" href="#!">
                                 Ver histórico de pagamentos
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="feather feather-arrow-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right">
                                     <line x1="5" y1="12" x2="19" y2="12"></line>
                                     <polyline points="12 5 19 12 12 19"></polyline>
                                 </svg>
@@ -350,9 +318,7 @@ document.getElementById('EdituserForm').addEventListener('submit', function(even
                             <div class="h3 d-flex align-items-center">Freelancer</div>
                             <a class="text-arrow-icon small text-success" href="#!">
                                 Atualizar plano
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="feather feather-arrow-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right">
                                     <line x1="5" y1="12" x2="19" y2="12"></line>
                                     <polyline points="12 5 19 12 12 19"></polyline>
                                 </svg>
@@ -476,20 +442,17 @@ document.getElementById('EdituserForm').addEventListener('submit', function(even
                                 <!-- Grupo de Formulário (senha atual) -->
                                 <div class="mb-3">
                                     <label class="small mb-1" for="currentPassword">Senha Atual</label>
-                                    <input class="form-control" id="currentPassword" type="password"
-                                        placeholder="Digite a senha atual">
+                                    <input class="form-control" id="currentPassword" type="password" placeholder="Digite a senha atual">
                                 </div>
                                 <!-- Grupo de Formulário (nova senha) -->
                                 <div class="mb-3">
                                     <label class="small mb-1" for="newPassword">Nova Senha</label>
-                                    <input class="form-control" id="newPassword" type="password"
-                                        placeholder="Digite a nova senha">
+                                    <input class="form-control" id="newPassword" type="password" placeholder="Digite a nova senha">
                                 </div>
                                 <!-- Grupo de Formulário (confirmar senha) -->
                                 <div class="mb-3">
                                     <label class="small mb-1" for="confirmPassword">Confirmar Nova Senha</label>
-                                    <input class="form-control" id="confirmPassword" type="password"
-                                        placeholder="Confirmar a nova senha">
+                                    <input class="form-control" id="confirmPassword" type="password" placeholder="Confirmar a nova senha">
                                 </div>
                                 <button class="btn btn-primary" type="button">Salvar</button>
                             </form>
@@ -505,8 +468,7 @@ document.getElementById('EdituserForm').addEventListener('submit', function(even
                                 postagens não serão visíveis para usuários fora de seus grupos de usuários.</p>
                             <form>
                                 <div class="form-check">
-                                    <input class="form-check-input" id="radioPrivacy1" type="radio" name="radioPrivacy"
-                                        checked="">
+                                    <input class="form-check-input" id="radioPrivacy1" type="radio" name="radioPrivacy" checked="">
                                     <label class="form-check-label" for="radioPrivacy1">Público (postagens disponíveis
                                         para todos os usuários)</label>
                                 </div>
@@ -526,8 +488,7 @@ document.getElementById('EdituserForm').addEventListener('submit', function(even
                                 investigação.</p>
                             <form>
                                 <div class="form-check">
-                                    <input class="form-check-input" id="radioUsage1" type="radio" name="radioUsage"
-                                        checked="">
+                                    <input class="form-check-input" id="radioUsage1" type="radio" name="radioUsage" checked="">
                                     <label class="form-check-label" for="radioUsage1">Sim, compartilhar dados e
                                         relatórios de falhas com os desenvolvedores de aplicativos</label>
                                 </div>
@@ -550,8 +511,7 @@ document.getElementById('EdituserForm').addEventListener('submit', function(even
                                 dispositivos e navegadores não reconhecidos.</p>
                             <form>
                                 <div class="form-check">
-                                    <input class="form-check-input" id="twoFactorOn" type="radio" name="twoFactor"
-                                        checked="">
+                                    <input class="form-check-input" id="twoFactorOn" type="radio" name="twoFactor" checked="">
                                     <label class="form-check-label" for="twoFactorOn">Ligado</label>
                                 </div>
                                 <div class="form-check">
@@ -560,8 +520,7 @@ document.getElementById('EdituserForm').addEventListener('submit', function(even
                                 </div>
                                 <div class="mt-3">
                                     <label class="small mb-1" for="twoFactorSMS">Número de SMS</label>
-                                    <input class="form-control" id="twoFactorSMS" type="tel"
-                                        placeholder="Digite um número de telefone" value="555-123-4567">
+                                    <input class="form-control" id="twoFactorSMS" type="tel" placeholder="Digite um número de telefone" value="555-123-4567">
                                 </div>
                             </form>
                         </div>
@@ -598,29 +557,25 @@ document.getElementById('EdituserForm').addEventListener('submit', function(even
                                 <div class="mb-3">
                                     <label class="small mb-1" for="inputNotificationEmail">Email de notificação
                                         padrão</label>
-                                    <input class="form-control" id="inputNotificationEmail" type="email"
-                                        value="nome@exemplo.com" disabled="">
+                                    <input class="form-control" id="inputNotificationEmail" type="email" value="nome@exemplo.com" disabled="">
                                 </div>
                                 <!-- Grupo de Formulário (caixas de seleção de atualizações de email) -->
                                 <div class="mb-0">
                                     <label class="small mb-2">Escolha quais tipos de atualizações por email você deseja
                                         receber</label>
                                     <div class="form-check mb-2">
-                                        <input class="form-check-input" id="checkAccountChanges" type="checkbox"
-                                            checked="">
+                                        <input class="form-check-input" id="checkAccountChanges" type="checkbox" checked="">
                                         <label class="form-check-label" for="checkAccountChanges">Alterações feitas na
                                             sua
                                             conta</label>
                                     </div>
                                     <div class="form-check mb-2">
-                                        <input class="form-check-input" id="checkAccountGroups" type="checkbox"
-                                            checked="">
+                                        <input class="form-check-input" id="checkAccountGroups" type="checkbox" checked="">
                                         <label class="form-check-label" for="checkAccountGroups">Alterações feitas em
                                             grupos dos quais você faz parte</label>
                                     </div>
                                     <div class="form-check mb-2">
-                                        <input class="form-check-input" id="checkProductUpdates" type="checkbox"
-                                            checked="">
+                                        <input class="form-check-input" id="checkProductUpdates" type="checkbox" checked="">
                                         <label class="form-check-label" for="checkProductUpdates">Atualizações de
                                             produtos para
                                             produtos que você comprou ou marcou como favorito</label>
@@ -636,8 +591,7 @@ document.getElementById('EdituserForm').addEventListener('submit', function(even
                                             promoções</label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" id="checkSecurity" type="checkbox" checked=""
-                                            disabled="">
+                                        <input class="form-check-input" id="checkSecurity" type="checkbox" checked="" disabled="">
                                         <label class="form-check-label" for="checkSecurity">Alertas de segurança</label>
                                     </div>
                                 </div>
@@ -658,8 +612,7 @@ document.getElementById('EdituserForm').addEventListener('submit', function(even
                                 <!-- Grupo de Formulário (número SMS padrão) -->
                                 <div class="mb-3">
                                     <label class="small mb-1" for="inputNotificationSms">Número SMS padrão</label>
-                                    <input class="form-control" id="inputNotificationSms" type="tel"
-                                        value="123-456-7890" disabled="">
+                                    <input class="form-control" id="inputNotificationSms" type="tel" value="123-456-7890" disabled="">
                                 </div>
                                 <!-- Grupo de Formulário (caixas de seleção de atualizações por SMS) -->
                                 <div class="mb-0">
@@ -687,8 +640,7 @@ document.getElementById('EdituserForm').addEventListener('submit', function(even
                                             você faz parte</label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" id="checkSmsPrivateMessage" type="checkbox"
-                                            checked="">
+                                        <input class="form-check-input" id="checkSmsPrivateMessage" type="checkbox" checked="">
                                         <label class="form-check-label" for="checkSmsPrivateMessage">Você recebe uma
                                             mensagem privada</label>
                                     </div>
@@ -726,42 +678,105 @@ document.getElementById('EdituserForm').addEventListener('submit', function(even
             </div>
         </div>
 
+        <div id="afiliarSection" class="hidden">
+            <!DOCTYPE html>
+            <html>
 
+            <head>
+                <meta charset="UTF-8">
+                <title>Afiliar-se</title>
+                <!-- Inclua os links para os arquivos CSS e JS do Bootstrap -->
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/css/bootstrap.min.css">
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/js/bootstrap.min.js"></script>
+            </head>
+
+            <body>
+
+                <div class="container">
+                    <h2 class="text-center">Formulário de Afiliação</h2>
+                    <form>
+                        <div class="mb-3">
+                            <label for="nome" class="form-label">Nome</label>
+                            <input type="text" class="form-control" id="nome" placeholder="Digite seu nome">
+                        </div>
+                        <div class="mb-3">
+                            <label for="nome" class="form-label">CPF/CNPJ</label>
+                            <input type="text" class="form-control" id="cpf_cnpj" placeholder="Digite seu CPF ou CNPJ">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">E-mail</label>
+                            <input type="email" class="form-control" id="email" placeholder="Digite seu e-mail">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="telefone" class="form-label">Telefone</label>
+                            <input type="tel" class="form-control" id="telefone" placeholder="Digite seu telefone">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="mensagem" class="form-label">Mensagem</label>
+                            <textarea class="form-control" id="mensagem" rows="4" placeholder="Digite uma mensagem"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </form>
+                </div>
+
+            </body>
+
+            </html>
+
+        </div>
     </div>
 
 </body>
 <script>
-// Função para mostrar a seção de Perfil
-function showProfile() {
-    document.getElementById("profileSection").classList.remove("hidden");
-    document.getElementById("billingSection").classList.add("hidden");
-    document.getElementById("securitySection").classList.add("hidden");
-    document.getElementById("notificationSection").classList.add("hidden");
-}
+    // Função para mostrar a seção de Perfil
+    function showProfile() {
+        document.getElementById("profileSection").classList.remove("hidden");
+        document.getElementById("billingSection").classList.add("hidden");
+        document.getElementById("securitySection").classList.add("hidden");
+        document.getElementById("notificationSection").classList.add("hidden");
+        document.getElementById("afiliarSection").classList.add("hidden");
+    }
 
-// Função para mostrar a seção de Cobrança
-function showBilling() {
-    document.getElementById("profileSection").classList.add("hidden");
-    document.getElementById("billingSection").classList.remove("hidden");
-    document.getElementById("securitySection").classList.add("hidden");
-    document.getElementById("notificationSection").classList.add("hidden");
-}
+    // Função para mostrar a seção de Cobrança
+    function showBilling() {
+        document.getElementById("profileSection").classList.add("hidden");
+        document.getElementById("billingSection").classList.remove("hidden");
+        document.getElementById("securitySection").classList.add("hidden");
+        document.getElementById("notificationSection").classList.add("hidden");
+        document.getElementById("afiliarSection").classList.add("hidden");
 
-// Função para mostrar a seção de Segurança
-function showSecurity() {
-    document.getElementById("profileSection").classList.add("hidden");
-    document.getElementById("billingSection").classList.add("hidden");
-    document.getElementById("securitySection").classList.remove("hidden");
-    document.getElementById("notificationSection").classList.add("hidden");
-}
+    }
 
-// Função para mostrar a seção de Notificações
-function showNotifications() {
-    document.getElementById("profileSection").classList.add("hidden");
-    document.getElementById("billingSection").classList.add("hidden");
-    document.getElementById("securitySection").classList.add("hidden");
-    document.getElementById("notificationSection").classList.remove("hidden");
-}
+    // Função para mostrar a seção de Segurança
+    function showSecurity() {
+        document.getElementById("profileSection").classList.add("hidden");
+        document.getElementById("billingSection").classList.add("hidden");
+        document.getElementById("securitySection").classList.remove("hidden");
+        document.getElementById("notificationSection").classList.add("hidden");
+        document.getElementById("afiliarSection").classList.add("hidden");
+
+    }
+
+    // Função para mostrar a seção de Notificações
+    function showNotifications() {
+        document.getElementById("profileSection").classList.add("hidden");
+        document.getElementById("billingSection").classList.add("hidden");
+        document.getElementById("securitySection").classList.add("hidden");
+        document.getElementById("notificationSection").classList.remove("hidden");
+        document.getElementById("afiliarSection").classList.add("hidden");
+    }
+
+    // Função para mostrar a seção de Afiliar-se
+    function showAfiliar() {
+        document.getElementById("profileSection").classList.add("hidden");
+        document.getElementById("billingSection").classList.add("hidden");
+        document.getElementById("securitySection").classList.add("hidden");
+        document.getElementById("notificationSection").classList.add("hidden");
+        document.getElementById("afiliarSection").classList.remove("hidden");
+    }
 </script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.5.0/js/bootstrap.min.js"></script>
@@ -778,7 +793,6 @@ function showNotifications() {
 <script src="../assets/js/jquery.animateNumber.min.js"></script>
 <script src="../assets/js/bootstrap-datepicker.js"></script>
 <script src="../assets/js/scrollax.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 <script src="../assets/js/google-map.js"></script>
 <script src="../assets/js/main.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
