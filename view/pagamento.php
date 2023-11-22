@@ -1,3 +1,41 @@
+<?php
+require_once '../vendor/autoload.php';
+
+use MercadoPago\Client\Preference\PreferenceClient;
+use MercadoPago\Exceptions\MPApiException;
+use MercadoPago\MercadoPagoConfig;
+
+// Defina o token de acesso de produção ou sandbox
+MercadoPagoConfig::setAccessToken("APP_USR-3908918862209501-112119-5f1b8b567d783951a50e316dd34a088e-1284764382");
+
+// Inicialize o cliente da API
+$client = new PreferenceClient();
+
+try {
+    // Crie o array de solicitação
+    $request = [
+        "items" => [
+            [
+                "title" => 'Meu produto',
+                "quantity" => 1,
+                "unit_price" => 75.56
+            ]
+        ]
+    ];
+
+    // Faça a solicitação
+    $preference = $client->create($request);
+    // echo $preference->id;
+
+    // Trate as exceções
+} catch (MPApiException $e) {
+    echo "Status code: " . $e->getApiResponse()->getStatusCode() . "\n";
+    echo "Content: " . $e->getApiResponse()->getContent() . "\n";
+} catch (\Exception $e) {
+    echo $e->getMessage();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -25,12 +63,9 @@
 
     <link rel="stylesheet" href="../assets/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/animate.css">
-    <link rel="stylesheet" href="../assets/css/produtos_style.css">
     <link rel="stylesheet" href="../assets/css/style.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-        integrity="sha512-Ljzmr5Wd6Wh+RSRBRU5tJj9PQ6ry5wi0S0RBi6UBOe2WiDxoUGZrlyYtr0JdPZ5e1u/f0DVx+uPW1vOqoaVm4w=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-Ljzmr5Wd6Wh+RSRBRU5tJj9PQ6ry5wi0S0RBi6UBOe2WiDxoUGZrlyYtr0JdPZ5e1u/f0DVx+uPW1vOqoaVm4w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 
@@ -41,8 +76,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container">
             <a class="navbar-brand mx-auto" href="#">Belchior</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -56,11 +90,6 @@
 
                     <li class="nav-item">
                         <a class="nav-link" href="contato.php">Contato</a>
-                    </li>
-                    <li class='nav-item'>
-                        <a class='nav-link' href='<?php echo $profileLink; ?>'>
-                            <?php echo $profileName; ?>
-                        </a>
                     </li>
                 </ul>
             </div>
@@ -118,8 +147,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control"
-                                        placeholder="Apartamento, suite, unidade, etc. (opcional)">
+                                    <input type="text" class="form-control" placeholder="Apartamento, suite, unidade, etc. (opcional)">
                                 </div>
                             </div>
                             <div class="w-100"></div>
@@ -160,7 +188,7 @@
                             </div>
                         </div>
                     </form><!-- FIM -->
-    
+
                     <div class="row mt-5 pt-3 d-flex">
                         <div class="col-md-6 d-flex">
                             <div class="cart-detail cart-total bg-light p-3 p-md-4">
@@ -197,9 +225,9 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-12">
-                                        <div class "radio">
+                                        <div class="radio">
                                             <label><input type="radio" name="optradio" class="mr-2"> Pagamento por Cheque
-                                                </label>
+                                            </label>
                                         </div>
                                     </div>
                                 </div>
@@ -218,7 +246,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <p><a href="#" class="btn btn-primary py-3 px-4">Realizar Pedido</a></p>
+                                <div id="wallet_container"></div>
                             </div>
                         </div>
                     </div>
@@ -226,7 +254,7 @@
             </div>
         </div>
     </section> <!-- .section -->
-    
+
 
 
     <br><br>
@@ -278,14 +306,12 @@
                         <h2 class="ftco-heading-2">Dúvidas?</h2>
                         <div class="block-23 mb-3">
                             <ul>
-                                <li style="color: #fff"><span class="icon icon-map-marker"> </span><span
-                                        class="text">Rua Carlos De
+                                <li style="color: #fff"><span class="icon icon-map-marker"> </span><span class="text">Rua Carlos De
                                         Carvalho, 200</span>
                                 </li>
                                 <li><a href="#"><span class="icon icon-phone"> </span><span class="text">+2 392 3929
                                             210</span></a></li>
-                                <li><a href="#"><span class="icon icon-envelope"> </span><span
-                                            class="text">contato@belchior.com</span></a>
+                                <li><a href="#"><span class="icon icon-envelope"> </span><span class="text">contato@belchior.com</span></a>
                                 </li>
                             </ul>
                         </div>
@@ -298,8 +324,7 @@
                         Copyright &copy;
                         <script>
                             document.write(new Date().getFullYear());
-                        </script> All rights reserved <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="#"
-                            target="_blank">Belchior</a>
+                        </script> All rights reserved <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="#" target="_blank">Belchior</a>
                     </p>
                 </div>
             </div>
@@ -309,8 +334,7 @@
     <!-- loader -->
     <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
             <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
-            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
-                stroke="#F96D00" />
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" />
         </svg></div>
 
 
@@ -334,7 +358,23 @@
     <script src="../assets/js/scrollax.min.js"></script>
     <script src="../assets/js/google-map.js"></script>
     <script src="../assets/js/main.js"></script>
-    <script src="../assets/js/adicionarProdutos.js"></script>
+
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+
+    <script>
+        const mp = new MercadoPago('APP_USR-183ee0c3-6ae2-476f-8fc5-bbd2526dc8cf');
+        const bricksBuilder = mp.bricks();
+
+
+        mp.bricks().create("wallet", "wallet_container", {
+            initialization: {
+                preferenceId: "1284764382-c3233a7c-8eee-4432-93b6-e6b40dcb4115",
+                // redirectMode: "modal",
+
+            },
+            
+        });
+    </script>
 
 </body>
 
