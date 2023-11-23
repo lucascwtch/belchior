@@ -16,9 +16,9 @@ try {
     $request = [
         "items" => [
             [
-                "title" => 'Meu produto',
-                "quantity" => 1,
-                "unit_price" => 75.56
+                "title" => 'Meu produto', //Nome do produto
+                "quantity" => 1, //Quantidade na hora da compra
+                "unit_price" => 75.56 //Preço por unidade 
             ]
         ]
     ];
