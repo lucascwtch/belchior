@@ -52,9 +52,6 @@ require_once 'navbarView.php';
                     <li class="nav-item">
                         <a class="nav-link" href="#">Contato</a>
                     </li>
-                    <li class='nav-item'>
-                    <a class='nav-link' href='<?php echo $profileLink; ?>'><?php echo $profileName;  ?></a>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -75,7 +72,7 @@ require_once 'navbarView.php';
 
     <section>
         <div class="container">
-            <form method="POST" action="../model/email.php" class="row g-3">
+            <form method="POST" action="../controller/contatoController.php" class="row g-3">
                 <div class="col-md-6">
                     <label for="inputEmail" class="form-label">Email</label>
                     <input type="email" class="form-control" id="inputEmail" name="inputEmail">

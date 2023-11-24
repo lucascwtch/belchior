@@ -1,41 +1,83 @@
 <?php
+require_once "../controller/config.php";
 require_once "../model/enviarEmailResetModel.php";
 require_once "../dao/enviarEmailResetDAO.php";
-class PasswordResetController {
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require '../PHPMailer-master/src/Exception.php';
+require '../PHPMailer-master/src/PHPMailer.php';
+require '../PHPMailer-master/src/SMTP.php';
+
+class PasswordResetController
+{
     private $model;
 
-    public function __construct($conexao) {
-        $this->model = new UsuarioModel($conexao);
+    public function __construct($conexao)
+    {
+        $this->model = new PasswordResetModel(new PasswordResetDAO($conexao));
     }
 
-    public function handlePasswordReset($token) {
-        if (!empty($token)) {
-            $usuario = $this->model->verificarToken($token);
+    public function requestPasswordReset($email)
+    {
+        $usuarioExiste = $this->model->checkUserByEmail($email);
 
-            if ($usuario) {
-                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                    $novaSenha = $_POST['nova_senha'];
-                    $senhaAtualizada = $this->model->atualizarSenha($token, $novaSenha);
+        if ($usuarioExiste) {
+            $token = password_hash(uniqid(), PASSWORD_DEFAULT);
 
-                    if ($senhaAtualizada) {
-                        echo '<script>alert("Senha redefinida com sucesso. Faça login.");</script>';
-                        echo '<script>window.location.href = "../view/login_page.html";</script>';
-                    } else {
-                        echo 'Erro ao atualizar a senha.';
-                    }
+            if ($this->model->updateTokenByEmail($email, $token)) {
+                if ($this->sendResetEmail($email, $token)) {
+                    echo 'Um link de redefinição foi enviado para o seu e-mail.';
                 } else {
-                    $this->showPasswordResetForm($token);
+                    echo 'Erro ao enviar o e-mail de redefinição.';
                 }
             } else {
-                echo 'Token inválido ou expirado.';
+                echo 'Erro ao gerar token.';
             }
         } else {
-            echo 'Token inválido ou não fornecido.';
+            echo 'E-mail não encontrado.';
         }
     }
 
-    private function showPasswordResetForm($token) {
-        // (Deixe a função showPasswordResetForm como está)
+    private function sendResetEmail($email, $token)
+    {
+        $mail = new PHPMailer(true);
+
+        try {
+            // Configuração do servidor SMTP
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'freis1801@gmail.com';
+            $mail->Password = 'xglv bvmv okzh nfhx';
+            $mail->SMTPSecure = 'tls';
+            $mail->Port = 587;
+
+
+            // Remetente e destinatário
+            $mail->setFrom('freis1801@gmail.com', 'Belchior');
+            $mail->addAddress($email);
+
+            // Conteúdo do e-mail
+            $mail->isHTML(true);
+            $mail->Subject = 'Redefinir Senha';
+            $mail->Body = "Clique no link a seguir para redefinir sua senha: http://localhost/belchior/controller/redefinirSenhaController.php?token=$token";
+
+            $mail->send();
+            return true;
+        } catch (Exception $e) {
+            return false;
+        }
     }
 }
-?>
+
+$passwordResetController = new PasswordResetController($conexao);
+
+// Verifica se o e-mail foi enviado via POST
+if (isset($_POST['email'])) {
+    $email = $_POST['email'];
+
+    // Chama o método para solicitar a redefinição de senha
+    $passwordResetController->requestPasswordReset($email);
+}
