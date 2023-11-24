@@ -8,14 +8,14 @@ class PasswordResetController {
         $this->model = new UsuarioModel($conexao);
     }
 
-    public function handlePasswordReset($token) {
-        if (!empty($token)) {
-            $usuario = $this->model->verificarToken($token);
+    public function handlePasswordReset($tokenUsuario) {
+        if (!empty($tokenUsuario)) {
+            $usuario = $this->model->verificarToken($tokenUsuario);
 
             if ($usuario) {
                 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $novaSenha = $_POST['nova_senha'];
-                    $senhaAtualizada = $this->model->atualizarSenha($token, $novaSenha);
+                    $senhaAtualizada = $this->model->atualizarSenha($tokenUsuario, $novaSenha);
 
                     if ($senhaAtualizada) {
                         echo '<script>alert("Senha redefinida com sucesso. Faça login.");</script>';
@@ -24,7 +24,7 @@ class PasswordResetController {
                         echo 'Erro ao atualizar a senha.';
                     }
                 } else {
-                    $this->showPasswordResetForm($token);
+                    $this->showPasswordResetForm($tokenUsuario);
                 }
             } else {
                 echo 'Token inválido ou expirado.';
@@ -34,7 +34,7 @@ class PasswordResetController {
         }
     }
 
-    private function showPasswordResetForm($token) {
+    private function showPasswordResetForm($tokenUsuario) {
         echo '
         <!DOCTYPE html>
         <html lang="en">
@@ -44,7 +44,7 @@ class PasswordResetController {
         </head>
         <body>
             <h2>Redefinir Senha</h2>
-            <form method="post" action="redefinir_senha.php?token=' . $token . '">
+            <form method="post" action="redefinir_senha.php?tokenUsuario=' . $tokenUsuario . '">
                 <label for="nova_senha">Nova Senha:</label>
                 <input type="password" id="nova_senha" name="nova_senha" required>
                 <button type="submit">Redefinir Senha</button>

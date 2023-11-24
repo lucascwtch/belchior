@@ -45,12 +45,12 @@ require_once "../controller/produtoController.php";
     ?>
     <?php foreach ($produtos as $produto): ?>
         <div class="produto">
-            <h2><?= $produto['titulo'] ?></h2>
-            <p>Tipo: <?= $produto['categoria'] ?></p>
-            <p>Preço: R$<?= number_format($produto['preco'], 2, ',', '.') ?></p>
-            <p>Especificações: <?= $produto['tamanho'] ?></p>
-            <p>Descrição: <?= $produto['descricao'] ?></p>
-            <img src="../assets/img/produtos/<?= $produto['imagem'] ?>" alt="<?= $produto['titulo'] ?>">
+            <h2><?= $produto['tituloProduto'] ?></h2>
+            <p>Tipo: <?= $produto['categoriaProduto'] ?></p>
+            <p>Preço: R$<?= number_format($produto['precoProduto'], 2, ',', '.') ?></p>
+            <p>Especificações: <?= $produto['tamanhoProduto'] ?></p>
+            <p>Descrição: <?= $produto['descricaoProduto'] ?></p>
+            <img src="../assets/img/produtos/<?= $produto['imagemProduto'] ?>" alt="<?= $produto['tituloProduto'] ?>">
         </div>
     <?php endforeach; ?>
 </body>

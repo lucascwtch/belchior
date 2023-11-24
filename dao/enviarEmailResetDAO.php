@@ -14,8 +14,8 @@ class PasswordResetDAO {
     }
 
     public function updateTokenByEmail($email, $token) {
-        $updateQuery = $this->conexao->prepare("UPDATE usuarios SET token = :token WHERE email = :email");
-        $updateQuery->bindParam(':token', $token, PDO::PARAM_STR);
+        $updateQuery = $this->conexao->prepare("UPDATE usuarios SET tokenUsuario = :tokenUsuario WHERE emailUsuario = :email");
+        $updateQuery->bindParam(':tokenUsuario', $token, PDO::PARAM_STR);
         $updateQuery->bindParam(':email', $email, PDO::PARAM_STR);
         $updateQuery->execute();
         return $updateQuery->rowCount() > 0;

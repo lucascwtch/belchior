@@ -10,10 +10,10 @@ class updaterProfile {
         $this->conexao = $conexao; // Corrigindo a atribuição da conexão
     }
 
-    public function updateProfile($profileId, $nome, $email, $sobrenome, $telefone, $apelido, $data_nascimento) {
-        $sql = "UPDATE usuarios SET nome = ?, email = ? , sobrenome = ?, telefone = ? ,apelido= ? ,data_nascimento = ? WHERE id = ?";
+    public function updateProfile($profileId, $nomeUsuario, $emailUsuario, $sobrenomeUsuario, $telefoneUsuario, $apelidoUsuario, $dataNascimentoUsuario) {
+        $sql = "UPDATE usuarios SET nomeUsuario = ?, emailUsuario = ? , sobrenomeUsuario = ?, telefoneUsuario = ? ,apelidoUsuario= ? ,dataNascimentoUsuario = ? WHERE idUsuario = ?";
         $query = $this->conexao->prepare($sql);
-        $query->execute([$nome, $email, $sobrenome,$telefone, $apelido, $data_nascimento, $profileId]);
+        $query->execute([$nomeUsuario, $emailUsuario, $sobrenomeUsuario ,$telefoneUsuario, $apelidoUsuario, $dataNascimentoUsuario, $profileId]);
 
         //EXIBIR MENSAGEM SE O USUÁRIO FOI ATUALIZADO
         echo '<script>alert("Usuário Atualizado"); window.location = "../view/perfil.php";</script>';
@@ -28,6 +28,7 @@ Class userProfileSet{
         session_start();
         $_SESSION['user_profile_name'] = $newName;
         $_SESSION['user_apelido'] = $newUsername;
+        //$_SESSION{'user_profile_last_name'} = $newLastName;
         $_SESSION['user_email'] = $newEmail;
         $_SESSION['user_telefone'] = $newPhone; 
         $_SESSION['user_data_nascimento'] = $newDate;
@@ -36,20 +37,20 @@ Class userProfileSet{
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $nome = $_POST['inputFirstName'];
-    $email = $_POST['inputEmailAddress'];
-    $sobrenome = $_POST['inputLastName'];
-    $telefone = $_POST['inputPhone'];
-    $apelido = $_POST['inputUsername'];
-    $data_nascimento = $_POST['inputBirthday'];
+    $nomeUsuario = $_POST['inputFirstName'];
+    $emailUsuario = $_POST['inputEmailAddress'];
+    $sobrenomeUsuario = $_POST['inputLastName'];
+    $telefoneUsuario = $_POST['inputPhone'];
+    $apelidoUsuario = $_POST['inputUsername'];
+    $dataNascimentoUsuario = $_POST['inputBirthday'];
 
     // Suponha que $profileId seja definido em logica_perfil.php
     $profileId = $profileId ?? 1; //valor padrão se $profileId não estiver definido
 
     $updaterProfile = new updaterProfile($conexao); // Use a conexão do config.php
 
-    $updaterProfile->updateProfile($profileId, $nome, $email, $sobrenome, $telefone, $apelido, $data_nascimento);
+    $updaterProfile->updateProfile($profileId, $nomeUsuario, $emailUsuario, $sobrenomeUsuario, $telefoneUsuario, $apelidoUsuario, $dataNascimentoUsuario);
 
     $userProfileSession = new userProfileSet();
-    $userProfileSession->updateSessionUserName($nome, $email, $sobrenome, $telefone, $apelido, $data_nascimento);
+    $userProfileSession->updateSessionUserName($nomeUsuario, $emailUsuario, $sobrenomeUsuario, $telefoneUsuario, $apelidoUsuario, $dataNascimentoUsuario);
 }

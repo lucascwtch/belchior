@@ -27,6 +27,7 @@ CREATE TABLE `produtos` (
 CREATE TABLE `usuarios` (
   `idUsuario` int(11) NOT NULL AUTO_INCREMENT,
   `nomeUsuario` varchar(120) NOT NULL,
+  `cpfUsuario` int(11) NOT NULL,
   `sobrenomeUsuario` varchar(120) DEFAULT NULL,
   `emailUsuario` varchar(120) NOT NULL,
   `senhaUsuario` char(100) NOT NULL,

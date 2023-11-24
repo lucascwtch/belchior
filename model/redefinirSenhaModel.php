@@ -7,13 +7,13 @@ class UsuarioModel {
         $this->dao = new UsuarioDAO($conexao);
     }
 
-    public function verificarToken($token) {
-        return $this->dao->getUsuarioByToken($token);
+    public function verificarToken($tokenUsuario) {
+        return $this->dao->getUsuarioByToken($tokenUsuario);
     }
 
-    public function atualizarSenha($token, $novaSenha) {
+    public function atualizarSenha($tokenUsuario, $novaSenha) {
         $senhaHash = password_hash($novaSenha, PASSWORD_DEFAULT);
-        return $this->dao->atualizarSenha($token, $senhaHash);
+        return $this->dao->atualizarSenha($tokenUsuario, $senhaHash);
     }
 }
 ?>

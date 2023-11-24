@@ -9,14 +9,14 @@ class ProductDAO {
         $this->db = $conexao;
     }
 
-    public function uploadProduct($tipo, $nome, $preco, $especificacoes, $imagem) {
+    public function uploadProduct($tipoProduto, $nomeProduto, $precoProduto, $especificacoesProduto, $imagemProduto) {
         // Move o arquivo de imagem para o diretório de destino
-        $imagem_destino = "../assets/img/produtos/" . basename($imagem['name']);
-        if (move_uploaded_file($imagem['tmp_name'], $imagem_destino)) {
+        $imagem_destino = "../assets/img/produtos/" . basename($imagemProduto['name']);
+        if (move_uploaded_file($imagemProduto['tmp_name'], $imagem_destino)) {
             // Inserção dos dados do produto no banco de dados
-            $sql = "INSERT INTO produtos (categoria, titulo, imagem, preco, descricao) VALUES (?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO produtos (categoriaProduto, tituloProduto, imagemProduto, precoProduto, descricaoProduto) VALUES (?, ?, ?, ?, ?)";
             $query = $this->db->prepare($sql);
-            $query->execute([$tipo, $nome, $imagem['name'], $preco, $especificacoes]);
+            $query->execute([$tipoProduto, $nomeProduto, $imagemProduto['name'], $precoProduto, $especificacoesProduto]);
 
             // Retorna uma mensagem indicando o resultado da operação
             return "Produto cadastrado!";

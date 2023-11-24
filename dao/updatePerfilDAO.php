@@ -8,9 +8,9 @@ class PerfilDAO {
         $this->conexao = $conexao;
     }
 
-    public function updatePerfil($profileId, $nome, $email, $sobrenome, $telefone, $apelido, $data_nascimento) {
-        $sql = "UPDATE usuarios SET nome = ?, email = ?, sobrenome = ?, telefone = ?, apelido = ?, data_nascimento = ? WHERE id = ?";
+    public function updatePerfil($profileId, $nomeUsuario, $emailUsuario, $sobrenomeUsuario, $telefoneUsuario, $apelidoUsuario, $dataNascimentoUsuario) {
+        $sql = "UPDATE usuarios SET nomeUsuario = ?, emailUsuario = ?, sobrenomeUsuario = ?, telefoneUsuario = ?, apelidoUsuario = ?, dataNascimentoUsuario = ? WHERE idUsuario = ?";
         $query = $this->conexao->prepare($sql);
-        $query->execute([$nome, $email, $sobrenome, $telefone, $apelido, $data_nascimento, $profileId]);
+        $query->execute([$profileId, $nomeUsuario, $emailUsuario, $sobrenomeUsuario, $telefoneUsuario, $apelidoUsuario, $dataNascimentoUsuario]);
     }
 }

@@ -3,17 +3,17 @@
 require_once "updatePerfilController.php";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $nome = $_POST['inputFirstName'];
-    $email = $_POST['inputEmailAddress'];
-    $sobrenome = $_POST['inputLastName'];
-    $telefone = $_POST['inputPhone'];
-    $apelido = $_POST['inputUsername'];
-    $data_nascimento = $_POST['inputBirthday'];
+    $nomeUsuario = $_POST['inputFirstName'];
+    $emailUsuario = $_POST['inputEmailAddress'];
+    $sobrenomeUsuario = $_POST['inputLastName'];
+    $telefoneUsuario = $_POST['inputPhone'];
+    $apelidoUsuario = $_POST['inputUsername'];
+    $dataNascimentoUsuario = $_POST['inputBirthday'];
 
     $profileId = $profileId ?? 1; // Valor padrão se $profileId não estiver definido
 
     $perfilController = new PerfilController($conexao);
-    $perfilController->atualizarPerfil($profileId, $nome, $email, $sobrenome, $telefone, $apelido, $data_nascimento);
+    $perfilController->atualizarPerfil($profileId, $nomeUsuario, $emailUsuario, $sobrenomeUsuario, $telefoneUsuario, $apelidoUsuario, $dataNascimentoUsuario);
 
     session_start();
     $_SESSION['message'] = 'Perfil atualizado com sucesso';

@@ -24,10 +24,10 @@ class PasswordResetController
         $usuarioExiste = $this->model->checkUserByEmail($email);
 
         if ($usuarioExiste) {
-            $token = password_hash(uniqid(), PASSWORD_DEFAULT);
+            $tokenUsuario = password_hash(uniqid(), PASSWORD_DEFAULT);
 
-            if ($this->model->updateTokenByEmail($email, $token)) {
-                if ($this->sendResetEmail($email, $token)) {
+            if ($this->model->updateTokenByEmail($email, $tokenUsuario)) {
+                if ($this->sendResetEmail($email, $tokenUsuario)) {
                     echo 'Um link de redefinição foi enviado para o seu e-mail.';
                 } else {
                     echo 'Erro ao enviar o e-mail de redefinição.';

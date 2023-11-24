@@ -7,7 +7,7 @@ class PerfilModel {
         $this->dao = $dao;
     }
 
-    public function updatePerfil($profileId, $nome, $email, $sobrenome, $telefone, $apelido, $data_nascimento) {
-        $this->dao->updatePerfil($profileId, $nome, $email, $sobrenome, $telefone, $apelido, $data_nascimento);
+    public function updatePerfil($profileId, $nomeUsuario, $emailUsuario, $sobrenomeUsuario, $telefoneUsuario, $apelidoUsuario, $dataNascimentoUsuario) {
+        $this->dao->updatePerfil($profileId, $nomeUsuario, $emailUsuario, $sobrenomeUsuario, $telefoneUsuario, $apelidoUsuario, $dataNascimentoUsuario);
     }
 }

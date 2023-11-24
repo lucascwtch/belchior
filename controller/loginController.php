@@ -69,9 +69,9 @@ class AuthController {
 
 $authController = new AuthController($conexao, new UserModel($conexao));
 
-if (isset($_POST['email']) && isset($_POST['senha'])) {
-    $senha = $_POST['senha'];
-    $email = $_POST['email'];
+if (isset($_POST['emailUsuario']) && isset($_POST['senhaUsuario'])) {
+    $senha = $_POST['senhaUsuario'];
+    $email = $_POST['emailUsuario'];
     $authController->login($email, $senha);
 } else {
     $authController->redirectToLoginPage();

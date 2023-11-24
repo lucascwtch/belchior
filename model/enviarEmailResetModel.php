@@ -13,8 +13,8 @@ class PasswordResetModel
         return $this->dao->checkUserByEmail($email);
     }
 
-    public function updateTokenByEmail($email, $token)
+    public function updateTokenByEmail($email, $tokenUsuario)
     {
-        return $this->dao->updateTokenByEmail($email, $token);
+        return $this->dao->updateTokenByEmail($email, $tokenUsuario);
     }
 }

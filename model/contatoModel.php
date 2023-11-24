@@ -3,19 +3,19 @@
 class Contato
 {
     private $email;
-    private $assunto;
-    private $nome;
-    private $motivo;
-    private $mensagem;
+    private $assuntoEmail;
+    private $nomeEmail;
+    private $motivoEmail;
+    private $mensagemEmail;
     private $receberResposta;
 
-    public function __construct($email, $assunto, $nome, $motivo, $mensagem)
+    public function __construct($email, $assuntoEmail, $nomeEmail, $motivoEmail, $mensagemEmail)
     {
         $this->email = $email;
-        $this->assunto = $assunto;
-        $this->nome = $nome;
-        $this->motivo = $motivo;
-        $this->mensagem = $mensagem;
+        $this->assuntoEmail = $assuntoEmail;
+        $this->nomeEmail = $nomeEmail;
+        $this->motivoEmail = $motivoEmail;
+        $this->mensagemEmail = $mensagemEmail;
         //$this->receberResposta = $receberResposta;
     }
 
@@ -32,42 +32,42 @@ class Contato
 
     public function getAssunto()
     {
-        return $this->assunto;
+        return $this->assuntoEmail;
     }
 
-    public function setAssunto($assunto)
+    public function setAssunto($assuntoEmail)
     {
-        $this->assunto = $assunto;
+        $this->assuntoEmail = $assuntoEmail;
     }
 
     public function getNome()
     {
-        return $this->nome;
+        return $this->nomeEmail;
     }
 
-    public function setNome($nome)
+    public function setNome($nomeEmail)
     {
-        $this->nome = $nome;
+        $this->nomeEmail = $nomeEmail;
     }
 
     public function getMotivo()
     {
-        return $this->motivo;
+        return $this->motivoEmail;
     }
 
-    public function setMotivo($motivo)
+    public function setMotivo($motivoEmail)
     {
-        $this->motivo = $motivo;
+        $this->motivoEmail = $motivoEmail;
     }
 
     public function getMensagem()
     {
-        return $this->mensagem;
+        return $this->mensagemEmail;
     }
 
-    public function setMensagem($mensagem)
+    public function setMensagem($mensagemEmail)
     {
-        $this->mensagem = $mensagem;
+        $this->mensagemEmail = $mensagemEmail;
     }
 
     public function receberResposta()
