@@ -1,6 +1,6 @@
 <?php
 require_once "../controller/config.php";
-require_once '../model/enviarEmailResetModel.php';
+require_once "../model/enviarEmailResetModel.php";
 require_once "../dao/enviarEmailResetDAO.php";
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -62,7 +62,7 @@ class PasswordResetController
             // Conteúdo do e-mail
             $mail->isHTML(true);
             $mail->Subject = 'Redefinir Senha';
-            $mail->Body = "Clique no link a seguir para redefinir sua senha: http://localhost/seu_projeto/redefinir_senha.php?token=$token";
+            $mail->Body = "Clique no link a seguir para redefinir sua senha: http://localhost/belchior/controller/redefinirSenhaController.php?token=$token";
 
             $mail->send();
             return true;

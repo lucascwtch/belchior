@@ -8,7 +8,7 @@ class UserDAO {
     }
 
     public function getUserByEmail($email) {
-        $query = $this->conexao->prepare("SELECT * FROM usuarios WHERE email = ?");
+        $query = $this->conexao->prepare("SELECT * FROM usuarios WHERE emailUsuario = ?");
         $query->execute([$email]);
         return $query->fetch(PDO::FETCH_ASSOC);
     }

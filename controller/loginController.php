@@ -19,7 +19,7 @@ class AuthController {
 
             // Verifica se há resultados para o email fornecido
             if ($user) {
-                $senha_hash_banco = $user['senha'];
+                $senha_hash_banco = $user['senhaUsuario'];
 
                 // Verifica se a senha fornecida corresponde à senha armazenada no banco de dados
                 if (password_verify($senha, $senha_hash_banco)) {
@@ -38,17 +38,17 @@ class AuthController {
     private function startSession($user) {
         session_start();
         $_SESSION['user_logged_in'] = true;
-        $_SESSION['user_profile_name'] = $user['nome'];
-        $_SESSION['user_adm'] = $user['adm'];
-        $_SESSION['user_id'] = $user['id'];
-        $_SESSION['user_sobrenome'] = $user['sobrenome'];
-        $_SESSION['user_email'] = $user['email'];
-        $_SESSION['user_apelido'] = $user['apelido'];
-        $_SESSION['user_telefone'] = $user['telefone'];
-        $_SESSION['user_data_nascimento'] = $user['data_nascimento'];
+        $_SESSION['user_profile_name'] = $user['nomeUsuario'];
+        $_SESSION['user_adm'] = $user['statusUsuario'];
+        $_SESSION['user_id'] = $user['idUsuario'];
+        $_SESSION['user_sobrenome'] = $user['sobrenomeUsuario'];
+        $_SESSION['user_email'] = $user['emailUsuario'];
+        $_SESSION['user_apelido'] = $user['apelidoUsuario'];
+        $_SESSION['user_telefone'] = $user['telefoneUsuario'];
+        $_SESSION['user_data_nascimento'] = $user['dataNascimentoUsuario'];
         // ... outras variáveis de sessão
 
-        $welcome_message = "Bem-vindo, " . $user['nome'];
+        $welcome_message = "Bem-vindo, " . $user['nomeUsuario'];
 
         echo "<script language='javascript' type='text/javascript'>
             var welcomeMessage = '$welcome_message';

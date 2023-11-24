@@ -1,50 +1,82 @@
 <?php
-// EmailModel.php
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
 
-require '../PHPMailer-master/src/Exception.php';
-require '../PHPMailer-master/src/PHPMailer.php';
-require '../PHPMailer-master/src/SMTP.php';
+class Contato
+{
+    private $email;
+    private $assunto;
+    private $nome;
+    private $motivo;
+    private $mensagem;
+    private $receberResposta;
 
-
-class EmailModel {
-    private $dao;
-
-    public function __construct($conexao) {
-        $this->dao = new EmailDAO($conexao);
+    public function __construct($email, $assunto, $nome, $motivo, $mensagem)
+    {
+        $this->email = $email;
+        $this->assunto = $assunto;
+        $this->nome = $nome;
+        $this->motivo = $motivo;
+        $this->mensagem = $mensagem;
+        //$this->receberResposta = $receberResposta;
     }
 
-    public function sendEmails() {
-        $emails = $this->dao->getEmails();
+    // Métodos getters e setters
+    public function getEmail()
+    {
+        return $this->email;
+    }
 
-        $mail = new PHPMailer(true);
-        $mail->isSMTP();
-        $mail->SMTPDebug = 0;
-        $mail->Host = 'smtp.gmail.com';
-        $mail->SMTPAuth = true;
-        $mail->Username = 'freis1801@gmail.com';
-        $mail->Password = 'xglv bvmv okzh nfhx';
-        $mail->SMTPSecure = 'tls';
-        $mail->Port = 587;
-        $mail->setFrom('freis1801@gmail.com', 'Belchior');
-        $mail->isHTML(true);
-        $mail->Subject = 'TESTE EMAIL';
-        $mail->Body = 'teste email';
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
 
-        foreach ($emails as $email) {
-            $mail->clearAddresses();
-            $mail->addAddress($email);
+    public function getAssunto()
+    {
+        return $this->assunto;
+    }
 
-            if ($mail->send()) {
+    public function setAssunto($assunto)
+    {
+        $this->assunto = $assunto;
+    }
 
-                echo "<script language='javascript' type='text/javascript'>
-                alert('Recebemos sua mensagem!');window.location ='../index.html'</script>";
-          
-            } else {
-                echo "Erro ao enviar mensagem para $email: " . $mail->ErrorInfo . "<br>";
-            }
-        }
+    public function getNome()
+    {
+        return $this->nome;
+    }
+
+    public function setNome($nome)
+    {
+        $this->nome = $nome;
+    }
+
+    public function getMotivo()
+    {
+        return $this->motivo;
+    }
+
+    public function setMotivo($motivo)
+    {
+        $this->motivo = $motivo;
+    }
+
+    public function getMensagem()
+    {
+        return $this->mensagem;
+    }
+
+    public function setMensagem($mensagem)
+    {
+        $this->mensagem = $mensagem;
+    }
+
+    public function receberResposta()
+    {
+        return $this->receberResposta;
+    }
+
+    public function setReceberResposta($receberResposta)
+    {
+        $this->receberResposta = $receberResposta;
     }
 }
-?>

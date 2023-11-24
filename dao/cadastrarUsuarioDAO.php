@@ -10,9 +10,8 @@ class RegistroDAO {
     }
 
     public function manipularRegistro($dadosPost) {
-        // Sua lógica de manipulação de registro aqui
         // Consulta para verificar se o email já existe
-        $consultaEmail = $this->db->prepare("SELECT * FROM usuarios WHERE email = :email");
+        $consultaEmail = $this->db->prepare("SELECT * FROM usuarios WHERE emailUsuario = :email");
         $consultaEmail->bindParam(':email', $dadosPost['email'], PDO::PARAM_STR);
         $consultaEmail->execute();
 
@@ -23,7 +22,7 @@ class RegistroDAO {
             // A senha foi confirmada e o email não existe, então prossiga com a inserção no banco de dados
             $senhaHash = password_hash($dadosPost['password'], PASSWORD_DEFAULT);
 
-            $inserirQuery = "INSERT INTO usuarios (nome, senha, email) VALUES (:nome, :senha, :email)";
+            $inserirQuery = "INSERT INTO usuarios (nomeUsuario, senhaUsuario, emailUsuario) VALUES (:nome,:senha,:email)";
             $inserirInstrucao = $this->db->prepare($inserirQuery);
             $inserirInstrucao->bindParam(':nome', $dadosPost['nome'], PDO::PARAM_STR);
             $inserirInstrucao->bindParam(':email', $dadosPost['email'], PDO::PARAM_STR);
