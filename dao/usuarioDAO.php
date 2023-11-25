@@ -1,9 +1,9 @@
 <?php
 
-include_once('../controller/config.php');
-include_once('../model/usuarioModel.php');
+include_once('../controller/Config.php');
+include_once('../model/UsuarioModel.php');
 
-class usuarioDAO {
+class UsuarioDAO {
     private $conexao;
 
     public function __construct($conexao) {
@@ -19,7 +19,7 @@ class usuarioDAO {
             $stmt->execute();
 
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $usuario = new usuarioModel($row['idUsuario'], $row['emailUsuario']);
+                $usuario = new UsuarioModel($row['idUsuario'], $row['emailUsuario']);
                 $aniversariantes[] = $usuario;
             }
         } catch (PDOException $e) {
@@ -39,7 +39,7 @@ try {
     $conexao = $gerenciadorConexao->getConexao();
 
     // Criar uma instância do DAO passando a conexão
-    $usuarioDAO = new usuarioDAO($conexao);
+    $usuarioDAO = new UsuarioDAO($conexao);
 
     // Obter aniversariantes
     $aniversariantes = $usuarioDAO->getAniversariantes();
