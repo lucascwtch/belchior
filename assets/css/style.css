@@ -7587,3 +7587,17 @@ textarea.form-control {
   font-size: 16px;
   margin-left: 10px;
 }
+
+.img-account-profile {
+  height: 10rem;
+}
+
+.rounded-circle {
+  border-radius: 50% !important;
+}
+
+
+
+.hidden {
+  display: none;
+}

@@ -316,7 +316,27 @@ AOS.init({
 		});
 	});
 
+	document.addEventListener('DOMContentLoaded', function () {
+		var form = document.getElementById('productForm');
+		form.addEventListener('submit', function (event) {
+			event.preventDefault(); // Impede o envio padrão do formulário
+			showPopup();
+		});
 
+		function showPopup() {
+			var popup = document.getElementById('popup');
+			popup.style.display = 'block';
+
+			// Adicione lógica adicional aqui, se necessário
+
+			// Feche o popup automaticamente após alguns segundos (exemplo: 3 segundos)
+			setTimeout(function () {
+				popup.style.display = 'none';
+			}, 3000);
+		}
+	});
 
 })(jQuery);
+
+
 
