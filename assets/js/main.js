@@ -319,7 +319,6 @@ AOS.init({
 	document.addEventListener('DOMContentLoaded', function () {
 		var form = document.getElementById('productForm');
 		form.addEventListener('submit', function (event) {
-			event.preventDefault(); // Impede o envio padrão do formulário
 			showPopup();
 		});
 

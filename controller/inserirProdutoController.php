@@ -11,8 +11,8 @@ class ProductController {
         $this->model = new ProductModel($conexao);
     }
 
-    public function uploadProduct($tipoProduto, $nomeProduto, $precoProduto, $descricaoProduto, $imagemProduto) {
-        $mensagem = $this->model->uploadProduct($tipoProduto, $nomeProduto, $precoProduto, $descricaoProduto, $imagemProduto);
+    public function uploadProduct($nomeProduto, $categoriaProduto, $descricaoProduto, $precoProduto,  $estoqueProduto,  $tamanhoProduto, $imagemProduto) {
+        $mensagem = $this->model->uploadProduct($nomeProduto, $categoriaProduto, $descricaoProduto, $precoProduto,  $estoqueProduto, $tamanhoProduto, $imagemProduto);
 
         // Exibe uma mensagem e redireciona após um atraso
         echo '<script>alert("' . $mensagem . '"); </script>';
@@ -23,13 +23,16 @@ $productController = new ProductController($conexao);
 
 // Verifica se o formulário foi enviado
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $tipo_produto = $_POST['tipoProduto'];
     $nome_produto = $_POST['nomeProduto'];
+    $categoria_produto = $_POST['categoriaProduto'];
+    $descricao_produto = $_POST['descricaoProduto'];
     $preco_produto = $_POST['precoProduto'];
-    $descricaoProduto = $_POST['descricaoProduto'];
+    $estoque_produto = $_POST['estoqueProduto'];
+    $tamanho_produto = $_POST['tamanhoProduto'];
     $imagem_produto = $_FILES['imagemProduto'];
+    
 
     // Chama o método para fazer upload do produto
-    $productController->uploadProduct($tipo_produto, $nome_produto, $preco_produto, $descricaoProduto, $imagem_produto);
+    $productController->uploadProduct($nome_produto, $categoria_produto, $descricao_produto, $preco_produto, $estoque_produto, $tamanho_produto,  $imagem_produto);
 }
 ?>

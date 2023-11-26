@@ -682,35 +682,40 @@ require_once '../view/navbarView.php';
             <div class="container mt-5">
                 <h2>Formulário de Adição de Produto</h2>
 
-                <form id="productForm" action="/caminho/do/seu/servidor/processamento.php" method="post" enctype="multipart/form-data">
+                <form id="productForm" action="../controller/inserirProdutoController.php" method="post" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label for="nome">Nome do Produto:</label>
-                        <input type="text" id="nome" name="nome" class="form-control" required>
+                        <label for="nomeProduto">Nome do Produto:</label>
+                        <input type="text" id="nomeProduto" name="nomeProduto" class="form-control" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="descricao">Descrição:</label>
-                        <textarea id="descricao" name="descricao" class="form-control" rows="4" required></textarea>
+                        <label for="categoriaProduto">Categoria do Produto:</label>
+                        <input type="text" id="categoriaProduto" name="categoriaProduto" class="form-control" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="preco">Preço:</label>
-                        <input type="number" id="preco" name="preco" class="form-control" step="0.01" required>
+                        <label for="descricaoProduto">Descrição:</label>
+                        <textarea id="descricaoProduto" name="descricaoProduto" class="form-control" rows="4" required></textarea>
                     </div>
 
                     <div class="form-group">
-                        <label for="quantidade">Quantidade em Estoque:</label>
-                        <input type="number" id="quantidade" name="quantidade" class="form-control" required>
+                        <label for="precoProduto">Preço:</label>
+                        <input type="number" id="precoProduto" name="precoProduto" class="form-control" step="0.01" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="tamanho">Tamanho:</label>
-                        <input type="text" id="tamanho" name="tamanho" class="form-control">
+                        <label for="estoqueProduto">Quantidade em Estoque:</label>
+                        <input type="number" id="estoqueProduto" name="estoqueProduto" class="form-control" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="foto">Foto do Produto:</label>
-                        <input type="file" id="foto" name="foto" class="form-control" accept="image/*">
+                        <label for="tamanhoProduto">Tamanho:</label>
+                        <input type="text" id="tamanhoProduto" name="tamanhoProduto" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="imagemProduto">Foto do Produto:</label>
+                        <input type="file" id="imagemProduto" name="imagemProduto" class="form-control" accept="image/*">
                     </div>
                     <br>
                     <button type="submit" class="btn btn-success">Adicionar Produto</button>

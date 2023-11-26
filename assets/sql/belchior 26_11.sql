@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `nomeUsuario` varchar(120) NOT NULL,
   `cpfUsuario` int(11) NOT NULL,
   `sobrenomeUsuario` varchar(120) DEFAULT NULL,
-  `emailUsuario` varchar(120) UNIQUE NOT NULL,
+  `emailUsuario` varchar(120) UNIQUE NOT NULL, -- Adicionando UNIQUE aqui
   `senhaUsuario` char(100) NOT NULL,
   `apelidoUsuario` varchar(120) NOT NULL,
   `perfilImageUsuario` blob NOT NULL,
@@ -39,7 +39,5 @@ CREATE TABLE IF NOT EXISTS `produtos` (
   `createdProduto` date NOT NULL,
   `modifiedProduto` date DEFAULT NULL,
   `estoqueProduto` int NOT NULL,
-  `idUsuario` int(11) NOT NULL,
-  PRIMARY KEY (`idProduto`),
-  FOREIGN KEY (`idUsuario`) REFERENCES `usuarios`(`idUsuario`)
+  PRIMARY KEY (`idProduto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
