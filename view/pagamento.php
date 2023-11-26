@@ -1,33 +1,36 @@
 <?php
+// Step 1: Require the library from your Composer vendor folder
 require_once '../vendor/autoload.php';
 
-use MercadoPago\Client\Preference\PreferenceClient;
+use MercadoPago\Client\Payment\PaymentClient;
 use MercadoPago\Exceptions\MPApiException;
 use MercadoPago\MercadoPagoConfig;
 
-// Defina o token de acesso de produção ou sandbox
+// Step 2: Set production or sandbox access token
 MercadoPagoConfig::setAccessToken("APP_USR-3908918862209501-112119-5f1b8b567d783951a50e316dd34a088e-1284764382");
 
-// Inicialize o cliente da API
-$client = new PreferenceClient();
+// Step 3: Initialize the API client
+$client = new PaymentClient();
 
 try {
-    // Crie o array de solicitação
+
+    // Step 4: Create the request array
     $request = [
-        "items" => [
-            [
-                "title" => 'Meu produto', //Nome do produto
-                "quantity" => 1, //Quantidade na hora da compra
-                "unit_price" => 75.56 //Preço por unidade 
-            ]
+        "transaction_amount" => 100,
+        "token" => "YOUR_CARD_TOKEN",
+        "description" => "description",
+        "installments" => 1,
+        "payment_method_id" => "visa",
+        "payer" => [
+            "email" => "user@test.com",
         ]
     ];
 
-    // Faça a solicitação
-    $preference = $client->create($request);
-    // echo $preference->id;
+    // Step 5: Make the request
+    $payment = $client->create($request);
+    echo $payment->id;
 
-    // Trate as exceções
+    // Step 6: Handle exceptions
 } catch (MPApiException $e) {
     echo "Status code: " . $e->getApiResponse()->getStatusCode() . "\n";
     echo "Content: " . $e->getApiResponse()->getContent() . "\n";
@@ -35,6 +38,7 @@ try {
     echo $e->getMessage();
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -85,7 +89,7 @@ try {
                         <a class="nav-link" href="../index.php">Início</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Produtos</a>
+                        <a class="nav-link" href="produtos.php">Produtos</a>
                     </li>
 
                     <li class="nav-item">
@@ -362,17 +366,17 @@ try {
     <script src="https://sdk.mercadopago.com/js/v2"></script>
 
     <script>
-        const mp = new MercadoPago('APP_USR-183ee0c3-6ae2-476f-8fc5-bbd2526dc8cf');
+        const mp = new MercadoPago('TEST-010a02be-9506-4354-bb5b-b05f8b8c1dc2');
         const bricksBuilder = mp.bricks();
 
 
         mp.bricks().create("wallet", "wallet_container", {
             initialization: {
                 preferenceId: "1284764382-c3233a7c-8eee-4432-93b6-e6b40dcb4115",
-                // redirectMode: "modal",
+                redirectMode: "modal",
 
             },
-            
+
         });
     </script>
 

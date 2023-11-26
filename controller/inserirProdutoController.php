@@ -1,7 +1,7 @@
 <?php
 // ProductController.php
 
-require_once "../model/inserirProdtoModel.php";
+require_once "../model/inserirProdutoModel.php";
 require_once "../dao/inserirProdutoDAO.php";
 
 class ProductController {
@@ -11,8 +11,8 @@ class ProductController {
         $this->model = new ProductModel($conexao);
     }
 
-    public function uploadProduct($tipoProduto, $nomeProduto, $precoProduto, $especificacoesProduto, $imagemProduto) {
-        $mensagem = $this->model->uploadProduct($tipoProduto, $nomeProduto, $precoProduto, $especificacoesProduto, $imagemProduto);
+    public function uploadProduct($tipoProduto, $nomeProduto, $precoProduto, $descricaoProduto, $imagemProduto) {
+        $mensagem = $this->model->uploadProduct($tipoProduto, $nomeProduto, $precoProduto, $descricaoProduto, $imagemProduto);
 
         // Exibe uma mensagem e redireciona após um atraso
         echo '<script>alert("' . $mensagem . '"); </script>';
@@ -26,10 +26,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $tipo_produto = $_POST['tipoProduto'];
     $nome_produto = $_POST['nomeProduto'];
     $preco_produto = $_POST['precoProduto'];
-    $especificacoes_produto = $_POST['especificacoesProduto'];
+    $descricaoProduto = $_POST['descricaoProduto'];
     $imagem_produto = $_FILES['imagemProduto'];
 
     // Chama o método para fazer upload do produto
-    $productController->uploadProduct($tipo_produto, $nome_produto, $preco_produto, $especificacoes_produto, $imagem_produto);
+    $productController->uploadProduct($tipo_produto, $nome_produto, $preco_produto, $descricaoProduto, $imagem_produto);
 }
 ?>

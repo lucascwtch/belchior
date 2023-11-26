@@ -2,7 +2,7 @@
 
 require_once "../controller/config.php";
 require_once '../view/navbarView.php';
-require_once "perfilView.php";
+// require_once "perfilView.php";
 
 
 
@@ -200,7 +200,7 @@ require_once "perfilView.php";
             <a class="nav-link d-inline" href="#billingSection" onclick="showBilling()">Pagamento</a>
             <a class="nav-link d-inline" href="#securitySection" onclick="showSecurity()">Segurança</a>
             <a class="nav-link d-inline" href="#notificationSection" onclick="showNotifications()">Notificações</a>
-            <a class="nav-link d-inline" href="#afiliarSection" onclick="showAfiliar()">Afiliar-se</a>
+            <a class="nav-link d-inline" href="#adicionarProdutoSection" onclick="showAfiliar()">Adicionar Produto</a>
         </div>
 
         <hr class="mt-0 mb-4">
@@ -678,57 +678,59 @@ require_once "perfilView.php";
             </div>
         </div>
 
-        <div id="afiliarSection" class="hidden">
-            <!DOCTYPE html>
-            <html>
+        <div id="adicionarProdutoSection" class="hidden">
+            <div class="container mt-5">
+                <h2>Formulário de Adição de Produto</h2>
 
-            <head>
-                <meta charset="UTF-8">
-                <title>Afiliar-se</title>
-                <!-- Inclua os links para os arquivos CSS e JS do Bootstrap -->
-                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/css/bootstrap.min.css">
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/js/bootstrap.min.js"></script>
-            </head>
+                <form id="productForm" action="/caminho/do/seu/servidor/processamento.php" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="nome">Nome do Produto:</label>
+                        <input type="text" id="nome" name="nome" class="form-control" required>
+                    </div>
 
-            <body>
+                    <div class="form-group">
+                        <label for="descricao">Descrição:</label>
+                        <textarea id="descricao" name="descricao" class="form-control" rows="4" required></textarea>
+                    </div>
 
-                <div class="container">
-                    <h2 class="text-center">Formulário de Afiliação</h2>
-                    <form>
-                        <div class="mb-3">
-                            <label for="nome" class="form-label">Nome</label>
-                            <input type="text" class="form-control" id="nome" placeholder="Digite seu nome">
+                    <div class="form-group">
+                        <label for="preco">Preço:</label>
+                        <input type="number" id="preco" name="preco" class="form-control" step="0.01" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quantidade">Quantidade em Estoque:</label>
+                        <input type="number" id="quantidade" name="quantidade" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tamanho">Tamanho:</label>
+                        <input type="text" id="tamanho" name="tamanho" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="foto">Foto do Produto:</label>
+                        <input type="file" id="foto" name="foto" class="form-control" accept="image/*">
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-success">Adicionar Produto</button>
+                </form>
+            </div>
+
+            <!-- Popup -->
+            <div class="modal" id="popup">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            Produto adicionado com sucesso!
                         </div>
-                        <div class="mb-3">
-                            <label for="nome" class="form-label">CPF/CNPJ</label>
-                            <input type="text" class="form-control" id="cpf_cnpj" placeholder="Digite seu CPF ou CNPJ">
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">E-mail</label>
-                            <input type="email" class="form-control" id="email" placeholder="Digite seu e-mail">
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="telefone" class="form-label">Telefone</label>
-                            <input type="tel" class="form-control" id="telefone" placeholder="Digite seu telefone">
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="mensagem" class="form-label">Mensagem</label>
-                            <textarea class="form-control" id="mensagem" rows="4" placeholder="Digite uma mensagem"></textarea>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary">Enviar</button>
-                    </form>
+                    </div>
                 </div>
-
-            </body>
-
-            </html>
-
+            </div>
         </div>
-    </div>
 
+
+    </div>
     <br><br>
 
     <footer class="ftco-footer ftco-section">
@@ -809,6 +811,7 @@ require_once "perfilView.php";
         </svg></div>
 </body>
 
+
 <script>
     // Função para mostrar a seção de Perfil
     function showProfile() {
@@ -816,7 +819,7 @@ require_once "perfilView.php";
         document.getElementById("billingSection").classList.add("hidden");
         document.getElementById("securitySection").classList.add("hidden");
         document.getElementById("notificationSection").classList.add("hidden");
-        document.getElementById("afiliarSection").classList.add("hidden");
+        document.getElementById("adicionarProdutoSection").classList.add("hidden");
     }
 
     // Função para mostrar a seção de Cobrança
@@ -825,7 +828,7 @@ require_once "perfilView.php";
         document.getElementById("billingSection").classList.remove("hidden");
         document.getElementById("securitySection").classList.add("hidden");
         document.getElementById("notificationSection").classList.add("hidden");
-        document.getElementById("afiliarSection").classList.add("hidden");
+        document.getElementById("adicionarProdutoSection").classList.add("hidden");
 
     }
 
@@ -835,7 +838,7 @@ require_once "perfilView.php";
         document.getElementById("billingSection").classList.add("hidden");
         document.getElementById("securitySection").classList.remove("hidden");
         document.getElementById("notificationSection").classList.add("hidden");
-        document.getElementById("afiliarSection").classList.add("hidden");
+        document.getElementById("adicionarProdutoSection").classList.add("hidden");
 
     }
 
@@ -845,7 +848,7 @@ require_once "perfilView.php";
         document.getElementById("billingSection").classList.add("hidden");
         document.getElementById("securitySection").classList.add("hidden");
         document.getElementById("notificationSection").classList.remove("hidden");
-        document.getElementById("afiliarSection").classList.add("hidden");
+        document.getElementById("adicionarProdutoSection").classList.add("hidden");
     }
 
     // Função para mostrar a seção de Afiliar-se
@@ -854,9 +857,10 @@ require_once "perfilView.php";
         document.getElementById("billingSection").classList.add("hidden");
         document.getElementById("securitySection").classList.add("hidden");
         document.getElementById("notificationSection").classList.add("hidden");
-        document.getElementById("afiliarSection").classList.remove("hidden");
+        document.getElementById("adicionarProdutoSection").classList.remove("hidden");
     }
 </script>
+
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.5.0/js/bootstrap.min.js"></script>
