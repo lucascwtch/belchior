@@ -24,8 +24,8 @@ class RegistroDAO {
 
             $inserirQuery = "INSERT INTO usuarios (nomeUsuario, senhaUsuario, emailUsuario) VALUES (:nome,:senha,:email)";
             $inserirInstrucao = $this->db->prepare($inserirQuery);
-            $inserirInstrucao->bindParam(':nome', $dadosPost['nome'], PDO::PARAM_STR);
-            $inserirInstrucao->bindParam(':email', $dadosPost['email'], PDO::PARAM_STR);
+            $inserirInstrucao->bindParam(':nome', $dadosPost['nomeUsuario'], PDO::PARAM_STR);
+            $inserirInstrucao->bindParam(':email', $dadosPost['emailUsuario'], PDO::PARAM_STR);
             $inserirInstrucao->bindParam(':senha', $senhaHash, PDO::PARAM_STR);
 
             $inserirInstrucao->execute();
