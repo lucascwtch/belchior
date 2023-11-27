@@ -21,4 +21,3 @@ class PasswordResetDAO {
         return $updateQuery->rowCount() > 0;
     }
 }
-?> 

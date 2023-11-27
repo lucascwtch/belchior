@@ -14,4 +14,3 @@ class NavBarController {
         return $this->userProfileModel->getProfileInfo();
     }
 }
-?>

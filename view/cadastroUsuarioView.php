@@ -105,7 +105,7 @@
     
             <button type="submit" class="btn" id="enviar">Cadastrar</button>
             <div class="register-link">
-                <p>Já possui uma conta? <a href="login_page.html">Entrar</a></p>
+                <p>Já possui uma conta? <a href="login_page.php">Entrar</a></p>
             </div>
         </form>
     </div>

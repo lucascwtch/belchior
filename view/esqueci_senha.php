@@ -75,7 +75,7 @@
     </nav>
 
     <div class="wrapper">
-        <form method="post" action="../controller/enviarEmailResetController.php">
+        <form method="POST" action="../controller/enviarEmailResetController.php">
             <h1>Redefinição de Senha</h1>
             <div class="input-box">
                 <input type="email" placeholder="E-mail" id="emailUsuario" name="emailUsuario" id="emailUsuario" required>

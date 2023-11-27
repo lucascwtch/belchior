@@ -19,7 +19,7 @@ class PasswordResetController {
 
                     if ($senhaAtualizada) {
                         echo '<script>alert("Senha redefinida com sucesso. Faça login.");</script>';
-                        echo '<script>window.location.href = "../view/login_page.html";</script>';
+                        echo '<script>window.location.href = "../view/login_page.php";</script>';
                     } else {
                         echo 'Erro ao atualizar a senha.';
                     }
@@ -31,6 +31,7 @@ class PasswordResetController {
             }
         } else {
             echo 'Token inválido ou não fornecido.';
+            echo $tokenUsuario;
         }
     }
 
@@ -44,7 +45,7 @@ class PasswordResetController {
         </head>
         <body>
             <h2>Redefinir Senha</h2>
-            <form method="post" action="redefinir_senha.php?tokenUsuario=' . $tokenUsuario . '">
+            <form method="post" action="redefinirSenhaController.php?token=' . $tokenUsuario . '">
                 <label for="nova_senha">Nova Senha:</label>
                 <input type="password" id="nova_senha" name="nova_senha" required>
                 <button type="submit">Redefinir Senha</button>
@@ -54,4 +55,11 @@ class PasswordResetController {
         ';
     }
 }
-?>
+
+
+$resetController = new PasswordResetController($conexao);
+
+// Obtém o token da URL (se disponível) e passa para o controlador de redefinição de senha
+$token = $_GET['token'] ?? '';
+$resetController->handlePasswordReset($token);
+

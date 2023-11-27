@@ -145,7 +145,7 @@ require_once "perfilView.php";
                         </a>
                         <div class="dropdown-menu" aria-labelledby="profileDropdown">
                             <!-- Botão de Logout -->
-                            <form action="../view/logoutView.php" method="post">
+                            <form action="../controller/logoutController.php" method="post">
                                 <a><button>Logout</button></a>
                             </form>
                             <!-- Outros itens de menu do perfil, se necessário -->
@@ -191,7 +191,7 @@ require_once "perfilView.php";
                     <div class="card mb-4">
                         <div class="card-header">Detalhes da Conta</div>
                         <div class="card-body">
-                            <form method="post" action="../controller/updateSessionProfileController.php" onsubmit="return confirmarEnvio()" id="EdituserForm">
+                            <form method="post" action="../controller/updatePerfilController.php" onsubmit="return confirmarEnvio()" id="EdituserForm">
                                 <!-- Form Group (username)-->
                                 <div class="mb-3">
                                     <label class="small mb-1" for="inputUsername">Apelido</label>
