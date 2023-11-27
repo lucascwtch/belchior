@@ -1,8 +1,7 @@
 CREATE TABLE IF NOT EXISTS `usuarios` (
   `idUsuario` int(11) NOT NULL AUTO_INCREMENT,
   `nomeUsuario` varchar(120) NOT NULL,
-  `cpfUsuario` int(11) NOT NULL,
-  `sobrenomeUsuario` varchar(120) DEFAULT NULL,
+  `cpfUsuario` varchar(11) NOT NULL,
   `emailUsuario` varchar(120) UNIQUE NOT NULL, -- Adicionando UNIQUE aqui
   `senhaUsuario` char(100) NOT NULL,
   `apelidoUsuario` varchar(120) NOT NULL,
