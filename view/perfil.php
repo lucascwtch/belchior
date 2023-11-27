@@ -2,7 +2,7 @@
 
 require_once "../controller/config.php";
 require_once '../view/navbarView.php';
-require_once "perfilView.php";
+require_once "../controller/perfilController.php";
 
 
 

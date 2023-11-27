@@ -22,13 +22,14 @@ class RegistroDAO {
             // A senha foi confirmada e o email não existe, então prossiga com a inserção no banco de dados
             $senhaHash = password_hash($dadosPost['password'], PASSWORD_DEFAULT);
 
-            $inserirQuery = "INSERT INTO usuarios (nomeUsuario, senhaUsuario, emailUsuario, cpfUsuario, dataNascimentoUsuario) VALUES (:nome,:senha,:email, :cpfusuario, :datanascimentousuario )";
+            $inserirQuery = "INSERT INTO usuarios (nomeUsuario,  emailUsuario, cpfUsuario, dataNascimentoUsuario, senhaUsuario) VALUES (:nome, :email, :cpf, :dataNascimento, :senha)";
             $inserirInstrucao = $this->db->prepare($inserirQuery);
             $inserirInstrucao->bindParam(':nome', $dadosPost['nomeUsuario'], PDO::PARAM_STR);
-            $inserirInstrucao->bindParam(':senha', $senhaHash, PDO::PARAM_STR);
             $inserirInstrucao->bindParam(':email', $dadosPost['emailUsuario'], PDO::PARAM_STR);
-            $inserirInstrucao->bindParam(':cpfusuario', $dadosPost['cpfUsuario'], PDO::PARAM_STR);
-            $inserirInstrucao->bindParam(':datanascimentousuario', $dadosPost['dataNascimentoUsuario'], PDO::PARAM_STR);
+            $inserirInstrucao->bindParam(':cpf', $dadosPost['cpfUsuario'], PDO::PARAM_INT);
+            $inserirInstrucao->bindParam(':dataNascimento', $dadosPost['dataNascimentoUsuario'], PDO::PARAM_STR);
+            $inserirInstrucao->bindParam(':senha', $senhaHash, PDO::PARAM_STR);
+
             $inserirInstrucao->execute();
 
             if ($inserirInstrucao->rowCount() > 0) {

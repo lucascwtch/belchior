@@ -77,6 +77,6 @@ if (isset($_POST['emailUsuario']) && isset($_POST['senhaUsuario'])) {
     $authController->login($email, $senha);
 } else {
     $message = "Informações Faltando";
-    $authController->redirectToLoginPage($message);
+    
 }
 
