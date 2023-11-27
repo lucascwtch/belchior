@@ -1,3 +1,9 @@
+<?php
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -57,7 +63,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="contato.php">Contato</a>
                     </li>
-                    <li class="nav-item cta cta-colored"><a href="carrinho.html" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
+                    <li class="nav-item cta cta-colored"><a href="carrinho.php" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
 
                 </ul>
             </div>

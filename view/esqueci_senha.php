@@ -1,3 +1,7 @@
+<?php
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -63,7 +67,7 @@
                         <a class="nav-link" href="contato.php">Contato</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="cadastro.html">Cadastrar</a>
+                        <a class="nav-link" href="cadastro.php">Cadastrar</a>
                     </li>
                 </ul>
             </div>

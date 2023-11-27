@@ -12,8 +12,8 @@ class PerfilController {
         $this->perfilModel = new PerfilModel($this->perfilDAO);
     }
 
-    public function atualizarPerfil($profileId, $nomeUsuario, $emailUsuario, $sobrenomeUsuario, $telefoneUsuario, $apelidoUsuario, $dataNascimentoUsuario) {
-        $this->perfilModel->updatePerfil($profileId, $nomeUsuario, $emailUsuario, $sobrenomeUsuario, $telefoneUsuario, $apelidoUsuario, $dataNascimentoUsuario);
+    public function atualizarPerfil($profileId, $nomeUsuario, $emailUsuario, $sobrenomeUsuario, $cpfUsuario, $apelidoUsuario, $dataNascimentoUsuario) {
+        $this->perfilModel->updatePerfil($profileId, $nomeUsuario, $emailUsuario, $sobrenomeUsuario, $cpfUsuario, $apelidoUsuario, $dataNascimentoUsuario);
         
         // Adicionar uma mensagem de sucesso à sessão
         $_SESSION['message'] = 'Perfil atualizado com sucesso';

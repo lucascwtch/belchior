@@ -11,7 +11,7 @@ $profileApelido = $userProfileModel -> getProfileApelido();
 $profileNome = $userProfileModel -> getProfileName();
 $profileSobrenome = $userProfileModel -> getProfileSecondName();
 $profileEmail = $userProfileModel -> getProfileEmail();
-$profileTelefone = $userProfileModel -> getProfileTelefone();
+$profileCPF = $userProfileModel -> getProfileCPF();
 $profileDataNascimento = $userProfileModel -> getProfileDataNascimento();
 $profileID = $userProfileModel -> getProfileId();
 

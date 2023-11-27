@@ -1,3 +1,8 @@
+<?php
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -59,7 +64,7 @@
                         <a class="nav-link" href="contato.php">Contato</a>
                       </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="login_page.html">Entrar</a>
+                        <a class="nav-link" href="login_page.php">Entrar</a>
                     </li>
                 </ul>
             </div>

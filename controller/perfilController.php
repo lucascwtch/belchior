@@ -23,7 +23,7 @@ class UserProfileController {
                 $_SESSION['user_sobrenome'],
                 $_SESSION['user_email'],
                 $_SESSION['user_apelido'],
-                $_SESSION['user_telefone'],
+                $_SESSION['user_cpf'],
                 $_SESSION['user_data_nascimento']
             );
         }

@@ -71,8 +71,6 @@ require_once '../view/navbarView.php';
 
 
 
-    </script>
-
     <style>
         .img-account-profile {
             height: 10rem;
@@ -169,7 +167,7 @@ require_once '../view/navbarView.php';
                         <a class="nav-link" href="../index.php">Início</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Produtos</a>
+                        <a class="nav-link" href="produtos.html">Produtos</a>
                     </li>
 
                     <li class="nav-item">
@@ -200,7 +198,8 @@ require_once '../view/navbarView.php';
             <a class="nav-link d-inline" href="#billingSection" onclick="showBilling()">Pagamento</a>
             <a class="nav-link d-inline" href="#securitySection" onclick="showSecurity()">Segurança</a>
             <a class="nav-link d-inline" href="#notificationSection" onclick="showNotifications()">Notificações</a>
-            <a class="nav-link d-inline" href="#adicionarProdutoSection" onclick="showAfiliar()">Adicionar Produto</a>
+            <a class="nav-link d-inline" href="#adicionarProdutoSection" onclick="showAddProduto()">Adicionar Produto</a>
+            <a class="nav-link d-inline" href="#adicionarProdutoSection" onclick="showMeusProdutos()">Produtos Adicionados</a>
         </div>
 
         <hr class="mt-0 mb-4">
@@ -734,7 +733,55 @@ require_once '../view/navbarView.php';
             </div>
         </div>
 
+        <div id="meusProdutosSection" class="hidden">
+            <!-- Seção de Meus Produtos -->
+            <h3>Meus Produtos</h3>
 
+            <!-- Exemplo de loop para exibir produtos -->
+            <div class="row">
+
+                <!-- Aqui você precisa substituir o arrayProducts pelos dados reais do seu backend -->
+                <!-- Cada item em arrayProducts representa um produto -->
+                <!-- Certifique-se de ajustar a estrutura de dados conforme necessário -->
+                <!-- por exemplo, substitua arrayProducts[i].nome pelo campo real que armazena o nome do produto -->
+
+                <!-- Início do loop -->
+                <!-- Este exemplo usa um loop simples para iterar sobre os produtos -->
+                <!-- Você pode usar um loop dinâmico baseado nos dados do seu backend -->
+                <?php
+                $arrayProducts = [
+                    ['nome' => 'Produto 1', 'descricao' => 'Descrição do Produto 1', 'preco' => 19.99, 'quantidade' => 10, 'tamanho' => 'XL'],
+                    ['nome' => 'Produto 2', 'descricao' => 'Descrição do Produto 2', 'preco' => 29.99, 'quantidade' => 5, 'tamanho' => 'L'],
+                    // Adicione mais produtos conforme necessário
+                ];
+
+                foreach ($arrayProducts as $product) {
+                ?>
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <!-- <img src="<?= $product['imagem'] ?>" class="card-img-top" alt="Imagem do Produto"> -->
+                            <img src="../assets/img/product-1.png" class="card-img-top" alt="Imagem do Produto">       
+                            <div class="card-body">
+                                <h5 class="card-title"><?= $product['nome'] ?></h5>
+                                <p class="card-text"><?= $product['descricao'] ?></p>
+                                <p class="card-text">Preço: R$ <?= number_format($product['preco'], 2) ?></p>
+                                <p class="card-text">Quantidade em Estoque: <?= $product['quantidade'] ?></p>
+                                <p class="card-text">Tamanho: <?= $product['tamanho'] ?></p>
+                                <!-- Adicione mais informações conforme necessário -->
+
+                                <!-- Botões para editar e excluir -->
+                                <button class="btn btn-primary">Editar</button>
+                                <button class="btn btn-danger">Excluir</button>
+                            </div>
+                        </div>
+                    </div>
+                <?php
+                }
+                ?>
+                <!-- Fim do loop -->
+            </div>
+
+        </div>
     </div>
     <br><br>
 
@@ -825,6 +872,7 @@ require_once '../view/navbarView.php';
         document.getElementById("securitySection").classList.add("hidden");
         document.getElementById("notificationSection").classList.add("hidden");
         document.getElementById("adicionarProdutoSection").classList.add("hidden");
+        document.getElementById("meusProdutosSection").classList.add("hidden");
     }
 
     // Função para mostrar a seção de Cobrança
@@ -834,7 +882,7 @@ require_once '../view/navbarView.php';
         document.getElementById("securitySection").classList.add("hidden");
         document.getElementById("notificationSection").classList.add("hidden");
         document.getElementById("adicionarProdutoSection").classList.add("hidden");
-
+        document.getElementById("meusProdutosSection").classList.add("hidden");
     }
 
     // Função para mostrar a seção de Segurança
@@ -844,7 +892,7 @@ require_once '../view/navbarView.php';
         document.getElementById("securitySection").classList.remove("hidden");
         document.getElementById("notificationSection").classList.add("hidden");
         document.getElementById("adicionarProdutoSection").classList.add("hidden");
-
+        document.getElementById("meusProdutosSection").classList.add("hidden");
     }
 
     // Função para mostrar a seção de Notificações
@@ -854,17 +902,30 @@ require_once '../view/navbarView.php';
         document.getElementById("securitySection").classList.add("hidden");
         document.getElementById("notificationSection").classList.remove("hidden");
         document.getElementById("adicionarProdutoSection").classList.add("hidden");
+        document.getElementById("meusProdutosSection").classList.add("hidden");
     }
 
-    // Função para mostrar a seção de Afiliar-se
-    function showAfiliar() {
+    // Função para mostrar a seção de Adicionar Produto
+    function showAddProduto() {
         document.getElementById("profileSection").classList.add("hidden");
         document.getElementById("billingSection").classList.add("hidden");
         document.getElementById("securitySection").classList.add("hidden");
         document.getElementById("notificationSection").classList.add("hidden");
         document.getElementById("adicionarProdutoSection").classList.remove("hidden");
+        document.getElementById("meusProdutosSection").classList.add("hidden");
+    }
+
+    // Função para mostrar a seção de Meus Produtos
+    function showMeusProdutos() {
+        document.getElementById("profileSection").classList.add("hidden");
+        document.getElementById("billingSection").classList.add("hidden");
+        document.getElementById("securitySection").classList.add("hidden");
+        document.getElementById("notificationSection").classList.add("hidden");
+        document.getElementById("adicionarProdutoSection").classList.add("hidden");
+        document.getElementById("meusProdutosSection").classList.remove("hidden");
     }
 </script>
+
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

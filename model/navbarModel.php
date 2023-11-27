@@ -19,7 +19,7 @@ class NavBarModel {
             $this->setProfileLink('view/perfil.php');
         } else {
             $this->setProfileName('Login');
-            $this->setProfileLink('view/login_page.html');
+            $this->setProfileLink('view/login_page.php');
         }
     }
 

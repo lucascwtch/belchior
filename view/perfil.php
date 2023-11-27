@@ -37,42 +37,6 @@ require_once "perfilView.php";
     <link rel="stylesheet" href="../assets/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/animate.css">
 
-
-
-
-    <script>
-        let valoresAnteriores = {};
-
-        function confirmarEnvio() {
-            var confirmacao = confirm("Tem certeza que deseja enviar este formulário?");
-
-            if (confirmacao) {
-                return true; // Permite o envio do formulário
-            } else {
-                // Se o usuário clicou em "Cancelar", restaura os valores anteriores nos campos do formulário
-                document.getElementById('EdituserForm').reset(); // Limpa os campos
-
-                for (let campo in valoresAnteriores) {
-                    document.getElementsByName(campo)[0].value = valoresAnteriores[campo];
-                }
-
-                return false; // Impede o envio do formulário
-            }
-        }
-
-        // Salva os valores atuais antes de enviar o formulário
-        document.getElementById('EdituserForm').addEventListener('submit', function(event) {
-            let inputs = this.getElementsByTagName('input');
-            for (let input of inputs) {
-                valoresAnteriores[input.name] = input.value;
-            }
-        });
-    </script>
-
-
-
-    </script>
-
     <style>
         .img-account-profile {
             height: 10rem;
@@ -169,7 +133,7 @@ require_once "perfilView.php";
                         <a class="nav-link" href="../index.php">Início</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Produtos</a>
+                        <a class="nav-link" href="produtos.html">Produtos</a>
                     </li>
 
                     <li class="nav-item">
@@ -256,8 +220,8 @@ require_once "perfilView.php";
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (phone number)-->
                                     <div class="col-md-6">
-                                        <label class="small mb-1" for="inputPhone">Número de Telefone</label>
-                                        <input class="form-control" id="inputPhone" name="inputPhone" type="tel" placeholder="Digite seu número de telefone" value="<?php echo $profileTelefone; ?>">
+                                        <label class="small mb-1" for="inputCPF">CPF</label>
+                                        <input class="form-control" id="inputCPF" name="inputCPF" type="text" placeholder="Digite seu CPF/CNPJ" value="<?php echo $profileCPF; ?>">
                                     </div>
                                     <!-- Form Group (birthday)-->
                                     <div class="col-md-6">
@@ -857,6 +821,41 @@ require_once "perfilView.php";
         document.getElementById("afiliarSection").classList.remove("hidden");
     }
 </script>
+
+
+
+
+<script>
+    let valoresAnteriores = {};
+
+    function confirmarEnvio() {
+        var confirmacao = confirm("Tem certeza que deseja enviar este formulário?");
+
+        if (confirmacao) {
+            return true; // Permite o envio do formulário
+        } else {
+            // Se o usuário clicou em "Cancelar", restaura os valores anteriores nos campos do formulário
+            document.getElementById('EdituserForm').reset(); // Limpa os campos
+
+            for (let campo in valoresAnteriores) {
+                document.getElementsByName(campo)[0].value = valoresAnteriores[campo];
+            }
+
+            return false; // Impede o envio do formulário
+        }
+    }
+
+    // Salva os valores atuais antes de enviar o formulário
+    document.getElementById('EdituserForm').addEventListener('submit', function(event) {
+        let inputs = this.getElementsByTagName('input');
+        for (let input of inputs) {
+            valoresAnteriores[input.name] = input.value;
+        }
+    });
+</script>
+
+
+
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.5.0/js/bootstrap.min.js"></script>
