@@ -62,7 +62,7 @@ class PasswordResetController
             // Conteúdo do e-mail
             $mail->isHTML(true);
             $mail->Subject = 'Redefinir Senha';
-            $mail->Body = "Clique no link a seguir para redefinir sua senha: http://localhost/belchior/controller/redefinirSenhaController.php?token=$token";
+            $mail->Body = "Clique no link a seguir para redefinir sua senha: http://localhost/Belchior%20v1.3/belchior/controller/redefinirSenhaController.php?token=$token";
 
             $mail->send();
             return true;
@@ -75,9 +75,12 @@ class PasswordResetController
 $passwordResetController = new PasswordResetController($conexao);
 
 // Verifica se o e-mail foi enviado via POST
-if (isset($_POST['email'])) {
-    $email = $_POST['email'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['emailUsuario'])) {
+    $email = $_POST['emailUsuario'];
 
     // Chama o método para solicitar a redefinição de senha
     $passwordResetController->requestPasswordReset($email);
+} else {
+    echo '<script>alert("Campos com Dados inválidos ou não preenchidos! ");</script>';
+    echo '<script>window.location.href = "../view/esqueci_senha.php";</script>';
 }

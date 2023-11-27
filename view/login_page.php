@@ -88,14 +88,14 @@
 
             <div class="remember-forgot">
                 <label><input type="checkbox">Lembrar de mim</label>
-                <a href="esqueci_senha.html">Esqueceu a senha?</a>
+                <a href="esqueci_senha.php">Esqueceu a senha?</a>
             </div>
 
             <button type="submit" class="btn" id="enviar">Login</button>
 
             <div class="register-link">
                 <p>Não tem uma conta?
-                    <a href="cadastro.html">Cadastrar</a>
+                    <a href="cadastroUsuarioView.php">Cadastrar</a>
                 </p>
             </div>
         </form>

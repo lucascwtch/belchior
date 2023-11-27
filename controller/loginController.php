@@ -45,7 +45,9 @@ class AuthController {
         $_SESSION['user_email'] = $user['emailUsuario'];
         $_SESSION['user_apelido'] = $user['apelidoUsuario'];
         $_SESSION['user_telefone'] = $user['telefoneUsuario'];
+        $_SESSION['user_cpf'] = $user['cpfUsuario'];
         $_SESSION['user_data_nascimento'] = $user['dataNascimentoUsuario'];
+        
         // ... outras variáveis de sessão
 
         $welcome_message = "Bem-vindo, " . $user['nomeUsuario'];
@@ -61,7 +63,7 @@ class AuthController {
         echo "<script language='javascript' type='text/javascript'>
             " . ($message ? "alert('$message');" : "") . "
             setTimeout(function() {
-                window.location = '../view/login_page.html';
+                window.location = '../view/login_page.php';
             }, 3000);
         </script>";
     }
@@ -74,6 +76,7 @@ if (isset($_POST['emailUsuario']) && isset($_POST['senhaUsuario'])) {
     $email = $_POST['emailUsuario'];
     $authController->login($email, $senha);
 } else {
-    $authController->redirectToLoginPage();
+    $message = "Informações Faltando";
+    $authController->redirectToLoginPage($message);
 }
-?>
+

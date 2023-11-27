@@ -39,7 +39,7 @@ class UserProfileModel {
         return $this->profileApelido;
     }
 
-    public function profileCPF(){
+    public function getProfileCPF(){
         return $this->profileCPF;
     }
 
@@ -47,4 +47,4 @@ class UserProfileModel {
         return $this->profileDataNascimento;
     }
 }
-?>
+

@@ -1,13 +1,16 @@
 <?php
+class UserModel {
+    private $conexao;
 
-class PerfilModel {
-    private $dao;
-
-    public function __construct($dao) {
-        $this->dao = $dao;
+    public function __construct($conexao) {
+        $this->conexao = $conexao;
     }
 
-    public function updatePerfil($profileId, $nomeUsuario, $emailUsuario, $sobrenomeUsuario, $cpfUsuario, $apelidoUsuario, $dataNascimentoUsuario) {
-        $this->dao->updatePerfil($profileId, $nomeUsuario, $emailUsuario, $sobrenomeUsuario, $cpfUsuario, $apelidoUsuario, $dataNascimentoUsuario);
+    public function updateProfile($profileId, $nomeUsuario, $emailUsuario, $sobrenomeUsuario, $cpfUsuario, $apelidoUsuario, $dataNascimentoUsuario) {
+        $sql = "UPDATE usuarios SET nomeUsuario = ?, emailUsuario = ?, sobrenomeUsuario = ?, cpfUsuario = ?, apelidoUsuario = ?, dataNascimentoUsuario = ? WHERE idUsuario = ?";
+        $query = $this->conexao->prepare($sql);
+        $query->execute([$nomeUsuario, $emailUsuario, $sobrenomeUsuario, $cpfUsuario, $apelidoUsuario, $dataNascimentoUsuario, $profileId]);
     }
+
+    
 }
