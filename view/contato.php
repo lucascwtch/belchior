@@ -52,6 +52,18 @@ require_once 'navbarView.php';
                     <li class="nav-item">
                         <a class="nav-link" href="#">Contato</a>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa-regular fa-user"></i><span></span>
+                            <?php echo $profileName; ?>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="profileDropdown">
+                            <a href="carrinho.php" class="dropdown-item"><i class="fa-solid fa-cart-shopping"></i> Carrinho [0]</a>
+                            <a href="perfil.php" class="dropdown-item"><i class="fa-solid fa-user"></i> Ver perfil</a>
+                            <a href="../controller/logoutController.php" class="dropdown-item"><i class="fa-solid fa-power-off"></i> Logout</a>
+
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>

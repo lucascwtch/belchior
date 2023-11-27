@@ -34,9 +34,7 @@
     <link rel="stylesheet" href="../assets/css/produtos_style.css">
     <link rel="stylesheet" href="../assets/css/style.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-        integrity="sha512-Ljzmr5Wd6Wh+RSRBRU5tJj9PQ6ry5wi0S0RBi6UBOe2WiDxoUGZrlyYtr0JdPZ5e1u/f0DVx+uPW1vOqoaVm4w=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-Ljzmr5Wd6Wh+RSRBRU5tJj9PQ6ry5wi0S0RBi6UBOe2WiDxoUGZrlyYtr0JdPZ5e1u/f0DVx+uPW1vOqoaVm4w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 
@@ -47,8 +45,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container">
             <a class="navbar-brand mx-auto" href="#">Belchior</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -57,14 +54,24 @@
                         <a class="nav-link" href="../index.php">Início</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Produtos</a>
+                        <a class="nav-link" href="produtos.php">Produtos</a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link" href="contato.php">Contato</a>
                     </li>
-                    <li class="nav-item cta cta-colored"><a href="carrinho.php" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa-regular fa-user"></i><span></span>
+                            <?php echo $profileName; ?>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="profileDropdown">
+                            <a href="carrinho.php" class="dropdown-item"><i class="fa-solid fa-cart-shopping"></i> Carrinho [0] </a>
+                            <a href="perfil.php" class="dropdown-item"><i class="fa-solid fa-user"></i> Ver perfil</a>
+                            <a href="../controller/logoutController.php" class="dropdown-item"><i class="fa-solid fa-power-off"></i> Logout</a>
 
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -116,8 +123,7 @@
 
                                     <td class="quantity">
                                         <div class="input-group mb-3">
-                                            <input type="text" name="quantity"
-                                                class="quantity form-control input-number" value="1" min="1" max="100">
+                                            <input type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
                                         </div>
                                     </td>
 
@@ -141,8 +147,7 @@
 
                                     <td class="quantity">
                                         <div class="input-group mb-3">
-                                            <input type="text" name="quantity"
-                                                class="quantity form-control input-number" value="1" min="1" max="100">
+                                            <input type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
                                         </div>
                                     </td>
 
@@ -233,14 +238,12 @@
                         <h2 class="ftco-heading-2">Dúvidas?</h2>
                         <div class="block-23 mb-3">
                             <ul>
-                                <li style="color: #fff"><span class="icon icon-map-marker"> </span><span
-                                        class="text">Rua Carlos De
+                                <li style="color: #fff"><span class="icon icon-map-marker"> </span><span class="text">Rua Carlos De
                                         Carvalho, 200</span>
                                 </li>
                                 <li><a href="#"><span class="icon icon-phone"> </span><span class="text">+2 392 3929
                                             210</span></a></li>
-                                <li><a href="#"><span class="icon icon-envelope"> </span><span
-                                            class="text">contato@belchior.com</span></a>
+                                <li><a href="#"><span class="icon icon-envelope"> </span><span class="text">contato@belchior.com</span></a>
                                 </li>
                             </ul>
                         </div>
@@ -253,8 +256,7 @@
                         Copyright &copy;
                         <script>
                             document.write(new Date().getFullYear());
-                        </script> All rights reserved <i class="icon-heart color-danger" aria-hidden="true"></i> by <a
-                            href="#" target="_blank">Belchior</a>
+                        </script> All rights reserved <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="#" target="_blank">Belchior</a>
                     </p>
                 </div>
             </div>
@@ -264,8 +266,7 @@
     <!-- loader -->
     <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
             <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
-            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
-                stroke="#F96D00" />
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" />
         </svg></div>
 
 

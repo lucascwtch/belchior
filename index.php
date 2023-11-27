@@ -50,14 +50,23 @@ require_once 'view/navbarView.php';
             <a class="nav-link" href="#">Início</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./view/produtos.html">Produtos</a>
+            <a class="nav-link" href="./view/produtos.php">Produtos</a>
           </li>
 
           <li class="nav-item">
             <a class="nav-link" href="./view/contato.php">Contato</a>
           </li>
-          <li class='nav-item'>
-            <a class='nav-link' href='<?php echo $profileLink; ?>'><?php echo $profileName;  ?></a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa-regular fa-user"></i><span></span>
+              <?php echo $profileName; ?>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="profileDropdown">
+              <a href="view/carrinho.php" class="dropdown-item"><i class="fa-solid fa-cart-shopping"></i> Carrinho [0] </a>
+              <a href="view/perfil.php" class="dropdown-item"><i class="fa-solid fa-user"></i> Ver perfil</a>
+              <a href="controller/logoutController.php" class="dropdown-item"><i class="fa-solid fa-power-off"></i> Logout</a>
+
+            </div>
           </li>
         </ul>
       </div>

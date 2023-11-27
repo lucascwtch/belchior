@@ -167,7 +167,7 @@ require_once "../controller/perfilController.php";
                         <a class="nav-link" href="../index.php">Início</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="produtos.html">Produtos</a>
+                        <a class="nav-link" href="produtos.php">Produtos</a>
                     </li>
 
                     <li class="nav-item">
@@ -175,14 +175,14 @@ require_once "../controller/perfilController.php";
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa-regular fa-user"></i><span></span>
                             <?php echo $profileName; ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="profileDropdown">
-                            <!-- Botão de Logout -->
-                            <form action="../view/logoutView.php" method="post">
-                                <a><button>Logout</button></a>
-                            </form>
-                            <!-- Outros itens de menu do perfil, se necessário -->
+                            <a href="carrinho.php" class="dropdown-item"><i class="fa-solid fa-cart-shopping"></i> Carrinho [0]</a>
+                            <a href="perfil.php" class="dropdown-item"><i class="fa-solid fa-user"></i> Ver perfil</a>
+                            <a href="../controller/logoutController.php" class="dropdown-item"><i class="fa-solid fa-power-off"></i> Logout</a>
+
                         </div>
                     </li>
 
@@ -199,7 +199,7 @@ require_once "../controller/perfilController.php";
             <a class="nav-link d-inline" href="#securitySection" onclick="showSecurity()">Segurança</a>
             <a class="nav-link d-inline" href="#notificationSection" onclick="showNotifications()">Notificações</a>
             <a class="nav-link d-inline" href="#adicionarProdutoSection" onclick="showAddProduto()">Adicionar Produto</a>
-            <a class="nav-link d-inline" href="#adicionarProdutoSection" onclick="showMeusProdutos()">Produtos Adicionados</a>
+            <a class="nav-link d-inline" href="#meusProdutosSection" onclick="showMeusProdutos()">Produtos Adicionados</a>
         </div>
 
         <hr class="mt-0 mb-4">
@@ -210,7 +210,7 @@ require_once "../controller/perfilController.php";
                 <div class="col-xl-4">
                     <!-- Profile picture card-->
                     <div class="card mb-4 mb-xl-0">
-                        <div class="card-header">Foto de Perfil</div>
+                        <div class="card-header">Foto da Loja</div>
                         <div class="card-body text-center">
                             <!-- Profile picture image-->
                             <img class="img-account-profile rounded-circle mb-2" src="../assets/img/perfil-user.png" alt="">
@@ -224,11 +224,13 @@ require_once "../controller/perfilController.php";
                 <div class="col-xl-8">
                     <!-- Account details card-->
                     <div class="card mb-4">
-                        <div class="card-header">Detalhes da Conta</div>
+                        <div class="card-header">Detalhes da Loja</div>
                         <div class="card-body">
-                            <form method="post" action="../controller/updateSessionProfileController.php" onsubmit="return confirmarEnvio()" id="EdituserForm">
+                            <form method="post" action="../controller/updatePerfilController.php" onsubmit="return confirmarEnvio()" id="EdituserForm">
                                 <!-- Form Group (username)-->
                                 <div class="mb-3">
+                                    <label class="small mb-1" for="inputFirstName">Nome</label>
+                                    <input class="form-control" id="inputFirstName" name="inputFirstName" type="text" placeholder="Digite seu primeiro nome" value="<?php echo $profileNome; ?>">
                                     <label class="small mb-1" for="inputUsername">Apelido</label>
                                     <input class="form-control" id="inputUsername" name="inputUsername" type="text" placeholder="Digite seu apelido" value="<?php echo $profileApelido; ?>">
                                 </div>
@@ -236,13 +238,12 @@ require_once "../controller/perfilController.php";
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
                                     <div class="col-md-6">
-                                        <label class="small mb-1" for="inputFirstName">Primeiro Nome</label>
-                                        <input class="form-control" id="inputFirstName" name="inputFirstName" type="text" placeholder="Digite seu primeiro nome" value="<?php echo $profileNome; ?>">
+                                        <label class="small mb-1" for="inputUsername">Apelido</label>
+                                        <input class="form-control" id="inputUsername" name="inputUsername" type="text" placeholder="Digite seu apelido" value="<?php echo $profileApelido; ?>">
                                     </div>
-                                    <!-- Form Group (last name)-->
                                     <div class="col-md-6">
-                                        <label class="small mb-1" for="inputLastName">Sobrenome</label>
-                                        <input class="form-control" id="inputLastName" name="inputLastName" type="text" placeholder="Digite seu sobrenome" value="<?php echo $profileSobrenome; ?>">
+                                        <label class="small mb-1" for="inputUsername">Telefone</label>
+                                        <input class="form-control" id="inputPhone" name="inputPhone" type="tel" placeholder="Digite seu número de telefone" value="<?php echo $profileTelefone; ?>">
                                     </div>
                                 </div>
 
@@ -255,8 +256,8 @@ require_once "../controller/perfilController.php";
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (phone number)-->
                                     <div class="col-md-6">
-                                        <label class="small mb-1" for="inputPhone">Número de Telefone</label>
-                                        <input class="form-control" id="inputPhone" name="inputPhone" type="tel" placeholder="Digite seu número de telefone" value="<?php echo $profileTelefone; ?>">
+                                        <label class="small mb-1" for="inputCPF">CPF</label>
+                                        <input class="form-control" id="inputCPF" name="inputCPF" type="text" placeholder="Digite seu CPF/CNPJ" value="<?php echo $profileCPF; ?>">
                                     </div>
                                     <!-- Form Group (birthday)-->
                                     <div class="col-md-6">
@@ -760,7 +761,7 @@ require_once "../controller/perfilController.php";
                     <div class="col-md-4 mb-4">
                         <div class="card">
                             <!-- <img src="<?= $product['imagem'] ?>" class="card-img-top" alt="Imagem do Produto"> -->
-                            <img src="../assets/img/product-1.png" class="card-img-top" alt="Imagem do Produto">       
+                            <img src="../assets/img/product-1.png" class="card-img-top" alt="Imagem do Produto">
                             <div class="card-body">
                                 <h5 class="card-title"><?= $product['nome'] ?></h5>
                                 <p class="card-text"><?= $product['descricao'] ?></p>

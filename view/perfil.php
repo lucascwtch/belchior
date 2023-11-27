@@ -15,13 +15,12 @@ require_once "../controller/perfilController.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/057ae39a47.js" crossorigin="anonymous"></script>
-
     <title>Perfil - Belchior</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="icon" href="../assets/img/favicon.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/057ae39a47.js" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="../assets/css/ionicons.min.css">
     <link rel="stylesheet" href="../assets/css/flaticon.css">
@@ -133,7 +132,7 @@ require_once "../controller/perfilController.php";
                         <a class="nav-link" href="../index.php">Início</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="produtos.html">Produtos</a>
+                        <a class="nav-link" href="produtos.php">Produtos</a>
                     </li>
 
                     <li class="nav-item">
@@ -141,14 +140,14 @@ require_once "../controller/perfilController.php";
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa-regular fa-user"></i><span></span>
                             <?php echo $profileName; ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="profileDropdown">
-                            <!-- Botão de Logout -->
-                            <form action="../controller/logoutController.php" method="post">
-                                <a><button>Logout</button></a>
-                            </form>
-                            <!-- Outros itens de menu do perfil, se necessário -->
+                            <a href="carrinho.php" class="dropdown-item"><i class="fa-solid fa-cart-shopping"></i> Carrinho [0]</a>
+                            <a href="perfil.php" class="dropdown-item"><i class="fa-solid fa-user"></i> Ver perfil</a>
+                            <a href="../controller/logoutController.php" class="dropdown-item"><i class="fa-solid fa-power-off"></i> Logout</a>
+
                         </div>
                     </li>
 
@@ -194,6 +193,8 @@ require_once "../controller/perfilController.php";
                             <form method="post" action="../controller/updatePerfilController.php" onsubmit="return confirmarEnvio()" id="EdituserForm">
                                 <!-- Form Group (username)-->
                                 <div class="mb-3">
+                                    <label class="small mb-1" for="inputFirstName">Nome</label>
+                                    <input class="form-control" id="inputFirstName" name="inputFirstName" type="text" placeholder="Digite seu primeiro nome" value="<?php echo $profileNome; ?>">
                                     <label class="small mb-1" for="inputUsername">Apelido</label>
                                     <input class="form-control" id="inputUsername" name="inputUsername" type="text" placeholder="Digite seu apelido" value="<?php echo $profileApelido; ?>">
                                 </div>
@@ -201,13 +202,12 @@ require_once "../controller/perfilController.php";
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
                                     <div class="col-md-6">
-                                        <label class="small mb-1" for="inputFirstName">Primeiro Nome</label>
-                                        <input class="form-control" id="inputFirstName" name="inputFirstName" type="text" placeholder="Digite seu primeiro nome" value="<?php echo $profileNome; ?>">
+                                        <label class="small mb-1" for="inputUsername">Apelido</label>
+                                        <input class="form-control" id="inputUsername" name="inputUsername" type="text" placeholder="Digite seu apelido" value="<?php echo $profileApelido; ?>">
                                     </div>
-                                    <!-- Form Group (last name)-->
                                     <div class="col-md-6">
-                                        <label class="small mb-1" for="inputLastName">Sobrenome</label>
-                                        <input class="form-control" id="inputLastName" name="inputLastName" type="text" placeholder="Digite seu sobrenome" value="<?php echo $profileSobrenome; ?>">
+                                    <label class="small mb-1" for="inputUsername">Telefone</label>
+                                        <input class="form-control" id="inputPhone" name="inputPhone" type="tel" placeholder="Digite seu número de telefone" value="<?php echo $profileTelefone; ?>">
                                     </div>
                                 </div>
 
@@ -643,53 +643,35 @@ require_once "../controller/perfilController.php";
         </div>
 
         <div id="afiliarSection" class="hidden">
-            <!DOCTYPE html>
-            <html>
+            <div class="container">
+                <h2 class="text-center">Formulário de Afiliação</h2>
+                <form>
+                    <div class="mb-3">
+                        <label for="nome" class="form-label">Nome</label>
+                        <input type="text" class="form-control" id="nome" placeholder="Digite seu nome">
+                    </div>
+                    <div class="mb-3">
+                        <label for="nome" class="form-label">CPF/CNPJ</label>
+                        <input type="text" class="form-control" id="cpf_cnpj" placeholder="Digite seu CPF ou CNPJ">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">E-mail</label>
+                        <input type="email" class="form-control" id="email" placeholder="Digite seu e-mail">
+                    </div>
 
-            <head>
-                <meta charset="UTF-8">
-                <title>Afiliar-se</title>
-                <!-- Inclua os links para os arquivos CSS e JS do Bootstrap -->
-                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/css/bootstrap.min.css">
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/js/bootstrap.min.js"></script>
-            </head>
+                    <div class="mb-3">
+                        <label for="telefone" class="form-label">Telefone</label>
+                        <input type="tel" class="form-control" id="telefone" placeholder="Digite seu telefone">
+                    </div>
 
-            <body>
+                    <div class="mb-3">
+                        <label for="mensagem" class="form-label">Mensagem</label>
+                        <textarea class="form-control" id="mensagem" rows="4" placeholder="Conte-nos sobre seu brechó"></textarea>
+                    </div>
 
-                <div class="container">
-                    <h2 class="text-center">Formulário de Afiliação</h2>
-                    <form>
-                        <div class="mb-3">
-                            <label for="nome" class="form-label">Nome</label>
-                            <input type="text" class="form-control" id="nome" placeholder="Digite seu nome">
-                        </div>
-                        <div class="mb-3">
-                            <label for="nome" class="form-label">CPF/CNPJ</label>
-                            <input type="text" class="form-control" id="cpf_cnpj" placeholder="Digite seu CPF ou CNPJ">
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">E-mail</label>
-                            <input type="email" class="form-control" id="email" placeholder="Digite seu e-mail">
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="telefone" class="form-label">Telefone</label>
-                            <input type="tel" class="form-control" id="telefone" placeholder="Digite seu telefone">
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="mensagem" class="form-label">Mensagem</label>
-                            <textarea class="form-control" id="mensagem" rows="4" placeholder="Digite uma mensagem"></textarea>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary">Enviar</button>
-                    </form>
-                </div>
-
-            </body>
-
-            </html>
-
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </form>
+            </div>
         </div>
     </div>
 

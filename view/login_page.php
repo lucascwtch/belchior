@@ -60,7 +60,7 @@
                         <a class="nav-link" href="../index.php">Início</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="produtos.html">Produtos</a>
+                        <a class="nav-link" href="produtos.php">Produtos</a>
                     </li>
 
                     <li class="nav-item">
