@@ -13,4 +13,5 @@ class RegistroModel {
         return $this->dao->manipularRegistro($dadosPost);
     }
 }
+
 ?>

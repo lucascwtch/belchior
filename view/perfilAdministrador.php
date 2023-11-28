@@ -1,9 +1,8 @@
 <?php
 
 require_once "../controller/config.php";
-require_once '../view/navbarView.php';
-// require_once "perfilView.php";
-
+require_once "../controller/perfilController.php";
+include_once('navbar.php');
 
 
 ?>
@@ -37,7 +36,7 @@ require_once '../view/navbarView.php';
     <link rel="stylesheet" href="../assets/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/animate.css">
 
-
+    <link rel="stylesheet" href="../assets/css/profile-style.css">
 
 
     <script>
@@ -72,125 +71,14 @@ require_once '../view/navbarView.php';
 
 
     <style>
-        .img-account-profile {
-            height: 10rem;
-        }
 
-        .rounded-circle {
-            border-radius: 50% !important;
-        }
-
-        .card {
-            box-shadow: 0 0.15rem 1.75rem 0 rgb(33 40 50 / 15%);
-        }
-
-        .card .card-header {
-            font-weight: 500;
-        }
-
-        .card-header:first-child {
-            border-radius: 0.35rem 0.35rem 0 0;
-        }
-
-        .card-header {
-            padding: 1rem 1.35rem;
-            margin-bottom: 0;
-            background-color: rgba(33, 40, 50, 0.03);
-            border-bottom: 1px solid rgba(33, 40, 50, 0.125);
-        }
-
-        .form-control,
-        .dataTable-input {
-            display: block;
-            width: 100%;
-            padding: 0.875rem 1.125rem;
-            font-size: 0.875rem;
-            font-weight: 400;
-            line-height: 1;
-            color: #69707a;
-            background-color: #fff;
-            background-clip: padding-box;
-            border: 1px solid #c5ccd6;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            border-radius: 0.35rem;
-            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-        }
-
-        .custom-nav .nav-link.active {
-            color: #0061f2;
-            border-bottom-color: #0061f2;
-        }
-
-        .custom-nav .nav-link {
-            color: #69707a;
-            border-bottom-width: 0.125rem;
-            border-bottom-style: solid;
-            border-bottom-color: transparent;
-            padding-top: 0.5rem;
-            padding-bottom: 0.5rem;
-            padding-left: 0;
-            padding-right: 0;
-            margin-left: 1rem;
-            margin-right: 1rem;
-        }
-
-
-        .btn-danger-soft {
-            color: #000;
-            background-color: #fff !important;
-            border-color: #f1e0e3;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .btn {
-            background-color: #671af5;
-            ;
-        }
     </style>
 
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <div class="container">
-            <a class="navbar-brand mx-auto" href="#">Belchior</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="../index.php">Início</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="produtos.php">Produtos</a>
-                    </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="contato.php">Contato</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa-regular fa-user"></i><span></span>
-                            <?php echo $profileName; ?>
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="profileDropdown">
-                            <a href="carrinho.php" class="dropdown-item"><i class="fa-solid fa-cart-shopping"></i> Carrinho [0]</a>
-                            <a href="perfil.php" class="dropdown-item"><i class="fa-solid fa-user"></i> Ver perfil</a>
-                            <a href="../controller/logoutController.php" class="dropdown-item"><i class="fa-solid fa-power-off"></i> Logout</a>
 
-                        </div>
-                    </li>
-
-                </ul>
-            </div>
-        </div>
-    </nav>
     <br><br>
     <div class="container-xl px-4 mt-4">
         <!-- Account page navigation-->
@@ -227,23 +115,22 @@ require_once '../view/navbarView.php';
                     <div class="card mb-4">
                         <div class="card-header">Detalhes da Conta</div>
                         <div class="card-body">
-                            <form method="post" action="../controller/updateSessionProfileController.php" onsubmit="return confirmarEnvio()" id="EdituserForm">
+                            <form method="post" action="../controller/updatePerfilController.php" onsubmit="return confirmarEnvio()" id="EdituserForm">
                                 <!-- Form Group (username)-->
                                 <div class="mb-3">
-                                    <label class="small mb-1" for="inputUsername">Apelido</label>
-                                    <input class="form-control" id="inputUsername" name="inputUsername" type="text" placeholder="Digite seu apelido" value="<?php echo $profileApelido; ?>">
+                                    <label class="small mb-1" for="inputFirstName">Nome</label>
+                                    <input class="form-control" id="inputFirstName" name="inputFirstName" type="text" placeholder="Digite seu primeiro nome" value="<?php echo $profileNome; ?>">
                                 </div>
                                 <!-- Form Row-->
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
                                     <div class="col-md-6">
-                                        <label class="small mb-1" for="inputFirstName">Primeiro Nome</label>
-                                        <input class="form-control" id="inputFirstName" name="inputFirstName" type="text" placeholder="Digite seu primeiro nome" value="<?php echo $profileNome; ?>">
+                                        <label class="small mb-1" for="inputUsername">Apelido</label>
+                                        <input class="form-control" id="inputUsername" name="inputUsername" type="text" placeholder="Digite seu apelido" value="<?php echo $profileApelido; ?>">
                                     </div>
-                                    <!-- Form Group (last name)-->
                                     <div class="col-md-6">
-                                        <label class="small mb-1" for="inputLastName">Sobrenome</label>
-                                        <input class="form-control" id="inputLastName" name="inputLastName" type="text" placeholder="Digite seu sobrenome" value="<?php echo $profileSobrenome; ?>">
+                                        <label class="small mb-1" for="inputUsername">Telefone</label>
+                                        <input class="form-control" id="inputPhone" name="inputPhone" type="tel" placeholder="Digite seu número de telefone" value="<?php echo $profileTelefone; ?>">
                                     </div>
                                 </div>
 
@@ -256,8 +143,8 @@ require_once '../view/navbarView.php';
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (phone number)-->
                                     <div class="col-md-6">
-                                        <label class="small mb-1" for="inputPhone">Número de Telefone</label>
-                                        <input class="form-control" id="inputPhone" name="inputPhone" type="tel" placeholder="Digite seu número de telefone" value="<?php echo $profileTelefone; ?>">
+                                        <label class="small mb-1" for="inputCPF">CPF</label>
+                                        <input class="form-control" id="inputCPF" name="inputCPF" type="text" placeholder="Digite seu CPF/CNPJ" value="<?php echo $profileCPF; ?>">
                                     </div>
                                     <!-- Form Group (birthday)-->
                                     <div class="col-md-6">
@@ -446,7 +333,7 @@ require_once '../view/navbarView.php';
             </div>
         </div>
     </div>
-    <br><br>
+    <br><br><br><br>
 
     <footer class="ftco-footer ftco-section">
         <div class="container">
@@ -576,27 +463,10 @@ require_once '../view/navbarView.php';
     }
 </script>
 
-<!-- Script afiliação de usuários -->
+<!-- Script de gerenciamento de solicitações -->
 <script>
     // Simule as solicitações recebidas do banco de dados
-    var solicitacoes = [{
-            id: 1,
-            nome: 'João',
-            cpf_cnpj: '123.456.789-01',
-            email: 'joao@example.com',
-            telefone: '123-456-789',
-            mensagem: 'Quero me afiliar.'
-        },
-        {
-            id: 2,
-            nome: 'Maria',
-            cpf_cnpj: '987.654.321-00',
-            email: 'maria@example.com',
-            telefone: '987-654-321',
-            mensagem: 'Interessada na afiliação.'
-        },
-        // Adicione mais solicitações conforme necessário
-    ];
+    var solicitacoes = <?php require_once "../controller/listarSolicitacoesController.php"; ?>;
 
     document.addEventListener('DOMContentLoaded', function() {
         var solicitacoesTableBody = document.getElementById('solicitacoesTableBody');
@@ -604,64 +474,65 @@ require_once '../view/navbarView.php';
         // Adiciona dinamicamente as linhas da tabela com base nas solicitações
         solicitacoes.forEach(function(solicitacao) {
             var row = solicitacoesTableBody.insertRow();
-            row.insertCell(0).innerHTML = solicitacao.nome;
-            row.insertCell(1).innerHTML = solicitacao.cpf_cnpj;
-            row.insertCell(2).innerHTML = solicitacao.email;
-            row.insertCell(3).innerHTML = solicitacao.telefone;
-            row.insertCell(4).innerHTML = solicitacao.mensagem;
+            row.insertCell(0).innerHTML = solicitacao.nomeUsuarioCliente;
+            row.insertCell(1).innerHTML = solicitacao.cpfUsuarioCliente;
+            row.insertCell(2).innerHTML = solicitacao.emailUsuarioCliente;
+            row.insertCell(3).innerHTML = solicitacao.telefoneUsuarioCliente;
+            row.insertCell(4).innerHTML = solicitacao.mensagemUsuarioCliente;
 
-            // Adiciona botões de Aceitar e Recusar
+            // Adiciona botões de "Aceitar" e "Recusar"
             var cellOpcoes = row.insertCell(5);
-            var btnAceitar = document.createElement('button');
-            btnAceitar.innerHTML = 'Aceitar';
-            btnAceitar.addEventListener('click', function() {
+            var btnAceitar = criarBotao('Aceitar', function() {
                 aceitarSolicitacao(solicitacao.id);
             });
             cellOpcoes.appendChild(btnAceitar);
 
-            var btnRecusar = document.createElement('button');
-            btnRecusar.innerHTML = 'Recusar';
-            btnRecusar.addEventListener('click', function() {
+            var btnRecusar = criarBotao('Recusar', function() {
                 recusarSolicitacao(solicitacao.id);
             });
             cellOpcoes.appendChild(btnRecusar);
         });
     });
 
-    function aceitarSolicitacao(id) {
-        // Simule a lógica de aceitar a solicitação
-        console.log('Solicitação aceita com ID:', id);
-    }
+    function recusarSolicitacao(id) {
+            // Simule a lógica de recusar a solicitação
+            console.log('Solicitação recusada com ID:', id);
+
+            // Faça uma requisição AJAX para o arquivo alterarStatusUserController.php
+            $.ajax({
+                type: 'POST',
+                url: '../controller/alterarStatusUserController.php',
+                data: { id: id, acao: 'recusar' }, // Envie o ID e a ação
+                success: function(response) {
+                    // A resposta do servidor está disponível em 'response'
+                    console.log(response);
+                },
+                error: function(error) {
+                    console.error('Erro na requisição AJAX:', error);
+                }
+            });
+        }
+
+    
 
     function recusarSolicitacao(id) {
         // Simule a lógica de recusar a solicitação
         console.log('Solicitação recusada com ID:', id);
     }
+
+    // Função auxiliar para criar botões
+    function criarBotao(texto, onClick) {
+        var btn = document.createElement('button');
+        btn.innerHTML = texto;
+        btn.classList.add('btn', 'btn-primary', 'me-1');
+        btn.addEventListener('click', onClick);
+        return btn;
+    }
 </script>
 
-<!-- Script simulando usuários -->
+<!-- Script  usuários -->
 <script>
-    // Simule os usuários recebidos do banco de dados
-    var usuarios = [{
-            id: 1,
-            nome: 'João Silva',
-            apelido: 'joaosilva',
-            telefone: '123-456-789',
-            email: 'joao@example.com',
-            cpf: '123.456.789-01',
-            dataNascimento: '1990-01-01'
-        },
-        {
-            id: 2,
-            nome: 'Maria Oliveira',
-            apelido: 'mariaoliveira',
-            telefone: '987-654-321',
-            email: 'maria@example.com',
-            cpf: '987.654.321-00',
-            dataNascimento: '1985-05-10'
-        },
-        // Adicione mais usuários conforme necessário
-    ];
+    var usuarios = <?php require_once "../controller/usuarioClienteController.php"; ?>;
 
     document.addEventListener('DOMContentLoaded', function() {
         var usuariosTableBody = document.getElementById('usuariosTableBody');
@@ -669,12 +540,12 @@ require_once '../view/navbarView.php';
         // Adiciona dinamicamente as linhas da tabela com base nos usuários
         usuarios.forEach(function(usuario) {
             var row = usuariosTableBody.insertRow();
-            row.insertCell(0).innerHTML = usuario.nome;
-            row.insertCell(1).innerHTML = usuario.apelido;
-            row.insertCell(2).innerHTML = usuario.telefone;
-            row.insertCell(3).innerHTML = usuario.email;
-            row.insertCell(4).innerHTML = usuario.cpf;
-            row.insertCell(5).innerHTML = usuario.dataNascimento;
+            row.insertCell(0).innerHTML = usuario.nomeUsuario;
+            row.insertCell(1).innerHTML = usuario.apelidoUsuario;
+            row.insertCell(2).innerHTML = usuario.telefoneUsuario;
+            row.insertCell(3).innerHTML = usuario.emailUsuario;
+            row.insertCell(4).innerHTML = usuario.cpfUsuario;
+            row.insertCell(5).innerHTML = usuario.dataNascimentoUsuario;
 
             // Adiciona botão de "Detalhes" com atributo data-toggle para abrir o modal
             var cellDetalhes = row.insertCell(6);
@@ -694,14 +565,24 @@ require_once '../view/navbarView.php';
         var detalhesUsuarioModalBody = document.getElementById('detalhesUsuarioModalBody');
         detalhesUsuarioModalBody.innerHTML = `
             <form id="editarUsuarioForm">
-                <p><strong>Nome:</strong> <input type="text" id="editNome" value="${usuario.nome}"></p>
-                <p><strong>Apelido:</strong> <input type="text" id="editApelido" value="${usuario.apelido}"></p>
-                <p><strong>Telefone:</strong> <input type="text" id="editTelefone" value="${usuario.telefone}"></p>
-                <p><strong>Email:</strong> <input type="text" id="editEmail" value="${usuario.email}"></p>
-                <p><strong>CPF:</strong> <input type="text" id="editCPF" value="${usuario.cpf}"></p>
-                <p><strong>Data de Nascimento:</strong> <input type="text" id="editDataNascimento" value="${usuario.dataNascimento}"></p>
+                <p><strong>Nome:</strong> ${usuario.nomeUsuario}</p>
+                <p><strong>Apelido:</strong> ${usuario.apelidoUsuario}</p>
+                <p><strong>Telefone:</strong> ${usuario.telefoneUsuario}</p>
+                <p><strong>Email:</strong> ${usuario.emailUsuario}</p>
+                <p><strong>CPF:</strong> ${usuario.cpfUsuario}</p>
+                <p><strong>Data de Nascimento:</strong> ${usuario.dataNascimentoUsuario}</p>
             </form>
         `;
+    }
+
+    function editarUsuario() {
+        // Lógica para editar o usuário (pode ser implementada posteriormente)
+        alert('Implemente a lógica de edição aqui.');
+    }
+
+    function apagarUsuario() {
+        // Lógica para apagar o usuário (pode ser implementada posteriormente)
+        alert('Implemente a lógica de exclusão aqui.');
     }
 </script>
 

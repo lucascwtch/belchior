@@ -8,20 +8,46 @@ class AfiliarModel{
         $this->conexao = $conexao;
 }
 
-public function selectByEmail($userEmail){
-    $consultaEmail = $this->conexao->prepare("SELECT * FROM usuarios WHERE emailUsuario = :email");
-    $consultaEmail->bindParam(':email', $userEmail, PDO::PARAM_STR);
+
+public function temEmailInSolicitacoes($email) {
+    $consultaEmail = $this->conexao->prepare("SELECT * FROM solicitacoesAfiliar WHERE emailUsuarioCliente = :email");
+    $consultaEmail->bindParam(':email', $email, PDO::PARAM_STR);
     $consultaEmail->execute();
 
     return $consultaEmail->rowCount() > 0;
 }
 
 
-public function updateUserByCPF($userCpf){
+public function selectByEmail($dadosPost){
+    $consultaEmail = $this->conexao->prepare("SELECT * FROM usuarios WHERE emailUsuario = :email");
+    $consultaEmail->bindParam(':email', $dadosPost['emailUsuarioCliente'], PDO::PARAM_STR);
+    $consultaEmail->execute();
+
+    return $consultaEmail->rowCount() > 0;
+}
+
+
+public function insertAfiliarPedidos($dadosPost){
+    $insertAfiliar = "INSERT INTO solicitacoesAfiliar (nomeUsuarioCliente, emailUsuarioCliente,
+    cpfUsuarioCliente, telefoneUsuarioCliente, mensagemUsuarioCliente, fkIdUsuario)
+    VALUES(:nome, :email, :cpf, :telefone,:mensagem, :fkIdUsuario)";
+    $atualizarStatusInstrucao = $this->conexao->prepare($insertAfiliar);
+    $atualizarStatusInstrucao->bindParam(':nome', $dadosPost['nomeUsuarioCliente'], PDO::PARAM_STR);
+    $atualizarStatusInstrucao->bindParam(':email', $dadosPost['emailUsuarioCliente'], PDO::PARAM_STR);
+    $atualizarStatusInstrucao->bindParam(':cpf', $dadosPost['cpfUsuarioCliente'], PDO::PARAM_INT);
+    $atualizarStatusInstrucao->bindParam(':telefone', $dadosPost['telefoneUsuarioCliente'], PDO::PARAM_STR);
+    $atualizarStatusInstrucao->bindParam(':mensagem', $dadosPost['mensagemUsuarioCliente'], PDO::PARAM_STR);
+    $atualizarStatusInstrucao->bindParam(':fkIdUsuario', $dadosPost['idUsuario'], PDO::PARAM_INT);
+    $atualizarStatusInstrucao->execute();
+    return $atualizarStatusInstrucao->rowCount() > 0;
+}
+
+
+
+public function updateUserByCPF($dadosPost){
     $atualizarStatusQuery = "UPDATE usuarios SET statusUsuario = 2 WHERE cpfUsuario = :cpf";
     $atualizarStatusInstrucao = $this->conexao->prepare($atualizarStatusQuery);
-
-    $atualizarStatusInstrucao->bindParam(':cpf', $userCpf, PDO::PARAM_STR);
+    $atualizarStatusInstrucao->bindParam(':cpf', $dadosPost, PDO::PARAM_STR);
     $atualizarStatusInstrucao->execute();
 
     return $atualizarStatusInstrucao->rowCount() > 0;

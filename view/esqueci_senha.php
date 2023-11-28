@@ -1,5 +1,7 @@
 <?php
 
+include_once('navbar.php');
+
 ?>
 
 <!DOCTYPE html>
@@ -47,33 +49,6 @@
 </style>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: rgba(255, 255, 255, 0.5);">
-        <div class="container">
-            <a class="navbar-brand mx-auto" href="#">Belchior</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="../index.php">Início</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="produtos.php">Produtos</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="contato.php">Contato</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="cadastro.php">Cadastrar</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
     <div class="wrapper">
         <form method="POST" action="../controller/enviarEmailResetController.php">
             <h1>Redefinição de Senha</h1>

@@ -1,7 +1,10 @@
 <?php
+session_start();
 
-require_once 'view/navbarView.php';
+$isLoggedIn = isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'];
 
+$profileName = $isLoggedIn ? $_SESSION['user_profile_name'] : 'Login';
+$profileLink = $isLoggedIn ? 'view/perfil.php' : 'view/login_page.php';
 
 
 ?>
@@ -44,35 +47,42 @@ require_once 'view/navbarView.php';
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item active">
             <a class="nav-link" href="#">Início</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./view/produtos.php">Produtos</a>
+            <a class="nav-link" href="view/produtos.php">Produtos</a>
           </li>
-
           <li class="nav-item">
-            <a class="nav-link" href="./view/contato.php">Contato</a>
+            <a class="nav-link" href="view/contato.php">Contato</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fa-regular fa-user"></i><span></span>
-              <?php echo $profileName; ?>
-            </a>
-            <div class="dropdown-menu" aria-labelledby="profileDropdown">
-              <a href="view/carrinho.php" class="dropdown-item"><i class="fa-solid fa-cart-shopping"></i> Carrinho [0] </a>
-              <a href="view/perfil.php" class="dropdown-item"><i class="fa-solid fa-user"></i> Ver perfil</a>
-              <a href="controller/logoutController.php" class="dropdown-item"><i class="fa-solid fa-power-off"></i> Logout</a>
-
-            </div>
+          <li class="nav-item <?php echo $isLoggedIn ? 'dropdown' : ''; ?>">
+            <?php if ($isLoggedIn) : ?>
+              <div class="dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" id="profileDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fa-regular fa-user"></i><span></span>
+                  <?php echo $profileName; ?>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="profileDropdown">
+                  <a href="view/carrinho.php" class="dropdown-item"><i class="fa-solid fa-cart-shopping"></i> Carrinho [0]</a>
+                  <a href="view/perfil.php" class="dropdown-item"><i class="fa-solid fa-user"></i> Ver perfil</a>
+                  <a href="view/controller/logoutController.php" class="dropdown-item"><i class="fa-solid fa-power-off"></i> Logout</a>
+                </div>
+              </div>
+            <?php else : ?>
+              <a class="nav-link" href="<?php echo $profileLink; ?>">
+                <i class="fa-regular fa-user"></i><span></span>
+                <?php echo $profileName; ?>
+              </a>
+            <?php endif; ?>
           </li>
         </ul>
       </div>
     </div>
   </nav>
-
   <main>
     <section class="py-5">
       <div class="head">

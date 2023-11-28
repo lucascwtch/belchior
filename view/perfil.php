@@ -1,7 +1,7 @@
 <?php
 
 require_once "../controller/config.php";
-require_once '../view/navbarView.php';
+include_once('navbar.php');
 require_once "../controller/perfilController.php";
 
 
@@ -36,125 +36,12 @@ require_once "../controller/perfilController.php";
     <link rel="stylesheet" href="../assets/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/animate.css">
 
-    <style>
-        .img-account-profile {
-            height: 10rem;
-        }
+    <link rel="stylesheet" href="../assets/css/profile-style.css">
 
-        .rounded-circle {
-            border-radius: 50% !important;
-        }
-
-        .card {
-            box-shadow: 0 0.15rem 1.75rem 0 rgb(33 40 50 / 15%);
-        }
-
-        .card .card-header {
-            font-weight: 500;
-        }
-
-        .card-header:first-child {
-            border-radius: 0.35rem 0.35rem 0 0;
-        }
-
-        .card-header {
-            padding: 1rem 1.35rem;
-            margin-bottom: 0;
-            background-color: rgba(33, 40, 50, 0.03);
-            border-bottom: 1px solid rgba(33, 40, 50, 0.125);
-        }
-
-        .form-control,
-        .dataTable-input {
-            display: block;
-            width: 100%;
-            padding: 0.875rem 1.125rem;
-            font-size: 0.875rem;
-            font-weight: 400;
-            line-height: 1;
-            color: #69707a;
-            background-color: #fff;
-            background-clip: padding-box;
-            border: 1px solid #c5ccd6;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            border-radius: 0.35rem;
-            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-        }
-
-        .custom-nav .nav-link.active {
-            color: #0061f2;
-            border-bottom-color: #0061f2;
-        }
-
-        .custom-nav .nav-link {
-            color: #69707a;
-            border-bottom-width: 0.125rem;
-            border-bottom-style: solid;
-            border-bottom-color: transparent;
-            padding-top: 0.5rem;
-            padding-bottom: 0.5rem;
-            padding-left: 0;
-            padding-right: 0;
-            margin-left: 1rem;
-            margin-right: 1rem;
-        }
-
-
-        .btn-danger-soft {
-            color: #000;
-            background-color: #fff !important;
-            border-color: #f1e0e3;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .btn {
-            background-color: #671af5;
-            ;
-        }
-    </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <div class="container">
-            <a class="navbar-brand mx-auto" href="#">Belchior</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="../index.php">Início</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="produtos.php">Produtos</a>
-                    </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="contato.php">Contato</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa-regular fa-user"></i><span></span>
-                            <?php echo $profileName; ?>
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="profileDropdown">
-                            <a href="carrinho.php" class="dropdown-item"><i class="fa-solid fa-cart-shopping"></i> Carrinho [0]</a>
-                            <a href="perfil.php" class="dropdown-item"><i class="fa-solid fa-user"></i> Ver perfil</a>
-                            <a href="../controller/logoutController.php" class="dropdown-item"><i class="fa-solid fa-power-off"></i> Logout</a>
-
-                        </div>
-                    </li>
-
-                </ul>
-            </div>
-        </div>
-    </nav>
     <br><br>
     <div class="container-xl px-4 mt-4">
         <!-- Account page navigation-->
@@ -191,12 +78,12 @@ require_once "../controller/perfilController.php";
                         <div class="card-header">Detalhes da Conta</div>
                         <div class="card-body">
                             <form method="post" action="../controller/updatePerfilController.php" onsubmit="return confirmarEnvio()" id="EdituserForm">
-                                <!-- Form Group (username)-->
+                            
+                            
+                            <!-- Form Group (username)-->                       
                                 <div class="mb-3">
                                     <label class="small mb-1" for="inputFirstName">Nome</label>
                                     <input class="form-control" id="inputFirstName" name="inputFirstName" type="text" placeholder="Digite seu primeiro nome" value="<?php echo $profileNome; ?>">
-                                    <label class="small mb-1" for="inputUsername">Apelido</label>
-                                    <input class="form-control" id="inputUsername" name="inputUsername" type="text" placeholder="Digite seu apelido" value="<?php echo $profileApelido; ?>">
                                 </div>
                                 <!-- Form Row-->
                                 <div class="row gx-3 mb-3">
@@ -206,7 +93,7 @@ require_once "../controller/perfilController.php";
                                         <input class="form-control" id="inputUsername" name="inputUsername" type="text" placeholder="Digite seu apelido" value="<?php echo $profileApelido; ?>">
                                     </div>
                                     <div class="col-md-6">
-                                    <label class="small mb-1" for="inputUsername">Telefone</label>
+                                        <label class="small mb-1" for="inputUsername">Telefone</label>
                                         <input class="form-control" id="inputPhone" name="inputPhone" type="tel" placeholder="Digite seu número de telefone" value="<?php echo $profileTelefone; ?>">
                                     </div>
                                 </div>
@@ -645,28 +532,29 @@ require_once "../controller/perfilController.php";
         <div id="afiliarSection" class="hidden">
             <div class="container">
                 <h2 class="text-center">Formulário de Afiliação</h2>
-                <form>
+                <form method ="POST" action="../controller/afiliarUsuarioController.php">
+                <input type="hidden" id="idUsuario" name="idUsuario" value="<?php echo $profileID; ?>">
                     <div class="mb-3">
-                        <label for="nome" class="form-label">Nome</label>
-                        <input type="text" class="form-control" id="nome" placeholder="Digite seu nome">
+                        <label for="nomeUsuarioCliente" class="form-label">Nome</label>
+                        <input type="text" class="form-control" name="nomeUsuarioCliente" id="nomeUsuarioCliente" placeholder="Digite seu nome" value="<?php echo $profileNome; ?>" >
                     </div>
                     <div class="mb-3">
-                        <label for="nome" class="form-label">CPF/CNPJ</label>
-                        <input type="text" class="form-control" id="cpf_cnpj" placeholder="Digite seu CPF ou CNPJ">
+                        <label for="cpfUsuarioCliente" class="form-label">CPF/CNPJ</label>
+                        <input type="text" class="form-control" name="cpfUsuarioCliente" id="cpfUsuarioCliente" placeholder="Digite seu CPF ou CNPJ" value="<?php echo $profileCPF; ?>">
                     </div>
                     <div class="mb-3">
-                        <label for="email" class="form-label">E-mail</label>
-                        <input type="email" class="form-control" id="email" placeholder="Digite seu e-mail">
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="telefone" class="form-label">Telefone</label>
-                        <input type="tel" class="form-control" id="telefone" placeholder="Digite seu telefone">
+                        <label for="emailUsuarioCliente" class="form-label">E-mail</label>
+                        <input type="email" class="form-control"  name="emailUsuarioCliente"  id="emailUsuarioCliente" placeholder="Digite seu e-mail" value="<?php echo $profileEmail; ?>" >
                     </div>
 
                     <div class="mb-3">
-                        <label for="mensagem" class="form-label">Mensagem</label>
-                        <textarea class="form-control" id="mensagem" rows="4" placeholder="Conte-nos sobre seu brechó"></textarea>
+                        <label for="telefoneUsuarioCliente" class="form-label">Telefone</label>
+                        <input type="tel" class="form-control" name="telefoneUsuarioCliente" id="telefoneUsuarioCliente" placeholder="Digite seu telefone" value="<?php echo $profileTelefone; ?>">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="mensagemUsuarioCliente" class="form-label">Mensagem</label>
+                        <textarea class="form-control" name="mensagemUsuarioCliente"  id="mensagemUsuarioCliente" rows="4" placeholder="Conte-nos sobre seu brechó"></textarea>
                     </div>
 
                     <button type="submit" class="btn btn-primary">Enviar</button>
