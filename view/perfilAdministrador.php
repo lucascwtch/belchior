@@ -1,10 +1,40 @@
 <?php
 
 require_once "../controller/perfilController.php";
-require_once "navbar.php";
 
 
+$isLoggedIn = isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'];
+
+$profileLink = 'view/login_page.php'; // Página padrão para usuários não logados ou casos não especificados
+
+
+
+if ($isLoggedIn) {
+    switch ($_SESSION['user_adm']) {
+        case 0:
+            $profileLink = 'perfilAdministrador.php';
+
+            break;
+        case 1:
+            $profileLink = 'perfil.php';
+
+            break;
+        case 2:
+            $profileLink = 'perfilVendedor.php';
+
+            break;
+            // Adicione outros casos conforme necessário
+        default:
+            // Caso não corresponda a nenhum dos casos anteriores, permanece como 'login_page.php'
+
+            echo "Default Case";
+    }
+}
+
+
+$profileName = $isLoggedIn ? $_SESSION['user_profile_name'] : 'Login';
 ?>
+
 
 
 <!DOCTYPE html>
@@ -76,7 +106,48 @@ require_once "navbar.php";
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand mx-auto" href="#">Belchior</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="../index.php">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="produtos.php">Produtos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contato.php">Contato</a>
+                    </li>
+                    <li class="nav-item <?php echo $isLoggedIn ? 'dropdown' : ''; ?>">
+                        <?php if ($isLoggedIn) : ?>
+                            <div class="dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" id="profileDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa-regular fa-user"></i><span></span>
+                                    <?php echo $profileName; ?>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="profileDropdown">
+                                    <a href="carrinho.php" class="dropdown-item"><i class="fa-solid fa-cart-shopping"></i> Carrinho [0]</a>
+                                    <a href="<?php echo $profileLink;  ?>" class="dropdown-item"><i class="fa-solid fa-user"></i> Ver perfil</a>
+                                    <a href="../controller/logoutController.php" class="dropdown-item"><i class="fa-solid fa-power-off"></i> Logout</a>
+                                </div>
+                            </div>
+                        <?php else : ?>
+                            <a class="nav-link" href="<?php echo $profileLink; ?>">
+                                <i class="fa-regular fa-user"></i><span></span>
+                                <?php echo $profileName; ?>
+                            </a>
+                        <?php endif; ?>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
     <br><br>
     <div class="container-xl px-4 mt-4">
@@ -116,6 +187,8 @@ require_once "navbar.php";
                         <div class="card-body">
                             <form method="post" action="../controller/updatePerfilController.php" onsubmit="return confirmarEnvio()" id="EdituserForm">
                                 <!-- Form Group (username)-->
+                                <input type="hidden" name="inputId" id = "inputId" value="<?php echo $profileID; ?>">
+
                                 <div class="mb-3">
                                     <label class="small mb-1" for="inputFirstName">Nome</label>
                                     <input class="form-control" id="inputFirstName" name="inputFirstName" type="text" placeholder="Digite seu primeiro nome" value="<?php echo $profileNome; ?>">
@@ -494,68 +567,72 @@ require_once "navbar.php";
     });
 
     function aceitarSolicitacao(id) {
-    // Simule a lógica de aceitar a solicitação
-    console.log('Solicitação aceita com ID:', id);
-    //popup de confirmação
-    var confirmacao = confirm("Tem certeza que deseja aceitar a solicitação?");
-    if(confirmacao) {
-    // Criar um objeto FormData com o parâmetro 'id'
-    const formData = new FormData();
-    formData.append('idUsuario', id);
-        
-    // Fazer a solicitação POST usando fetch
-    fetch('../controller/alterarStatusUserController.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Erro na solicitação.');
+        // Simule a lógica de aceitar a solicitação
+        console.log('Solicitação aceita com ID:', id);
+        //popup de confirmação
+        var confirmacao = confirm("Tem certeza que deseja aceitar a solicitação?");
+        if (confirmacao) {
+            // Criar um objeto FormData com o parâmetro 'id'
+            const formData = new FormData();
+            formData.append('idUsuario', id);
+
+            // Fazer a solicitação POST usando fetch
+            fetch('../controller/alterarStatusUserController.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro na solicitação.');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    alert('Solicitação Aceita!')
+                    window.onload(solicitacoesTableBody);
+                    console.log('Resposta do servidor:', data);
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                });
+        } else {
+
         }
-        return response.text();
-    })
-    .then(data => {
-        alert('Solicitação Aceita!')
-        window.onload(solicitacoesTableBody);
-        console.log('Resposta do servidor:', data);
-    })
-    .catch(error => {
-        console.error('Erro:', error);
-    });
-}
-else{
-    
-}
     }
-    
+
 
     function recusarSolicitacao(id) {
         // Simule a lógica de recusar a solicitação
         console.log('Solicitação recusada com ID:', id);
 
-    // Criar um objeto FormData com o parâmetro 'id'
-    var confirmacao = confirm("Tem certeza que deseja recusar a solicitação?");
-    const formData = new FormData();
-    formData.append('idUsuario', id);
-        
-    // Fazer a solicitação POST usando fetch
-    fetch('../controller/deleteSolicitacaoAfiliarController.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Erro na solicitação.');
+        // Criar um objeto FormData com o parâmetro 'id'
+        var confirmacao = confirm("Tem certeza que deseja recusar a solicitação?");
+        if (confirmacao) {
+
+            const formData = new FormData();
+            formData.append('idUsuario', id);
+
+            // Fazer a solicitação POST usando fetch
+            fetch('../controller/deleteSolicitacaoAfiliarController.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro na solicitação.');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    alert('Solicitação recusada!')
+                    console.log('Resposta do servidor:', data);
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                });
+        } else {
+
         }
-        return response.text();
-    })
-    .then(data => {
-        alert('Solicitação recusada!')
-        console.log('Resposta do servidor:', data);
-    })
-    .catch(error => {
-        console.error('Erro:', error);
-    });
     }
 
     // Função auxiliar para criar botões
@@ -570,7 +647,6 @@ else{
 
 <!-- Script  usuários -->
 <script>
-    
     var usuarios = <?php include_once "../controller/usuarioClienteController.php"; ?>;
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -603,25 +679,115 @@ else{
         // Exibe as informações do usuário no modal
         var detalhesUsuarioModalBody = document.getElementById('detalhesUsuarioModalBody');
         detalhesUsuarioModalBody.innerHTML = `
-            <form id="editarUsuarioForm">
-                <p><strong>Nome:</strong> ${usuario.nomeUsuario}</p>
-                <p><strong>Apelido:</strong> ${usuario.apelidoUsuario}</p>
-                <p><strong>Telefone:</strong> ${usuario.telefoneUsuario}</p>
-                <p><strong>Email:</strong> ${usuario.emailUsuario}</p>
-                <p><strong>CPF:</strong> ${usuario.cpfUsuario}</p>
-                <p><strong>Data de Nascimento:</strong> ${usuario.dataNascimentoUsuario}</p>
+            <form method="POST" id="editarUsuarioForm">
+                <input type="text" id= "Id" name="inputId"value ="${usuario.idUsuario}">    
+                <p><strong>Nome:</strong> </p>
+                <input type="text" id= "Name" name="inputFirstName"value ="${usuario.nomeUsuario}">
+                <p><strong>Apelido:</strong></p>
+                <input type="text" id= "Username" name="inputUsername"value =" ${usuario.apelidoUsuario}">
+                <p><strong>Telefone:</strong></p>
+                <input type="text" id= "Phone" name="inputPhone"value ="${usuario.telefoneUsuario}">
+                <p><strong>Email:</strong></p>
+                <input type="text" id= "EmailAddress" name="inputEmailAddress"value ="${usuario.emailUsuario}">
+                <p><strong>CPF:</strong></p>
+                <input type="text" id= "CPF" name="inputCPF"value ="${usuario.cpfUsuario}">
+                <p><strong>Data de Nascimento:</strong> </p>
+                <input type="Date" id= "Birthday" name="inputBirthday"value ="${usuario.dataNascimentoUsuario}">
             </form>
         `;
     }
 
     function editarUsuario() {
-        // Lógica para editar o usuário (pode ser implementada posteriormente)
-        alert('Implemente a lógica de edição aqui.');
+
+        var confirmacao = confirm("Tem Certeza Que deseja Editar esses Dados");
+
+        if (confirmacao) {
+
+
+            // Obtém os valores dos campos do formulário
+            var idUsuario = document.getElementById('Id').value;
+            var nomeUsuario = document.getElementById('Name').value;
+            var apelidoUsuario = document.getElementById('Username').value;
+            var telefoneUsuario = document.getElementById('Phone').value;
+            var emailUsuario = document.getElementById('EmailAddress').value;
+            var cpfUsuario = document.getElementById('CPF').value;
+            var dataNascimentoUsuario = document.getElementById('Birthday').value;
+
+
+            // Cria um objeto FormData com os dados do usuário
+            var formData = new FormData();
+            formData.append('inputId', idUsuario);
+            formData.append('inputFirstName', nomeUsuario);
+            formData.append('inputUsername', apelidoUsuario);
+            formData.append('inputPhone', telefoneUsuario);
+            formData.append('inputEmailAddres', emailUsuario);
+            formData.append('inputCPF', cpfUsuario);
+            formData.append('inputBirthday', dataNascimentoUsuario);
+
+            // Fazer a solicitação POST usando fetch
+            fetch('../controller/updatePerfilAdmController.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro na solicitação.');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    // Lógica para lidar com a resposta do servidor, se necessário
+                    alert('Usuário editado com sucesso!');
+                    location.reload();
+                    console.log('Resposta do servidor:', data);
+                    // Redireciona para a página de perfilAdministrador.php
+                    //     window.location.href = '../view/perfilAdministrador.php';
+                })
+                .catch(error => {
+                    // Lógica para lidar com erros
+                    console.error('Erro:', error);
+                });
+        } else {
+
+        }
     }
 
     function apagarUsuario() {
         // Lógica para apagar o usuário (pode ser implementada posteriormente)
         alert('Implemente a lógica de exclusão aqui.');
+        // Simule a lógica de recusar a solicitação
+        console.log('Solicitação recusada com ID:', id);
+
+        // Criar um objeto FormData com o parâmetro 'id'
+        var confirmacao = confirm("Tem certeza que deseja recusar a solicitação?");
+        if (confirmacao) {
+
+            const formData = new FormData();
+            formData.append('idUsuario', idUsuario);
+
+            // Fazer a solicitação POST usando fetch
+            fetch('../controller/deleteSolicitacaoAfiliarController.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro na solicitação.');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    alert('Solicitação recusada!')
+                    console.log('Resposta do servidor:', data);
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                });
+        } else {
+
+        }
+
+
     }
 </script>
 

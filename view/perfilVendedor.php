@@ -1,11 +1,38 @@
 <?php
 
-
-require_once "navbar.php";
 require_once "../controller/perfilController.php";
 
 
+$isLoggedIn = isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'];
 
+$profileLink = 'login_page.php'; // Página padrão para usuários não logados ou casos não especificados
+
+
+
+if ($isLoggedIn) {
+    switch ($_SESSION['user_adm']) {
+        case 0:
+            $profileLink = 'perfilAdministrador.php';
+
+            break;
+        case 1:
+            $profileLink = 'perfil.php';
+
+            break;
+        case 2:
+            $profileLink = 'perfilVendedor.php';
+
+            break;
+            // Adicione outros casos conforme necessário
+        default:
+            // Caso não corresponda a nenhum dos casos anteriores, permanece como 'login_page.php'
+
+            echo "Default Case";
+    }
+}
+
+
+$profileName = $isLoggedIn ? $_SESSION['user_profile_name'] : 'Login';
 ?>
 
 
@@ -75,7 +102,48 @@ require_once "../controller/perfilController.php";
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand mx-auto" href="#">Belchior</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="../index.php">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="produtos.php">Produtos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contato.php">Contato</a>
+                    </li>
+                    <li class="nav-item <?php echo $isLoggedIn ? 'dropdown' : ''; ?>">
+                        <?php if ($isLoggedIn) : ?>
+                            <div class="dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" id="profileDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa-regular fa-user"></i><span></span>
+                                    <?php echo $profileName; ?>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="profileDropdown">
+                                    <a href="carrinho.php" class="dropdown-item"><i class="fa-solid fa-cart-shopping"></i> Carrinho [0]</a>
+                                    <a href="<?php echo $profileLink;  ?>" class="dropdown-item"><i class="fa-solid fa-user"></i> Ver perfil</a>
+                                    <a href="../controller/logoutController.php" class="dropdown-item"><i class="fa-solid fa-power-off"></i> Logout</a>
+                                </div>
+                            </div>
+                        <?php else : ?>
+                            <a class="nav-link" href="<?php echo $profileLink; ?>">
+                                <i class="fa-regular fa-user"></i><span></span>
+                                <?php echo $profileName; ?>
+                            </a>
+                        <?php endif; ?>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
     <br><br>
     <div class="container-xl px-4 mt-4">
@@ -115,6 +183,7 @@ require_once "../controller/perfilController.php";
                         <div class="card-body">
                             <form method="post" action="../controller/updatePerfilController.php" onsubmit="return confirmarEnvio()" id="EdituserForm">
                                 <!-- Form Group (username)-->
+                                <input type="hidden" name="inputId" id = "inputId" value="<?php echo $profileID; ?>">
                                 <div class="mb-3">
                                     <label class="small mb-1" for="inputFirstName">Nome</label>
                                     <input class="form-control" id="inputFirstName" name="inputFirstName" type="text" placeholder="Digite seu primeiro nome" value="<?php echo $profileNome; ?>">
@@ -420,7 +489,7 @@ require_once "../controller/perfilController.php";
                                 conta</button>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>

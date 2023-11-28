@@ -15,7 +15,7 @@ class ProductController {
         $mensagem = $this->model->uploadProduct($nomeProduto, $categoriaProduto, $descricaoProduto, $precoProduto,  $estoqueProduto, $tamanhoProduto, $imagemProduto);
 
         // Exibe uma mensagem e redireciona após um atraso
-        echo '<script>alert("' . $mensagem . '"); </script>';
+        echo '<script>alert("' . $mensagem . '");window.location.href= ../index.php </script>';
     }
 }
 

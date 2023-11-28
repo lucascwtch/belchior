@@ -44,7 +44,7 @@ include_once('navbar.php');
                 <h1 class="fw-light"></h1>
             </div>
             <div class="logo">
-                <img src="../assets/img/belchior.png" alt="logo">
+            <img src="../assets/img/banner-contato.png" alt="Contato" style="width: 100%;">
             </div>
         </div>
     </section>

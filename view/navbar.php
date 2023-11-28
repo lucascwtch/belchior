@@ -1,33 +1,33 @@
 <?php
 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 $isLoggedIn = isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'];
 
-$profileLink = 'login_page.php'; // Página padrão para usuários não logados ou casos não especificados
-
+$profileLink = 'login_page.php'; // Página padrão para usuários não logados
 
 if ($isLoggedIn) {
     switch ($_SESSION['user_adm']) {
         case 0:
-
             $profileLink = 'perfilAdministrador.php';
             break;
         case 1:
             $profileLink = 'perfil.php';
-
             break;
         case 2:
-            session_start();
             $profileLink = 'perfilVendedor.php';
+            // Adicione outros casos conforme necessário
             break;
-        // Adicione outros casos conforme necessário
-        default:
-            // Caso não corresponda a nenhum dos casos anteriores, permanece como 'login_page.php'
-            $profileLink = 'login_page.php';
+            // Adicione casos adicionais conforme necessário
     }
 }
 
 $profileName = $isLoggedIn ? $_SESSION['user_profile_name'] : 'Login';
+
 ?>
+<link rel="stylesheet" href="../assets/css/style.css">
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <div class="container">
@@ -56,12 +56,12 @@ $profileName = $isLoggedIn ? $_SESSION['user_profile_name'] : 'Login';
                             </a>
                             <div class="dropdown-menu" aria-labelledby="profileDropdown">
                                 <a href="carrinho.php" class="dropdown-item"><i class="fa-solid fa-cart-shopping"></i> Carrinho [0]</a>
-                                <a href="<?php $profileLink  ?>" class="dropdown-item"><i class="fa-solid fa-user"></i> Ver perfil</a>
+                                <a href="<?php echo $profileLink; ?>" class="dropdown-item"><i class="fa-solid fa-user"></i> Ver perfil</a>
                                 <a href="../controller/logoutController.php" class="dropdown-item"><i class="fa-solid fa-power-off"></i> Logout</a>
                             </div>
                         </div>
                     <?php else : ?>
-                        <a class="nav-link" href="<?php  $profileLink; ?>">
+                        <a class="nav-link" href="<?php echo $profileLink; ?>">
                             <i class="fa-regular fa-user"></i><span></span>
                             <?php echo $profileName; ?>
                         </a>

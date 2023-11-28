@@ -40,8 +40,8 @@ include_once('navbar.php');
 <body>
 
   <!-- Conteúdo da Página -->
-
-  <div class="hero-wrap hero-bread" style="background-image: url('../assets/img/bg_6.jpg');">
+  <br><br><br>
+  <div class="hero-wrap hero-bread" style="background-image: url('../assets/img/banner-produtos.png');">
     <div class="container">
       <div class="row no-gutters slider-text align-items-center justify-content-center">
         <div class="col-md-9 ftco-animate text-center">

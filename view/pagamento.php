@@ -1,42 +1,42 @@
 <?php
 // Step 1: Require the library from your Composer vendor folder
-require_once '../vendor/autoload.php';
+// require_once '../vendor/autoload.php';
 
-use MercadoPago\Client\Payment\PaymentClient;
-use MercadoPago\Exceptions\MPApiException;
-use MercadoPago\MercadoPagoConfig;
+// use MercadoPago\Client\Payment\PaymentClient;
+// use MercadoPago\Exceptions\MPApiException;
+// use MercadoPago\MercadoPagoConfig;
 
-// Step 2: Set production or sandbox access token
-MercadoPagoConfig::setAccessToken("APP_USR-3908918862209501-112119-5f1b8b567d783951a50e316dd34a088e-1284764382");
+// // Step 2: Set production or sandbox access token
+// MercadoPagoConfig::setAccessToken("APP_USR-3908918862209501-112119-5f1b8b567d783951a50e316dd34a088e-1284764382");
 
-// Step 3: Initialize the API client
-$client = new PaymentClient();
+// // Step 3: Initialize the API client
+// $client = new PaymentClient();
 
-try {
+// try {
 
-    // Step 4: Create the request array
-    $request = [
-        "transaction_amount" => 100,
-        "token" => "YOUR_CARD_TOKEN",
-        "description" => "description",
-        "installments" => 1,
-        "payment_method_id" => "visa",
-        "payer" => [
-            "email" => "user@test.com",
-        ]
-    ];
+//     // Step 4: Create the request array
+//     $request = [
+//         "transaction_amount" => 100,
+//         "token" => "YOUR_CARD_TOKEN",
+//         "description" => "description",
+//         "installments" => 1,
+//         "payment_method_id" => "visa",
+//         "payer" => [
+//             "email" => "user@test.com",
+//         ]
+//     ];
 
-    // Step 5: Make the request
-    $payment = $client->create($request);
-    echo $payment->id;
+//     // Step 5: Make the request
+//     $payment = $client->create($request);
+//     echo $payment->id;
 
-    // Step 6: Handle exceptions
-} catch (MPApiException $e) {
-    echo "Status code: " . $e->getApiResponse()->getStatusCode() . "\n";
-    echo "Content: " . $e->getApiResponse()->getContent() . "\n";
-} catch (\Exception $e) {
-    echo $e->getMessage();
-}
+//     // Step 6: Handle exceptions
+// } catch (MPApiException $e) {
+//     echo "Status code: " . $e->getApiResponse()->getStatusCode() . "\n";
+//     echo "Content: " . $e->getApiResponse()->getContent() . "\n";
+// } catch (\Exception $e) {
+//     echo $e->getMessage();
+// }
 ?>
 
 
