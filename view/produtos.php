@@ -16,7 +16,6 @@ include_once('navbar.php');
   <link rel="icon" href="../assets/img/favicon.png" type="image/x-icon">
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
-  <link rel="icon" href="assets/img/favicon.png" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
 
 

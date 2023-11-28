@@ -69,7 +69,7 @@ $profileLink = $isLoggedIn ? 'view/perfil.php' : 'view/login_page.php';
                 <div class="dropdown-menu" aria-labelledby="profileDropdown">
                   <a href="view/carrinho.php" class="dropdown-item"><i class="fa-solid fa-cart-shopping"></i> Carrinho [0]</a>
                   <a href="view/perfil.php" class="dropdown-item"><i class="fa-solid fa-user"></i> Ver perfil</a>
-                  <a href="view/controller/logoutController.php" class="dropdown-item"><i class="fa-solid fa-power-off"></i> Logout</a>
+                  <a href="controller/logoutController.php" class="dropdown-item"><i class="fa-solid fa-power-off"></i> Logout</a>
                 </div>
               </div>
             <?php else : ?>
@@ -83,6 +83,8 @@ $profileLink = $isLoggedIn ? 'view/perfil.php' : 'view/login_page.php';
       </div>
     </div>
   </nav>
+
+
   <main>
     <section class="py-5">
       <div class="head">
