@@ -1,10 +1,32 @@
 <?php
-session_start();
 
 $isLoggedIn = isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'];
 
+$profileLink = 'login_page.php'; // Página padrão para usuários não logados ou casos não especificados
+
+
+if ($isLoggedIn) {
+    switch ($_SESSION['user_adm']) {
+        case 0:
+
+            $profileLink = 'perfilAdministrador.php';
+            break;
+        case 1:
+            $profileLink = 'perfil.php';
+
+            break;
+        case 2:
+            session_start();
+            $profileLink = 'perfilVendedor.php';
+            break;
+        // Adicione outros casos conforme necessário
+        default:
+            // Caso não corresponda a nenhum dos casos anteriores, permanece como 'login_page.php'
+            $profileLink = 'login_page.php';
+    }
+}
+
 $profileName = $isLoggedIn ? $_SESSION['user_profile_name'] : 'Login';
-$profileLink = $isLoggedIn ? 'perfil.php' : 'login_page.php';
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
@@ -34,12 +56,12 @@ $profileLink = $isLoggedIn ? 'perfil.php' : 'login_page.php';
                             </a>
                             <div class="dropdown-menu" aria-labelledby="profileDropdown">
                                 <a href="carrinho.php" class="dropdown-item"><i class="fa-solid fa-cart-shopping"></i> Carrinho [0]</a>
-                                <a href="perfil.php" class="dropdown-item"><i class="fa-solid fa-user"></i> Ver perfil</a>
+                                <a href="<?php $profileLink  ?>" class="dropdown-item"><i class="fa-solid fa-user"></i> Ver perfil</a>
                                 <a href="../controller/logoutController.php" class="dropdown-item"><i class="fa-solid fa-power-off"></i> Logout</a>
                             </div>
                         </div>
                     <?php else : ?>
-                        <a class="nav-link" href="<?php echo $profileLink; ?>">
+                        <a class="nav-link" href="<?php  $profileLink; ?>">
                             <i class="fa-regular fa-user"></i><span></span>
                             <?php echo $profileName; ?>
                         </a>

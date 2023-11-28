@@ -1,8 +1,7 @@
 <?php
 
-require_once "../controller/config.php";
 require_once "../controller/perfilController.php";
-include_once('navbar.php');
+require_once "navbar.php";
 
 
 ?>
@@ -483,41 +482,80 @@ include_once('navbar.php');
             // Adiciona botões de "Aceitar" e "Recusar"
             var cellOpcoes = row.insertCell(5);
             var btnAceitar = criarBotao('Aceitar', function() {
-                aceitarSolicitacao(solicitacao.id);
+                aceitarSolicitacao(solicitacao.fkIdUsuario);
             });
             cellOpcoes.appendChild(btnAceitar);
 
             var btnRecusar = criarBotao('Recusar', function() {
-                recusarSolicitacao(solicitacao.id);
+                recusarSolicitacao(solicitacao.fkIdUsuario);
             });
             cellOpcoes.appendChild(btnRecusar);
         });
     });
 
-    function recusarSolicitacao(id) {
-            // Simule a lógica de recusar a solicitação
-            console.log('Solicitação recusada com ID:', id);
-
-            // Faça uma requisição AJAX para o arquivo alterarStatusUserController.php
-            $.ajax({
-                type: 'POST',
-                url: '../controller/alterarStatusUserController.php',
-                data: { id: id, acao: 'recusar' }, // Envie o ID e a ação
-                success: function(response) {
-                    // A resposta do servidor está disponível em 'response'
-                    console.log(response);
-                },
-                error: function(error) {
-                    console.error('Erro na requisição AJAX:', error);
-                }
-            });
+    function aceitarSolicitacao(id) {
+    // Simule a lógica de aceitar a solicitação
+    console.log('Solicitação aceita com ID:', id);
+    //popup de confirmação
+    var confirmacao = confirm("Tem certeza que deseja aceitar a solicitação?");
+    if(confirmacao) {
+    // Criar um objeto FormData com o parâmetro 'id'
+    const formData = new FormData();
+    formData.append('idUsuario', id);
+        
+    // Fazer a solicitação POST usando fetch
+    fetch('../controller/alterarStatusUserController.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Erro na solicitação.');
         }
-
+        return response.text();
+    })
+    .then(data => {
+        alert('Solicitação Aceita!')
+        window.onload(solicitacoesTableBody);
+        console.log('Resposta do servidor:', data);
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+    });
+}
+else{
+    
+}
+    }
     
 
     function recusarSolicitacao(id) {
         // Simule a lógica de recusar a solicitação
         console.log('Solicitação recusada com ID:', id);
+
+    // Criar um objeto FormData com o parâmetro 'id'
+    var confirmacao = confirm("Tem certeza que deseja recusar a solicitação?");
+    const formData = new FormData();
+    formData.append('idUsuario', id);
+        
+    // Fazer a solicitação POST usando fetch
+    fetch('../controller/deleteSolicitacaoAfiliarController.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Erro na solicitação.');
+        }
+        return response.text();
+    })
+    .then(data => {
+        alert('Solicitação recusada!')
+        console.log('Resposta do servidor:', data);
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+    });
     }
 
     // Função auxiliar para criar botões
@@ -532,7 +570,8 @@ include_once('navbar.php');
 
 <!-- Script  usuários -->
 <script>
-    var usuarios = <?php require_once "../controller/usuarioClienteController.php"; ?>;
+    
+    var usuarios = <?php include_once "../controller/usuarioClienteController.php"; ?>;
 
     document.addEventListener('DOMContentLoaded', function() {
         var usuariosTableBody = document.getElementById('usuariosTableBody');

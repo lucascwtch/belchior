@@ -3,10 +3,35 @@ session_start();
 
 $isLoggedIn = isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'];
 
+$profileLink = 'view/login_page.php'; // Página padrão para usuários não logados ou casos não especificados
+
+
+
+if ($isLoggedIn) {
+    switch ($_SESSION['user_adm']) {
+        case 0:
+            $profileLink = 'view/perfilAdministrador.php';
+            
+            break;
+        case 1:
+            $profileLink = 'view/perfil.php';
+            
+            break;
+        case 2:
+            $profileLink = 'view/perfilVendedor.php';
+            
+            break;
+        // Adicione outros casos conforme necessário
+        default:
+            // Caso não corresponda a nenhum dos casos anteriores, permanece como 'login_page.php'
+
+            echo "Default Case";
+
+    }
+}
+
+
 $profileName = $isLoggedIn ? $_SESSION['user_profile_name'] : 'Login';
-$profileLink = $isLoggedIn ? 'view/perfil.php' : 'view/login_page.php';
-
-
 ?>
 
 
@@ -68,7 +93,7 @@ $profileLink = $isLoggedIn ? 'view/perfil.php' : 'view/login_page.php';
                 </a>
                 <div class="dropdown-menu" aria-labelledby="profileDropdown">
                   <a href="view/carrinho.php" class="dropdown-item"><i class="fa-solid fa-cart-shopping"></i> Carrinho [0]</a>
-                  <a href="view/perfil.php" class="dropdown-item"><i class="fa-solid fa-user"></i> Ver perfil</a>
+                  <a href="<?php echo $profileLink;  ?>" class="dropdown-item"><i class="fa-solid fa-user"></i> Ver perfil</a>
                   <a href="controller/logoutController.php" class="dropdown-item"><i class="fa-solid fa-power-off"></i> Logout</a>
                 </div>
               </div>

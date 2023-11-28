@@ -8,10 +8,7 @@ class AtualizarStatusController {
         $this->afiliarModel = new alterarStatusModel($conexao);
     }
 
-    public function atualizarStatusEExcluirSolicitacao($idUsuario) {
-        // Atualiza o status na tabela usuarios
-        $this->afiliarModel->updateStatusUsuario($idUsuario, 2);
-
+    public function ExcluirSolicitacao($idUsuario) {
         // Exclui a entrada correspondente na tabela solicitacoesAfiliar
         $this->afiliarModel->excluirSolicitacaoAfiliar($idUsuario);
     }
@@ -26,10 +23,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $atualizarStatusController = new AtualizarStatusController($conexao);
 
     // Chama o método para atualizar o status e excluir a solicitação
-    $atualizarStatusController->atualizarStatusEExcluirSolicitacao($idUsuario);
+    $atualizarStatusController->ExcluirSolicitacao($idUsuario);
 
     // Redireciona para a página desejada após a conclusão
-    echo '<script>alert("Proposta Aceita!! ");</script>';        
+    echo '<script>alert("Proposta Recusada!! ");</script>';        
     exit();
 }
 ?>

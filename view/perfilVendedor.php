@@ -1,7 +1,7 @@
 <?php
 
-require_once "../controller/config.php";
-include_once('navbar.php');
+
+require_once "navbar.php";
 require_once "../controller/perfilController.php";
 
 

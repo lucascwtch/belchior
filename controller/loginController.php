@@ -39,14 +39,13 @@ class AuthController {
         session_start();
         $_SESSION['user_logged_in'] = true;
         $_SESSION['user_profile_name'] = $user['nomeUsuario'];
-        $_SESSION['user_adm'] = $user['statusUsuario'];
         $_SESSION['user_id'] = $user['idUsuario'];
-        $_SESSION['user_sobrenome'] = $user['sobrenomeUsuario'];
         $_SESSION['user_email'] = $user['emailUsuario'];
         $_SESSION['user_apelido'] = $user['apelidoUsuario'];
         $_SESSION['user_telefone'] = $user['telefoneUsuario'];
         $_SESSION['user_cpf'] = $user['cpfUsuario'];
         $_SESSION['user_data_nascimento'] = $user['dataNascimentoUsuario'];
+        $_SESSION['user_adm'] = $user['statusUsuario'];
         
         // ... outras variáveis de sessão
 

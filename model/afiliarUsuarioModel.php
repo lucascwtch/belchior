@@ -43,15 +43,4 @@ public function insertAfiliarPedidos($dadosPost){
 }
 
 
-
-public function updateUserByCPF($dadosPost){
-    $atualizarStatusQuery = "UPDATE usuarios SET statusUsuario = 2 WHERE cpfUsuario = :cpf";
-    $atualizarStatusInstrucao = $this->conexao->prepare($atualizarStatusQuery);
-    $atualizarStatusInstrucao->bindParam(':cpf', $dadosPost, PDO::PARAM_STR);
-    $atualizarStatusInstrucao->execute();
-
-    return $atualizarStatusInstrucao->rowCount() > 0;
-}
-
-
 }

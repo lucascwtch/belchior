@@ -8,10 +8,6 @@ class AfiliarController {
         $this->afiliarModel = new AfiliarModel($conexao);
     }
 
-    public function updateStatusByCPF($dadosPost) {
-        return $this->afiliarModel->updateUserByCPF($dadosPost);
-    }
-
     public function temCad($dadosPost) {
         return $this->afiliarModel->selectByEmail($dadosPost);
     }
@@ -56,30 +52,6 @@ class AfiliarController {
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $afiliarController = new AfiliarController($conexao);
-
-    if (isset($_POST['updateStatus'])) {
-        $cpfUsuario = $_POST['inputCPF'];
-        $emailUsuario = $_POST['inputEmail'];
-
-        $dadosPostUpdate = [
-            'cpfUsuarioCliente' => $cpfUsuario,
-            // Adicione outros campos se necessário
-        ];
-
-        if ($afiliarController->temCad($dadosPostUpdate)) {
-            $atualizacaoBemSucedida = $afiliarController->updateStatusByCPF($dadosPostUpdate);
-
-            if ($atualizacaoBemSucedida) {
-                echo "Status atualizado com sucesso!";
-            } else {
-                echo "Erro ao atualizar o status.";
-            }
-        } else {
-            // Redireciona para a página de cadastro_afiliado.php
-            header("Location: ../view/perfil.php");
-            exit();
-        }
-    }
 
     // Coleta os dados do formulário de registro e chama o método para lidar com o registro
     $dadosPost = $_POST;

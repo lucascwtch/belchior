@@ -3,7 +3,7 @@
 class UserProfileModel {
     private $profileName;
     private $profileId;
-    private $profileSecondName;
+    private $profileAdm;
     private $profileEmail;
     private $profileApelido;
     private $profileCPF;
@@ -11,15 +11,15 @@ class UserProfileModel {
 
     private $profileTelefone;
 
-    public function __construct($profileName, $profileId, $profileSecondName, $profileEmail, $profileApelido, $profileCPF, $profileDataNascimento , $profileTelefone ){
+    public function __construct($profileName, $profileId, $profileEmail, $profileApelido, $profileCPF, $profileDataNascimento , $profileTelefone, $profileAdm){
         $this->profileName = $profileName;
         $this->profileId = $profileId;
-        $this->profileSecondName = $profileSecondName;
         $this->profileEmail = $profileEmail;
         $this->profileApelido = $profileApelido;
         $this->profileCPF = $profileCPF;
         $this->profileDataNascimento = $profileDataNascimento;
         $this->profileTelefone = $profileTelefone;
+        $this->profileAdm = $profileAdm;
     }
 
     public function getProfileName() {
@@ -28,10 +28,6 @@ class UserProfileModel {
 
     public function getProfileId(){
         return $this->profileId;
-    }
-
-    public function getProfileSecondName() {
-        return $this->profileSecondName;
     }
 
     public function getProfileEmail(){
@@ -52,6 +48,10 @@ class UserProfileModel {
 
     public function getProfileTelefone(){
         return $this->profileTelefone;
+    }
+
+    public function getProfileAdm(){
+        return $this->profileAdm;
     }
 }
 
