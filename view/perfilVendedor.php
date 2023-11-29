@@ -191,6 +191,7 @@ $profileName = $isLoggedIn ? $_SESSION['user_profile_name'] : 'Login';
                                 <!-- Form Row-->
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
+                                    
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="inputUsername">Apelido</label>
                                         <input class="form-control" id="inputUsername" name="inputUsername" type="text" placeholder="Digite seu apelido" value="<?php echo $profileApelido; ?>">
@@ -638,6 +639,7 @@ $profileName = $isLoggedIn ? $_SESSION['user_profile_name'] : 'Login';
                 <h2>Formulário de Adição de Produto</h2>
 
                 <form id="productForm" action="../controller/inserirProdutoController.php" method="post" enctype="multipart/form-data">
+                <input type="hidden" id="inputId" name="inputId" value="<?php echo $profileID; ?>">
                     <div class="form-group">
                         <label for="nomeProduto">Nome do Produto:</label>
                         <input type="text" id="nomeProduto" name="nomeProduto" class="form-control" required>

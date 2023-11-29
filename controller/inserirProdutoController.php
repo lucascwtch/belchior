@@ -11,10 +11,10 @@ class ProductController {
         $this->model = new ProductModel($conexao);
     }
 
-    public function uploadProduct($nomeProduto, $categoriaProduto, $descricaoProduto, $precoProduto,  $estoqueProduto,  $tamanhoProduto, $imagemProduto) {
-        $mensagem = $this->model->uploadProduct($nomeProduto, $categoriaProduto, $descricaoProduto, $precoProduto,  $estoqueProduto, $tamanhoProduto, $imagemProduto);
+    public function uploadProduct($nomeProduto, $categoriaProduto, $descricaoProduto, $precoProduto,  $estoqueProduto,  $tamanhoProduto, $imagemProduto, $fkIdUsuario) {
+        $mensagem = $this->model->uploadProduct($nomeProduto, $categoriaProduto, $descricaoProduto, $precoProduto,  $estoqueProduto, $tamanhoProduto, $imagemProduto, $fkIdUsuario);
 
-        // Exibe uma mensagem e redireciona após um atraso
+        // Exibe uma mensagem e redireciona 
         echo '<script>alert("' . $mensagem . '");window.location.href= ../index.php </script>';
     }
 }
@@ -30,9 +30,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $estoque_produto = $_POST['estoqueProduto'];
     $tamanho_produto = $_POST['tamanhoProduto'];
     $imagem_produto = $_FILES['imagemProduto'];
+    $fkIdUsuario = $_POST['inputId'];
     
 
     // Chama o método para fazer upload do produto
-    $productController->uploadProduct($nome_produto, $categoria_produto, $descricao_produto, $preco_produto, $estoque_produto, $tamanho_produto,  $imagem_produto);
+    $productController->uploadProduct($nome_produto, $categoria_produto, $descricao_produto, $preco_produto, $estoque_produto, $tamanho_produto,  $imagem_produto, $fkIdUsuario);
 }
 ?>
