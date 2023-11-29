@@ -1,38 +1,55 @@
-<?php
-// RegistroController.php
+<!DOCTYPE html>
+<html lang="pt-br">
 
-require_once "../model/cadastrarUsuarioModel.php";
-require_once "../dao/cadastrarUsuarioDAO.php";
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
-class RegistroController {
-    private $model;
+</head>
 
-    public function __construct($conexao) {
-        $this->model = new RegistroModel($conexao);
-    }
+<body>
 
-    public function manipularRegistro($dadosPost) {
-        $mensagem = $this->model->manipularRegistro($dadosPost);
+    <?php
 
-        // Exibir círculo de carregamento
-        echo "<div id='carregando' class='escondido'>
+    require_once "../model/cadastrarUsuarioModel.php";
+    require_once "../dao/cadastrarUsuarioDAO.php";
+
+    class RegistroController
+    {
+        private $model;
+
+        public function __construct($conexao)
+        {
+            $this->model = new RegistroModel($conexao);
+        }
+
+        public function manipularRegistro($dadosPost)
+        {
+            $mensagem = $this->model->manipularRegistro($dadosPost);
+
+            // Exibir círculo de carregamento
+            echo "<div id='carregando' class='escondido'>
                   <div class='carregador'></div>
               </div>";
 
-        // Exibir mensagem e redirecionar após um atraso
-        echo "<script language='javascript' type='text/javascript'>
-                alert('$mensagem');
-                document.getElementById('carregando').classList.remove('escondido');
-                setTimeout(function() {
+            // Exibir mensagem e redirecionar após um atraso
+            echo "<script language='javascript' type='text/javascript'>
+                var successMessage = '$mensagem';
+                Swal.fire({
+                    text: successMessage,
+                    icon: 'success',
+                }).then(function() {
                     window.location = '../index.php';
-                }, 3000);
+                });
               </script>";
+        }
     }
-}
 
-$registroController = new RegistroController($conexao);
+    $registroController = new RegistroController($conexao);
 
-// Coleta os dados do formulário de registro e chama o método para lidar com o registro
-$dadosPost = $_POST;
-$registroController->manipularRegistro($dadosPost);
-?>
+    // Coleta os dados do formulário de registro e chama o método para lidar com o registro
+    $dadosPost = $_POST;
+    $registroController->manipularRegistro($dadosPost);
+    ?>

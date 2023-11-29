@@ -1,3 +1,16 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propostas</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+</head>
+
+<body>
+
 <?php
 require_once "../model/alterarStatusUserModel.php";
 
@@ -29,7 +42,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $atualizarStatusController->atualizarStatusEExcluirSolicitacao($idUsuario);
 
     // Redireciona para a página desejada após a conclusão
-    echo '<script>alert("Proposta Aceita!! ");</script>';        
-    exit();
+    echo "<script language='javascript' type='text/javascript'>
+    Swal.fire({
+        text: 'Proposta Aceita!',
+        icon: 'success',
+    });
+  </script>";
+exit();
 }
 ?>
+
+</body>
+</html>

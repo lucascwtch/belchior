@@ -1,3 +1,16 @@
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+</head>
+
+<body>
+
+
 <?php
 
 include_once "../model/updatePerfilModel.php";
@@ -49,13 +62,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $userController = new UserController($conexao);
 
-    $userController->updateProfile($profileId, $nomeUsuario, 
-    $emailUsuario,$cpfUsuario, $apelidoUsuario, $dataNascimentoUsuario, $telefoneUsuario);
+    $userController->updateProfile($profileId, $nomeUsuario, $emailUsuario, $cpfUsuario, $apelidoUsuario, $dataNascimentoUsuario, $telefoneUsuario);
 
-    $userController->updateSessionUserName($nomeUsuario, $emailUsuario,$cpfUsuario, 
-    $apelidoUsuario, $dataNascimentoUsuario, $telefoneUsuario);
-    $userController->showMessage("Usuário Atualizado", "../index.php");
+    $userController->updateSessionUserName($nomeUsuario, $emailUsuario, $cpfUsuario, $apelidoUsuario, $dataNascimentoUsuario, $telefoneUsuario);
+
+    echo "<script>
+        Swal.fire({
+            text: 'Usuário atualizado com sucesso!',
+            icon: 'success',
+        }).then(function() {
+            window.location.href = '../index.php';
+        });
+      </script>";
 
     include_once "../view/navbar.php";
-    
 }
+
+?>
+
+</body>
+</html>
