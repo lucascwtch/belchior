@@ -638,7 +638,7 @@ $profileName = $isLoggedIn ? $_SESSION['user_profile_name'] : 'Login';
             <div class="container mt-5">
                 <h2>Formulário de Adição de Produto</h2>
 
-                <form id="productForm" action="../controller/inserirProdutoController.php" method="post" enctype="multipart/form-data">
+                <form id="productForm" action="../controller/inserirProdutosByClienteController.php" method="post" enctype="multipart/form-data">
                 <input type="hidden" id="inputId" name="inputId" value="<?php echo $profileID; ?>">
                     <div class="form-group">
                         <label for="nomeProduto">Nome do Produto:</label>
