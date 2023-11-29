@@ -19,4 +19,10 @@ Class ListarProdutosModel{
 
     }
 
+    public function listarProdutosGeral(){
+        $sql  = $this->conexao->prepare("SELECT*FROM produtos");
+        $sql -> execute();
+        return $sql->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 }

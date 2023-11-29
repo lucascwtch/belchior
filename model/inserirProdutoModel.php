@@ -8,8 +8,11 @@ class ProductModel {
         $this->dao = new ProductDAO($conexao);
     }
 
-    public function uploadProduct($nomeProduto, $categoriaProduto, $descricaoProduto, $precoProduto, $tamanhoProduto, $estoqueProduto, $imagemProduto, $fkIdUsuario) {
-        $this->dao->uploadProduct($nomeProduto, $categoriaProduto, $descricaoProduto, $precoProduto, $tamanhoProduto, $estoqueProduto, $imagemProduto, $fkIdUsuario);
+    public function uploadProduct($nomeProduto, $categoriaProduto, $descricaoProduto, 
+    $precoProduto, $tamanhoProduto, $estoqueProduto, $imagemProduto, $fkIdUsuario) {
+
+        $this->dao->uploadProduct($nomeProduto, $categoriaProduto, $descricaoProduto, 
+        $precoProduto, $tamanhoProduto, $estoqueProduto, $imagemProduto, $fkIdUsuario);
     }
 }
-?>
+

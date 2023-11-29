@@ -708,7 +708,7 @@ $profileName = $isLoggedIn ? $_SESSION['user_profile_name'] : 'Login';
                 <!-- Você pode usar um loop dinâmico baseado nos dados do seu backend -->
                 <?php
                 
-                require_once "../controller/listarProdutosController.php";
+                require_once "../controller/listarProdutosByClienteController.php";
                 
                 foreach ($produtosDoUsuario as $product) {
                 ?>
@@ -719,6 +719,7 @@ $profileName = $isLoggedIn ? $_SESSION['user_profile_name'] : 'Login';
                             <div class="card-body">
                                 <h5 class="card-title"><?= $product['nomeProduto'] ?></h5>
                                 <p class="card-text"><?= $product['descricaoProduto'] ?></p>
+                             <!--<p class="card-text"><?= $product['idProduto'] ?></p>-->
                                 <p class="card-text">Preço: R$ <?= number_format($product['precoProduto'], 2) ?></p>
                                 <p class="card-text">Quantidade em Estoque: <?= $product['estoqueProduto'] ?></p>
                                 <p class="card-text">Tamanho: <?= $product['tamanhoProduto'] ?></p>
