@@ -306,7 +306,7 @@ $profileName = $isLoggedIn ? $_SESSION['user_profile_name'] : 'Login';
                 <!-- Este exemplo usa um loop simples para iterar sobre os produtos -->
                 <!-- Você pode usar um loop dinâmico baseado nos dados do seu backend -->
                 <?php
-                    require_once "../controller/listarProdutosGeralClienteController.php";
+                    
 
                     // Adicione mais produtos conforme necessário
                 
@@ -680,7 +680,7 @@ $profileName = $isLoggedIn ? $_SESSION['user_profile_name'] : 'Login';
         var detalhesUsuarioModalBody = document.getElementById('detalhesUsuarioModalBody');
         detalhesUsuarioModalBody.innerHTML = `
             <form method="POST" id="editarUsuarioForm">
-                <input type="text" id= "Id" name="inputId"value ="${usuario.idUsuario}">    
+                <input type="Hidden" id= "Id" name="inputId"value ="${usuario.idUsuario}">
                 <p><strong>Nome:</strong> </p>
                 <input type="text" id= "Name" name="inputFirstName"value ="${usuario.nomeUsuario}">
                 <p><strong>Apelido:</strong></p>

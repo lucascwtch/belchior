@@ -1,9 +1,21 @@
 <?php
-
 include_once('navbar.php');
+require_once('../controller/config.php');
+
+function getProductDetails($productId, $conexao)
+{
+    $sql = "SELECT * FROM produtos WHERE idProduto = $productId";
+    $result = $conexao->query($sql);
+
+    if ($result->rowCount() > 0) {
+        return $result->fetch();
+    }
+
+    return null;
+}
+
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -33,26 +45,13 @@ include_once('navbar.php');
     <link rel="stylesheet" href="../assets/css/animate.css">
     <link rel="stylesheet" href="../assets/css/produtos_style.css">
     <link rel="stylesheet" href="../assets/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-Ljzmr5Wd6Wh+RSRBRU5tJj9PQ6ry5wi0S0RBi6UBOe2WiDxoUGZrlyYtr0JdPZ5e1u/f0DVx+uPW1vOqoaVm4w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 
 <body>
-
-    <!-- Conteúdo da Página -->
-
-    <div class="hero-wrap hero-bread" style="background-image: url('../assets/img/bg_6.jpg');">
-        <div class="container">
-            <div class="row no-gutters slider-text align-items-center justify-content-center">
-                <div class="col-md-9 ftco-animate text-center">
-                    <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Carrinho</span>
-                    </p>
-                    <h1 class="mb-0 bread">Carrinho</h1>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <section class="ftco-section ftco-cart">
         <div class="container">
@@ -70,55 +69,54 @@ include_once('navbar.php');
                                     <th>Total</th>
                                 </tr>
                             </thead>
+
+
+
                             <tbody>
-                                <tr class="text-center">
-                                    <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
+                                <?php
+                                $totalPrice = 0;
 
-                                    <td class="image-prod">
-                                        <div class="img" style="background-image:url(../assets/img/product-3.png);">
-                                        </div>
-                                    </td>
+                                if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
+                                    foreach ($_SESSION['cart'] as $productId) {
+                                        $product = getProductDetails($productId, $conexao);
 
-                                    <td class="product-name">
-                                        <h3>Nike Free RN 2019 iD</h3>
-                                        <p>Bem longe, atrás das montanhas, longe dos países</p>
-                                    </td>
+                                        if ($product) {
+                                            echo "<tr class='text-center'>";
+                                            echo "<td class='product-remove'><a href='#'><span class='ion-ios-close'></span></a></td>";
+                                            echo "<td class='image-prod'><img class='img-fluid' src='../assets/img/produtos/{$product['imagemProduto']}' alt='Colorlib Template' style='max-width: 100px; max-height: 100px;'></td>";
+                                            echo "<td class='product-name'><h3>{$product['nomeProduto']}</h3><p>{$product['descricaoProduto']}</p></td>";
+                                            echo "<td class='price'>R$ <span class='unit-price'>{$product['precoProduto']}</span></td>";
 
-                                    <td class="price">R$4.90</td>
+                                            // Adicionei a entrada para escolher a quantidade
+                                            echo "<td class='quantity'><div class='input-group mb-3'><input type='text' name='quantity' class='quantity form-control input-number' value='1' min='1' max='100' data-price='" . floatval($product['precoProduto']) . "'></div></td>";
 
-                                    <td class="quantity">
-                                        <div class="input-group mb-3">
-                                            <input type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
-                                        </div>
-                                    </td>
 
-                                    <td class="total">R$4.90</td>
-                                </tr><!-- FIM TR-->
+                                            // Ajuste no cálculo do valor total do produto
+                                            $quantity = 1; // Valor padrão
+                                            if (isset($_SESSION['cart_quantity'][$productId])) {
+                                                $quantity = $_SESSION['cart_quantity'][$productId];
+                                            }
 
-                                <tr class="text-center">
-                                    <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
+                                            $valorTotalProduto = $product['precoProduto'] * $quantity;
+                                            $totalPrice += $valorTotalProduto;
 
-                                    <td class="image-prod">
-                                        <div class="img" style="background-image:url(../assets/img/product-4.png);">
-                                        </div>
-                                    </td>
+                                            echo "<td class='total'>R$ <span class='product-total'>{$valorTotalProduto}</span></td>";
+                                            echo "</tr>";
+                                        }
+                                    }
 
-                                    <td class="product-name">
-                                        <h3>Nike Free RN 2019 iD</h3>
-                                        <p>Bem longe, atrás das montanhas, longe dos países</p>
-                                    </td>
-
-                                    <td class="price">R$15.70</td>
-
-                                    <td class="quantity">
-                                        <div class="input-group mb-3">
-                                            <input type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
-                                        </div>
-                                    </td>
-
-                                    <td class="total">R$15.70</td>
-                                </tr><!-- FIM TR-->
+                                    echo "<tr class='text-center'>";
+                                    echo "<td colspan='5' class='total-price'><span>Total</span></td>";
+                                    echo "<td class='total'>R$ <span class='cart-total'>{$totalPrice}</span></td>";
+                                    echo "</tr>";
+                                } else {
+                                    echo "<tr class='text-center'>";
+                                    echo "<td colspan='6'>Seu carrinho está vazio.</td>";
+                                    echo "</tr>";
+                                }
+                                ?>
                             </tbody>
+
                         </table>
                     </div>
                 </div>
@@ -129,28 +127,24 @@ include_once('navbar.php');
                         <h3>Total do Carrinho</h3>
                         <p class="d-flex">
                             <span>Subtotal</span>
-                            <span>R$20.60</span>
+                            <span>R$ <?= $totalPrice ?></span>
                         </p>
                         <p class="d-flex">
                             <span>Entrega</span>
-                            <span>R$0.00</span>
-                        </p>
-                        <p class="d-flex">
-                            <span>Desconto</span>
-                            <span>R$3.00</span>
+                            <span>R$ 0.00</span>
                         </p>
                         <hr>
                         <p class="d-flex total-price">
                             <span>Total</span>
-                            <span>R$17.60</span>
+                            <span>R$ <?= $totalPrice ?></span>
                         </p>
                     </div>
-                    <p class="text-center"><a href="pagamento.php" class="btn btn-primary py-3 px-4">Prosseguir para o
-                            Pagamento</a></p>
+                    <p class="text-center"><a href="checkout.html" class="btn btn-primary py-3 px-4">Finalizar Compra</a></p>
                 </div>
             </div>
         </div>
     </section>
+
 
 
 
@@ -236,6 +230,45 @@ include_once('navbar.php');
 
 
     <script>
+$(document).ready(function() {
+    $('.minus').click(function(e) {
+        e.preventDefault();
+        var $input = $(this).parent().find('input');
+        var count = parseInt($input.val()) - 1;
+        count = count < 1 ? 1 : count;
+        $input.val(count);
+        $input.change();
+        return false;
+    });
+    $('.plus').click(function(e) {
+        e.preventDefault();
+        var $input = $(this).parent().find('input');
+        $input.val(parseInt($input.val()) + 1);
+        $input.change();
+        return false;
+    });
+
+    $('.quantity').on('change', function() {
+        var quantidade = parseInt($(this).val());
+        var preco = parseFloat($(this).data('price'));
+        if (!isNaN(quantidade) && !isNaN(preco)) {
+            var total = quantidade * preco;
+
+            // Atualiza o preço total do produto
+            $(this).closest('tr').find('.product-total').text(total.toFixed(2));
+
+            // Atualiza o preço total do carrinho
+            var precoTotal = 0;
+            $('.product-total').each(function() {
+                var productTotal = parseFloat($(this).text());
+                if (!isNaN(productTotal)) {
+                    precoTotal += productTotal;
+                }
+            });
+            $('.cart-total').text(precoTotal.toFixed(2));
+        }
+    });
+});
 
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>

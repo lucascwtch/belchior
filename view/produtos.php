@@ -1,6 +1,7 @@
 <?php
 
 include_once('navbar.php');
+include_once('../controller/adicionarAoCarrinhoController.php');
 
 ?>
 
@@ -33,9 +34,7 @@ include_once('navbar.php');
     <link rel="stylesheet" href="../assets/css/animate.css">
     <link rel="stylesheet" href="../assets/css/style.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-        integrity="sha512-Ljzmr5Wd6Wh+RSRBRU5tJj9PQ6ry5wi0S0RBi6UBOe2WiDxoUGZrlyYtr0JdPZ5e1u/f0DVx+uPW1vOqoaVm4w=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-Ljzmr5Wd6Wh+RSRBRU5tJj9PQ6ry5wi0S0RBi6UBOe2WiDxoUGZrlyYtr0JdPZ5e1u/f0DVx+uPW1vOqoaVm4w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 
@@ -48,7 +47,8 @@ include_once('navbar.php');
             <div class="row no-gutters slider-text align-items-center justify-content-center">
                 <div class="col-md-9 ftco-animate text-center">
                     <p class="breadcrumbs"><span class="mr-2"><a href="../index.html">Início</a></span>
-                        <span>PRODUTOS</span></p>
+                        <span>PRODUTOS</span>
+                    </p>
                     <h1 class="mb-0 bread">PRODUTOS</h1>
                 </div>
             </div>
@@ -61,53 +61,50 @@ include_once('navbar.php');
                 <div class="col-md-8 col-lg-10 order-md-last">
                     <div class="row">
                         <?php
-                require_once "../controller/listarProdutosGeralController.php";
+                        require_once "../controller/listarProdutosGeralController.php";
 
 
-                foreach($produtosDoUsuario as $product) {
-              ?>
-                        <!-- inicio produto -->
-                        <div class="col-sm-12 col-md-12 col-lg-4 ftco-animate d-flex">
-                            <div class="product d-flex flex-column">
-                                <a href="#" class="img-prod"><img class="img-fluid" src="../assets/img/produtos/<?= $product['imagemProduto'] ?>"
-                                        alt="Colorlib Template">
-                                    <div class="overlay"></div>
-                                </a>
-                                <div class="text py-3 pb-4 px-3">
-                                    <div class="d-flex">
-                                        <div class="cat">
-                                            <span><?= $product['categoriaProduto'] ?></span><br>
-                                            <span>Vendedor: <?= $product['nomeUsuario'] ?></span>
-
+                        foreach ($produtosDoUsuario as $product) {
+                        ?>
+                            <!-- inicio produto -->
+                            <div class="col-sm-12 col-md-12 col-lg-4 ftco-animate d-flex">
+                                <div class="product d-flex flex-column">
+                                    <a href="#" class="img-prod"><img class="img-fluid" src="../assets/img/produtos/<?= $product['imagemProduto'] ?>" alt="Colorlib Template">
+                                        <div class="overlay"></div>
+                                    </a>
+                                    <div class="text py-3 pb-4 px-3">
+                                        <div class="d-flex">
+                                            <div class="cat">
+                                                <span><?= $product['categoriaProduto'] ?></span>
+                                            </div>
+                                            <div class="rating">
+                                                <p class="text-right mb-0">
+                                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
+                                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
+                                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
+                                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
+                                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
+                                                </p>
+                                            </div>
                                         </div>
-                                        <div class="rating">
-                                            <p class="text-right mb-0">
-                                                <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                                <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                                <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                                <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                                <a href="#"><span class="ion-ios-star-outline"></span></a>
-                                            </p>
+                                        <h3><a href="#"><?= $product['nomeProduto'] ?></a></h3>
+                                        <div class="pricing">
+                                            <p class="price"><span>R$ <?= number_format($product['precoProduto'], 2) ?></span></p>
                                         </div>
+                                        <p class="bottom-area d-flex px-3">
+                                            <a href="../controller/adicionarAoCarrinhoController.php?product_id=<?= $product['idProduto'] ?>" class="add-to-cart text-center py-2 mr-1">
+                                                <span>Carrinho <i class="ion-ios-add ml-1"></i></span>
+                                            </a>
+                                            <i class="ion-ios-add ml-1"></i></span></a>
+                                            <a href="#" class="buy-now text-center py-2">Comprar Agora<span><i class="ion-ios-cart ml-1"></i></span></a>
+                                        </p>
                                     </div>
-                                    <h3><a href="#"><?= $product['nomeProduto'] ?></a></h3>
-                                    <div class="pricing">
-                                        <p class="price"><span>R$ <?= number_format($product['precoProduto'], 2) ?></span></p>
-                                    </div>
-                                    <p class="bottom-area d-flex px-3">
-                                        <form class="form-horizontal" metho="post" action="#" >
-                                        <button type="submit" class="add-to-cart text-center py-2 mr-1"><span>Add to cart <i
-                                                    class="ion-ios-add ml-1"></i></span></a></button>
-                                        <a href="#" class="buy-now text-center py-2">Buy now<span><i
-                                                    class="ion-ios-cart ml-1"></i></span></a>
-                                    </p>
                                 </div>
                             </div>
-                        </div>
-                    <?php
+                        <?php
 
-                }
-?>
+                        }
+                        ?>
                         <!-- Fim produto -->
 
                     </div>
@@ -137,13 +134,11 @@ include_once('navbar.php');
                                     <div class="panel panel-default">
                                         <div class="panel-heading" role="tab" id="headingOne">
                                             <h4 class="panel-title">
-                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
-                                                    aria-expanded="true" aria-controls="collapseOne">Calçados Masculinos
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Calçados Masculinos
                                                 </a>
                                             </h4>
                                         </div>
-                                        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel"
-                                            aria-labelledby="headingOne">
+                                        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                                             <div class="panel-body">
                                                 <ul>
                                                     <li><a href="#">Esportivos</a></li>
@@ -160,14 +155,11 @@ include_once('navbar.php');
                                     <div class="panel panel-default">
                                         <div class="panel-heading" role="tab" id="headingTwo">
                                             <h4 class="panel-title">
-                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
-                                                    href="#collapseTwo" aria-expanded="false"
-                                                    aria-controls="collapseTwo">Calçados Femininos
+                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Calçados Femininos
                                                 </a>
                                             </h4>
                                         </div>
-                                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel"
-                                            aria-labelledby="headingTwo">
+                                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                                             <div class="panel-body">
                                                 <ul>
                                                     <li><a href="#">Esportivos</a></li>
@@ -184,14 +176,11 @@ include_once('navbar.php');
                                     <div class="panel panel-default">
                                         <div class="panel-heading" role="tab" id="headingThree">
                                             <h4 class="panel-title">
-                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
-                                                    href="#collapseThree" aria-expanded="false"
-                                                    aria-controls="collapseThree">Acessórios
+                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Acessórios
                                                 </a>
                                             </h4>
                                         </div>
-                                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel"
-                                            aria-labelledby="headingThree">
+                                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                                             <div class="panel-body">
                                                 <ul>
                                                     <li><a href="#">Calças Jeans</a></li>
@@ -205,14 +194,11 @@ include_once('navbar.php');
                                     <div class="panel panel-default">
                                         <div class="panel-heading" role="tab" id="headingFour">
                                             <h4 class="panel-title">
-                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
-                                                    href="#collapseFour" aria-expanded="false"
-                                                    aria-controls="collapseThree">Roupas
+                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseThree">Roupas
                                                 </a>
                                             </h4>
                                         </div>
-                                        <div id="collapseFour" class="panel-collapse collapse" role="tabpanel"
-                                            aria-labelledby="headingFour">
+                                        <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
                                             <div class="panel-body">
                                                 <ul>
                                                     <li><a href="#">Calças Jeans</a></li>
@@ -386,14 +372,12 @@ include_once('navbar.php');
                         <h2 class="ftco-heading-2">Dúvidas?</h2>
                         <div class="block-23 mb-3">
                             <ul>
-                                <li style="color: #fff"><span class="icon icon-map-marker"> </span><span
-                                        class="text">Rua Carlos De
+                                <li style="color: #fff"><span class="icon icon-map-marker"> </span><span class="text">Rua Carlos De
                                         Carvalho, 200</span>
                                 </li>
                                 <li><a href="#"><span class="icon icon-phone"> </span><span class="text">+2 392 3929
                                             210</span></a></li>
-                                <li><a href="#"><span class="icon icon-envelope"> </span><span
-                                            class="text">contato@belchior.com</span></a>
+                                <li><a href="#"><span class="icon icon-envelope"> </span><span class="text">contato@belchior.com</span></a>
                                 </li>
                             </ul>
                         </div>
@@ -405,9 +389,8 @@ include_once('navbar.php');
                     <p>
                         Copyright &copy;
                         <script>
-                        document.write(new Date().getFullYear());
-                        </script> All rights reserved <i class="icon-heart color-danger" aria-hidden="true"></i> by <a
-                            href="#" target="_blank">Belchior</a>
+                            document.write(new Date().getFullYear());
+                        </script> All rights reserved <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="#" target="_blank">Belchior</a>
                     </p>
                 </div>
             </div>
@@ -417,8 +400,7 @@ include_once('navbar.php');
     <!-- loader -->
     <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
             <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
-            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
-                stroke="#F96D00" />
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" />
         </svg></div>
 
 
