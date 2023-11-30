@@ -133,33 +133,34 @@ $profileName = $isLoggedIn ? $_SESSION['user_profile_name'] : 'Login';
 
                 <!-- Card 1 -->
 
+
+                <?php
+                        require_once "controller/listarUsuariosVendedorIndexController.php";
+
+
+                        foreach ($usuariosVendedor  as $usuarios) {
+                ?>
+
                 <div class="col-md-3">
                   <div class="card">
                     <img src="assets/img/loja01.jpg" class="card-img-top" alt="Produto 1">
                     <div class="card-body">
-                      <h5 class="card-title">Pamela</h5>
-                      <p class="card-text">Moda e Acessórios</p>
+                      <h5 class="card-title"><?= $usuarios['nomeUsuario'] ?></h5>
+                      <p class="card-text"><?= $usuarios['apelidoUsuario']?></p>
                       <div class="d-flex justify-content-between align-items-center">
                         <button type="button" class="btn btn-black botao-conhecer">Conhecer</button>
                       </div>
                     </div>
                   </div>
                 </div>
+<?php
 
-                <!-- Card 2 -->
+                        }
+?>
+                <!-- Card -->
+                
 
-                <div class="col-md-3">
-                  <div class="card">
-                    <img src="assets/img/loja02.jpg" class="card-img-top" alt="Produto 1">
-                    <div class="card-body">
-                      <h5 class="card-title">Exclusiva</h5>
-                      <p class="card-text">Renata Dário</p>
-                      <div class="d-flex justify-content-between align-items-center">
-                        <button type="button" class="btn btn-primary botao-conhecer">Conhecer</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+        
                 <!-- Card 3 -->
 
                 <div class="col-md-3">
@@ -306,226 +307,62 @@ $profileName = $isLoggedIn ? $_SESSION['user_profile_name'] : 'Login';
     </div>
     <div class="container">
       <div class="row">
-        <div class="col-sm-12 col-md-6 col-lg-3 ftco-animate d-flex">
-          <div class="product d-flex flex-column">
-            <a href="#" class="img-prod"><img class="img-fluid" src="assets/img/produto-01.png" alt="Colorlib Template">
-              <div class="overlay"></div>
-            </a>
-            <div class="text py-3 pb-4 px-3">
-              <div class="d-flex">
-                <div class="cat">
-                  <span>VestindoFC</span>
-                </div>
-                <div class="rating">
-                  <p class="text-right mb-0">
-                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                  </p>
-                </div>
-              </div>
-              <h3><a href="#">Nike Air Force 1</a></h3>
-              <div class="pricing">
-                <p class="price"><span>R$300.00</span></p>
-              </div>
-              <p class="bottom-area d-flex px-3">
-                <a href="#" class="add-to-cart text-center py-2 mr-1"><span>Carrinho <i class="ion-ios-add ml-1"></i></span></a>
-                <a href="#" class="buy-now text-center py-2">COMPRAR AGORA<span><i class="ion-ios-cart ml-1"></i></span></a>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-12 col-md-6 col-lg-3 ftco-animate d-flex">
-          <div class="product d-flex flex-column">
-            <a href="#" class="img-prod"><img class="img-fluid" src="assets/img/produto-02.png" alt="Colorlib Template">
-              <span class="status">50% Off</span>
-              <div class="overlay"></div>
-            </a>
-            <div class="text py-3 pb-4 px-3">
-              <div class="d-flex">
-                <div class="cat">
-                  <span>Lifestyle</span>
-                </div>
-                <div class="rating">
-                  <p class="text-right mb-0">
-                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                  </p>
-                </div>
-              </div>
-              <h3><a href="#">Nike Air Max TN Plus</a></h3>
-              <div class="pricing">
-                <p class="price"><span class="mr-2 price-dc">R$550.00</span><span class="price-sale">$225.00</span></p>
-              </div>
-              <p class="bottom-area d-flex px-3">
-                <a href="#" class="add-to-cart text-center py-2 mr-1"><span>Carrinho <i class="ion-ios-add ml-1"></i></span></a>
-                <a href="#" class="buy-now text-center py-2">COMPRAR AGORA<span><i class="ion-ios-cart ml-1"></i></span></a>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-12 col-md-6 col-lg-3 ftco-animate d-flex">
-          <div class="product">
-            <a href="#" class="img-prod"><img class="img-fluid" src="assets/img/produto-03.png" alt="Colorlib Template">
-              <div class="overlay"></div>
-            </a>
-            <div class="text py-3 pb-4 px-3">
-              <div class="d-flex">
-                <div class="cat">
-                  <span>Tacca</span>
-                </div>
-                <div class="rating">
-                  <p class="text-right mb-0">
-                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                  </p>
-                </div>
-              </div>
-              <h3><a href="#">Bolsa Com Detalhes Metálicos</a></h3>
-              <div class="pricing">
-                <p class="price"><span>R$43.00</span></p>
-              </div>
-              <p class="bottom-area d-flex px-3">
-                <a href="#" class="add-to-cart text-center py-2 mr-1"><span>Carrinho <i class="ion-ios-add ml-1"></i></span></a>
-                <a href="#" class="buy-now text-center py-2">COMPRAR AGORA<span><i class="ion-ios-cart ml-1"></i></span></a>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-12 col-md-6 col-lg-3 ftco-animate d-flex">
-          <div class="product">
-            <a href="#" class="img-prod"><img class="img-fluid" src="assets/img/produto-04.png" alt="Colorlib Template">
-              <div class="overlay"></div>
-            </a>
-            <div class="text py-3 pb-4 px-3">
-              <div class="d-flex">
-                <div class="cat">
-                  <span>Lifestyle</span>
-                </div>
-                <div class="rating">
-                  <p class="text-right mb-0">
-                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                  </p>
-                </div>
-              </div>
-              <h3><a href="#">Letter Graphic Boné de beisebol</a></h3>
-              <div class="pricing">
-                <p class="price"><span>R$70.00</span></p>
-              </div>
-              <p class="bottom-area d-flex px-3">
-                <a href="#" class="add-to-cart text-center py-2 mr-1"><span>Carrinho <i class="ion-ios-add ml-1"></i></span></a>
-                <a href="#" class="buy-now text-center py-2">COMPRAR AGORA<span><i class="ion-ios-cart ml-1"></i></span></a>
-              </p>
-            </div>
-          </div>
-        </div>
+      
+      <?php
+                        require_once "controller/listarProdutosIndexController.php";
 
-        <div class="col-sm-12 col-md-6 col-lg-3 ftco-animate d-flex">
-          <div class="product d-flex flex-column">
-            <a href="#" class="img-prod"><img class="img-fluid" src="assets/img/produto-05.png" alt="Colorlib Template">
-              <div class="overlay"></div>
-            </a>
-            <div class="text py-3 pb-4 px-3">
-              <div class="d-flex">
-                <div class="cat">
-                  <span>Sandy</span>
-                </div>
-                <div class="rating">
-                  <p class="text-right mb-0">
-                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                  </p>
-                </div>
-              </div>
-              <h3><a href="#">Camiseta impressão da lua</a></h3>
-              <div class="pricing">
-                <p class="price"><span>R$35.00</span></p>
-              </div>
-              <p class="bottom-area d-flex px-3">
-                <a href="#" class="add-to-cart text-center py-2 mr-1"><span>Carrinho <i class="ion-ios-add ml-1"></i></span></a>
-                <a href="#" class="buy-now text-center py-2">COMPRAR AGORA<span><i class="ion-ios-cart ml-1"></i></span></a>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-12 col-md-6 col-lg-3 ftco-animate d-flex">
-          <div class="product d-flex flex-column">
-            <a href="#" class="img-prod"><img class="img-fluid" src="assets/img/produto-06.png" alt="Colorlib Template">
-              <span class="status">50% Off</span>
-              <div class="overlay"></div>
-            </a>
-            <div class="text py-3 pb-4 px-3">
-              <div class="d-flex">
-                <div class="cat">
-                  <span>Kid's Lamp</span>
-                </div>
-                <div class="rating">
-                  <p class="text-right mb-0">
-                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                  </p>
-                </div>
-              </div>
-              <h3><a href="#">Vestido Impressão de Bolinhas Renda</a></h3>
-              <div class="pricing">
-                <p class="price"><span class="mr-2 price-dc">R$80.00</span><span class="price-sale">R$40.00</span></p>
-              </div>
-              <p class="bottom-area d-flex px-3">
-                <a href="#" class="add-to-cart text-center py-2 mr-1"><span>Carrinho <i class="ion-ios-add ml-1"></i></span></a>
-                <a href="#" class="buy-now text-center py-2">COMPRAR AGORA<span><i class="ion-ios-cart ml-1"></i></span></a>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-12 col-md-6 col-lg-3 ftco-animate d-flex">
-          <div class="product">
-            <a href="#" class="img-prod"><img class="img-fluid" src="assets/img/produto-07.png" alt="Colorlib Template">
-              <div class="overlay"></div>
-            </a>
-            <div class="text py-3 pb-4 px-3">
-              <div class="d-flex">
-                <div class="cat">
-                  <span>SKULL'S GIRL</span>
-                </div>
-                <div class="rating">
-                  <p class="text-right mb-0">
-                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                    <a href="#"><span class="ion-ios-star-outline"></span></a>
-                  </p>
-                </div>
-              </div>
-              <h3><a href="#">Cropped estampa de caveira</a></h3>
-              <div class="pricing">
-                <p class="price"><span>R$15.00</span></p>
-              </div>
-              <p class="bottom-area d-flex px-3">
-                <a href="#" class="add-to-cart text-center py-2 mr-1"><span>Carrinho <i class="ion-ios-add ml-1"></i></span></a>
-                <a href="#" class="buy-now text-center py-2">COMPRAR AGORA<span><i class="ion-ios-cart ml-1"></i></span></a>
-              </p>
-            </div>
-          </div>
-        </div>
+
+                        foreach ($produtosDoUsuario as $product) {
+                        ?>
+                            <!-- inicio produto -->
+                            <div class="col-sm-12 col-md-12 col-lg-4 ftco-animate d-flex">
+                                <div class="product d-flex flex-column">
+                                    <a href="#" class="img-prod"><img class="img-fluid" src="assets/img/produtos/<?= $product['imagemProduto'] ?>" alt="Colorlib Template">
+                                        <div class="overlay"></div>
+                                    </a>
+                                    <div class="text py-3 pb-4 px-3">
+                                        <div class="d-flex">
+                                            <div class="cat">
+                                                <span><h6><?= $product['categoriaProduto'] ?></h6></span><br>
+                                                <h6>Vendedor: <?= $product['nomeUsuario']?></h6>
+                                            </div>
+                                            <div class="rating">
+                                                <p class="text-right mb-0">
+                                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
+                                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
+                                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
+                                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
+                                                    <a href="#"><span class="ion-ios-star-outline"></span></a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <h3><a href="#"><?= $product['nomeProduto'] ?></a></h3>
+                                        <div class="pricing">
+                                            <p class="price"><span>R$ <?= number_format($product['precoProduto'], 2) ?></span></p>
+                                        </div>
+                                        <p class="bottom-area d-flex px-3">
+                                            <a href="controller/adicionarAoCarrinhoController.php?product_id=<?= $product['idProduto'] ?>" class="add-to-cart text-center py-2 mr-1">
+                                                <span>Carrinho <i class="ion-ios-add ml-1"></i></span>
+                                            </a>
+                                            <i class="ion-ios-add ml-1"></i></span></a>
+                                            <a href="#" class="buy-now text-center py-2">Comprar Agora<span><i class="ion-ios-cart ml-1"></i></span></a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php
+
+                        }
+                        ?>
+                        <!-- Fim produto -->
+
+
+
+      
+      <!--   Produto    -->
+        
+
+      <!--
         <div class="col-sm-12 col-md-6 col-lg-3 ftco-animate d-flex">
           <div class="product">
             <a href="#" class="img-prod"><img class="img-fluid" src="assets/img/produto-08.png" alt="Colorlib Template">
@@ -557,6 +394,8 @@ $profileName = $isLoggedIn ? $_SESSION['user_profile_name'] : 'Login';
             </div>
           </div>
         </div>
+                      -->
+
       </div>
     </div>
   </section>

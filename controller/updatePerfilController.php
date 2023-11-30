@@ -19,11 +19,11 @@ include_once "../dao/updatePerfilDAO.php";
 // controller/UserController.php
 class UserController {
     private $userModel;
-    private $userDAO;
+
 
     public function __construct($conexao) {
         $this->userModel = new UserModel($conexao);
-        $this->userDAO = new UserDAO($conexao);
+
     }
 
     

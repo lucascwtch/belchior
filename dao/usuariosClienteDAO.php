@@ -37,5 +37,18 @@ public function getTodosOsClientes(){
     }
 }
 
+public function getClientesVendedor(){
+    $query = $this->conexao->prepare("SELECT idUsuario, nomeUsuario, cpfUsuario, apelidoUsuario, emailUsuario,telefoneUsuario, dataNascimentoUsuario FROM usuarios WHERE statusUsuario = 2");
+    $query->execute();
+
+    // Verifica se a consulta retornou alguma linha
+    if ($query->rowCount() > 0) {
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    } else {
+        return array(); // Retorna um array vazio se não houver resultados
+    }
+}
+ 
+
 
 }

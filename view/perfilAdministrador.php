@@ -69,32 +69,32 @@ $profileName = $isLoggedIn ? $_SESSION['user_profile_name'] : 'Login';
 
 
     <script>
-        let valoresAnteriores = {};
+    let valoresAnteriores = {};
 
-        function confirmarEnvio() {
-            var confirmacao = confirm("Tem certeza que deseja enviar este formulário?");
+    function confirmarEnvio() {
+        var confirmacao = confirm("Tem certeza que deseja enviar este formulário?");
 
-            if (confirmacao) {
-                return true; // Permite o envio do formulário
-            } else {
-                // Se o usuário clicou em "Cancelar", restaura os valores anteriores nos campos do formulário
-                document.getElementById('EdituserForm').reset(); // Limpa os campos
+        if (confirmacao) {
+            return true; // Permite o envio do formulário
+        } else {
+            // Se o usuário clicou em "Cancelar", restaura os valores anteriores nos campos do formulário
+            document.getElementById('EdituserForm').reset(); // Limpa os campos
 
-                for (let campo in valoresAnteriores) {
-                    document.getElementsByName(campo)[0].value = valoresAnteriores[campo];
-                }
-
-                return false; // Impede o envio do formulário
+            for (let campo in valoresAnteriores) {
+                document.getElementsByName(campo)[0].value = valoresAnteriores[campo];
             }
+
+            return false; // Impede o envio do formulário
         }
+    }
 
-        // Salva os valores atuais antes de enviar o formulário
-        document.getElementById('EdituserForm').addEventListener('submit', function(event) {
-            let inputs = this.getElementsByTagName('input');
-            for (let input of inputs) {
-                valoresAnteriores[input.name] = input.value;
-            }
-        });
+    // Salva os valores atuais antes de enviar o formulário
+    document.getElementById('EdituserForm').addEventListener('submit', function(event) {
+        let inputs = this.getElementsByTagName('input');
+        for (let input of inputs) {
+            valoresAnteriores[input.name] = input.value;
+        }
+    });
     </script>
 
 
@@ -109,7 +109,8 @@ $profileName = $isLoggedIn ? $_SESSION['user_profile_name'] : 'Login';
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container">
             <a class="navbar-brand mx-auto" href="#">Belchior</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -126,22 +127,26 @@ $profileName = $isLoggedIn ? $_SESSION['user_profile_name'] : 'Login';
                     </li>
                     <li class="nav-item <?php echo $isLoggedIn ? 'dropdown' : ''; ?>">
                         <?php if ($isLoggedIn) : ?>
-                            <div class="dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" id="profileDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fa-regular fa-user"></i><span></span>
-                                    <?php echo $profileName; ?>
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="profileDropdown">
-                                    <a href="carrinho.php" class="dropdown-item"><i class="fa-solid fa-cart-shopping"></i> Carrinho [0]</a>
-                                    <a href="<?php echo $profileLink;  ?>" class="dropdown-item"><i class="fa-solid fa-user"></i> Ver perfil</a>
-                                    <a href="../controller/logoutController.php" class="dropdown-item"><i class="fa-solid fa-power-off"></i> Logout</a>
-                                </div>
-                            </div>
-                        <?php else : ?>
-                            <a class="nav-link" href="<?php echo $profileLink; ?>">
+                        <div class="dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" id="profileDropdown"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa-regular fa-user"></i><span></span>
                                 <?php echo $profileName; ?>
                             </a>
+                            <div class="dropdown-menu" aria-labelledby="profileDropdown">
+                                <a href="carrinho.php" class="dropdown-item"><i class="fa-solid fa-cart-shopping"></i>
+                                    Carrinho [0]</a>
+                                <a href="<?php echo $profileLink;  ?>" class="dropdown-item"><i
+                                        class="fa-solid fa-user"></i> Ver perfil</a>
+                                <a href="../controller/logoutController.php" class="dropdown-item"><i
+                                        class="fa-solid fa-power-off"></i> Logout</a>
+                            </div>
+                        </div>
+                        <?php else : ?>
+                        <a class="nav-link" href="<?php echo $profileLink; ?>">
+                            <i class="fa-regular fa-user"></i><span></span>
+                            <?php echo $profileName; ?>
+                        </a>
                         <?php endif; ?>
                     </li>
                 </ul>
@@ -154,10 +159,14 @@ $profileName = $isLoggedIn ? $_SESSION['user_profile_name'] : 'Login';
         <!-- Account page navigation-->
         <div class="custom-nav">
             <a class="nav-link ms-0 d-inline" href="#profileSection" onclick="showProfile()">Perfil</a>
-            <a class="nav-link d-inline" href="#adicionarProdutoSection" onclick="showAddProduto()">Adicionar Produto</a>
-            <a class="nav-link d-inline" href="#todosProdutosSection" onclick="showTodosProdutos()">Produtos Adicionados</a>
-            <a class="nav-link d-inline" href="#solicitacoesSection" onclick="showSolicitacoes()">Solicitações de Lojas</a>
-            <a class="nav-link d-inline" href="#listarUsuariosSection" onclick="showListarUsuarios()">Lista de Usuários</a>
+            <a class="nav-link d-inline" href="#adicionarProdutoSection" onclick="showAddProduto()">Adicionar
+                Produto</a>
+            <a class="nav-link d-inline" href="#todosProdutosSection" onclick="showTodosProdutos()">Produtos
+                Adicionados</a>
+            <a class="nav-link d-inline" href="#solicitacoesSection" onclick="showSolicitacoes()">Solicitações de
+                Lojas</a>
+            <a class="nav-link d-inline" href="#listarUsuariosSection" onclick="showListarUsuarios()">Lista de
+                Usuários</a>
 
         </div>
 
@@ -171,12 +180,26 @@ $profileName = $isLoggedIn ? $_SESSION['user_profile_name'] : 'Login';
                     <div class="card mb-4 mb-xl-0">
                         <div class="card-header">Foto de Perfil</div>
                         <div class="card-body text-center">
-                            <!-- Profile picture image-->
-                            <img class="img-account-profile rounded-circle mb-2" src="../assets/img/perfil-user.png" alt="">
+                            <img class="img-account-profile rounded-circle mb-2" src="<?php echo "$profileImage";?>"
+                                alt="">
+
+
                             <!-- Profile picture help block-->
                             <div class="small font-italic text-muted mb-4">JPG ou PNG não pode ser maior que 5 MB</div>
                             <!-- Profile picture upload button-->
-                            <button class="btn btn-primary" type="button">Trocar de Imagem</button>
+                            <form method="POST" action="../controller/alterarImagemPerfilUsuarioController.php"
+                                enctype="multipart/form-data">
+                                <input type="hidden" name="inputId" id="inputId" value="<?php echo $profileID; ?>">
+                                <label for="imagePerfil"
+                                    style="cursor: pointer; text-decoration: underline; color: blue;">
+                                    Escolher imagem
+                                    <!-- Campo de upload de arquivo -->
+                                    <input type="file" id="imagePerfil" name="imagePerfil" style="display: none;"
+                                        accept="image/*">
+                                </label>
+                                <br>
+                                <button class="btn btn-primary" type="submit">Trocar de Imagem</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -185,43 +208,53 @@ $profileName = $isLoggedIn ? $_SESSION['user_profile_name'] : 'Login';
                     <div class="card mb-4">
                         <div class="card-header">Detalhes da Conta</div>
                         <div class="card-body">
-                            <form method="post" action="../controller/updatePerfilController.php" onsubmit="return confirmarEnvio()" id="EdituserForm">
+                            <form method="post" action="../controller/updatePerfilController.php"
+                                onsubmit="return confirmarEnvio()" id="EdituserForm">
                                 <!-- Form Group (username)-->
-                                <input type="hidden" name="inputId" id = "inputId" value="<?php echo $profileID; ?>">
+                                <input type="hidden" name="inputId" id="inputId" value="<?php echo $profileID; ?>">
 
                                 <div class="mb-3">
                                     <label class="small mb-1" for="inputFirstName">Nome</label>
-                                    <input class="form-control" id="inputFirstName" name="inputFirstName" type="text" placeholder="Digite seu primeiro nome" value="<?php echo $profileNome; ?>">
+                                    <input class="form-control" id="inputFirstName" name="inputFirstName" type="text"
+                                        placeholder="Digite seu primeiro nome" value="<?php echo $profileNome; ?>">
                                 </div>
                                 <!-- Form Row-->
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="inputUsername">Apelido</label>
-                                        <input class="form-control" id="inputUsername" name="inputUsername" type="text" placeholder="Digite seu apelido" value="<?php echo $profileApelido; ?>">
+                                        <input class="form-control" id="inputUsername" name="inputUsername" type="text"
+                                            placeholder="Digite seu apelido" value="<?php echo $profileApelido; ?>">
                                     </div>
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="inputUsername">Telefone</label>
-                                        <input class="form-control" id="inputPhone" name="inputPhone" type="tel" placeholder="Digite seu número de telefone" value="<?php echo $profileTelefone; ?>">
+                                        <input class="form-control" id="inputPhone" name="inputPhone" type="tel"
+                                            placeholder="Digite seu número de telefone"
+                                            value="<?php echo $profileTelefone; ?>">
                                     </div>
                                 </div>
 
                                 <!-- Form Group (email address)-->
                                 <div class="mb-3">
                                     <label class="small mb-1" for="inputEmailAddress">Endereço de E-mail</label>
-                                    <input class="form-control" id="inputEmailAddress" name="inputEmailAddress" type="email" placeholder="Digite seu endereço de e-mail" value="<?php echo $profileEmail; ?>">
+                                    <input class="form-control" id="inputEmailAddress" name="inputEmailAddress"
+                                        type="email" placeholder="Digite seu endereço de e-mail"
+                                        value="<?php echo $profileEmail; ?>">
                                 </div>
                                 <!-- Form Row-->
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (phone number)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="inputCPF">CPF</label>
-                                        <input class="form-control" id="inputCPF" name="inputCPF" type="text" placeholder="Digite seu CPF/CNPJ" value="<?php echo $profileCPF; ?>">
+                                        <input class="form-control" id="inputCPF" name="inputCPF" type="text"
+                                            placeholder="Digite seu CPF/CNPJ" value="<?php echo $profileCPF; ?>">
                                     </div>
                                     <!-- Form Group (birthday)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="inputBirthday">Data de Nascimento</label>
-                                        <input class="form-control" id="inputBirthday" name="inputBirthday" type="date" placeholder="Digite sua data de nascimento" value="<?php echo $profileDataNascimento; ?>">
+                                        <input class="form-control" id="inputBirthday" name="inputBirthday" type="date"
+                                            placeholder="Digite sua data de nascimento"
+                                            value="<?php echo $profileDataNascimento; ?>">
                                     </div>
                                 </div>
 
@@ -238,7 +271,8 @@ $profileName = $isLoggedIn ? $_SESSION['user_profile_name'] : 'Login';
             <div class="container mt-5">
                 <h2>Formulário de Adição de Produto</h2>
 
-                <form id="productForm" action="../controller/inserirProdutosByIController.php" method="post" enctype="multipart/form-data">
+                <form id="productForm" action="../controller/inserirProdutosByIController.php" method="post"
+                    enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="nomeProduto">Nome do Produto:</label>
                         <input type="text" id="nomeProduto" name="nomeProduto" class="form-control" required>
@@ -251,12 +285,14 @@ $profileName = $isLoggedIn ? $_SESSION['user_profile_name'] : 'Login';
 
                     <div class="form-group">
                         <label for="descricaoProduto">Descrição:</label>
-                        <textarea id="descricaoProduto" name="descricaoProduto" class="form-control" rows="4" required></textarea>
+                        <textarea id="descricaoProduto" name="descricaoProduto" class="form-control" rows="4"
+                            required></textarea>
                     </div>
 
                     <div class="form-group">
                         <label for="precoProduto">Preço:</label>
-                        <input type="number" id="precoProduto" name="precoProduto" class="form-control" step="0.01" required>
+                        <input type="number" id="precoProduto" name="precoProduto" class="form-control" step="0.01"
+                            required>
                     </div>
 
                     <div class="form-group">
@@ -271,7 +307,8 @@ $profileName = $isLoggedIn ? $_SESSION['user_profile_name'] : 'Login';
 
                     <div class="form-group">
                         <label for="imagemProduto">Foto do Produto:</label>
-                        <input type="file" id="imagemProduto" name="imagemProduto" class="form-control" accept="image/*">
+                        <input type="file" id="imagemProduto" name="imagemProduto" class="form-control"
+                            accept="image/*">
                     </div>
                     <br>
                     <button type="submit" class="btn btn-success">Adicionar Produto</button>
@@ -313,25 +350,26 @@ $profileName = $isLoggedIn ? $_SESSION['user_profile_name'] : 'Login';
 
                 foreach ($produtosDoUsuario as $product) {
                 ?>
-                    <div class="col-md-4 mb-4">
-                        <div class="card">
-                        <img src="../assets/img/produtos/<?= $product['imagemProduto'] ?>" class="card-img-top" alt="Imagem do Produto">
-                           <!-- <img src="../assets/img/product-1.png" class="card-img-top" alt="Imagem do Produto"> -->
-                            <div class="card-body">
-                                <h5 class="card-title"><?= $product['nomeProduto'] ?></h5>
-                                <p class="card-text"><?= $product['descricaoProduto'] ?></p>
-                             <!--<p class="card-text"><?= $product['idProduto'] ?></p>-->
-                                <p class="card-text">Preço: R$ <?= number_format($product['precoProduto'], 2) ?></p>
-                                <p class="card-text">Quantidade em Estoque: <?= $product['estoqueProduto'] ?></p>
-                                <p class="card-text">Tamanho: <?= $product['tamanhoProduto'] ?></p>
-                                <!-- Adicione mais informações conforme necessário -->
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="../assets/img/produtos/<?= $product['imagemProduto'] ?>" class="card-img-top"
+                            alt="Imagem do Produto">
+                        <!-- <img src="../assets/img/product-1.png" class="card-img-top" alt="Imagem do Produto"> -->
+                        <div class="card-body">
+                            <h5 class="card-title"><?= $product['nomeProduto'] ?></h5>
+                            <p class="card-text"><?= $product['descricaoProduto'] ?></p>
+                            <!--<p class="card-text"><?= $product['idProduto'] ?></p>-->
+                            <p class="card-text">Preço: R$ <?= number_format($product['precoProduto'], 2) ?></p>
+                            <p class="card-text">Quantidade em Estoque: <?= $product['estoqueProduto'] ?></p>
+                            <p class="card-text">Tamanho: <?= $product['tamanhoProduto'] ?></p>
+                            <!-- Adicione mais informações conforme necessário -->
 
-                                <!-- Botões para editar e excluir -->
-                                <button class="btn btn-primary">Editar</button>
-                                <button class="btn btn-danger">Excluir</button>
-                            </div>
+                            <!-- Botões para editar e excluir -->
+                            <button class="btn btn-primary">Editar</button>
+                            <button class="btn btn-danger">Excluir</button>
                         </div>
                     </div>
+                </div>
                 <?php
                 }
                 ?>
@@ -383,7 +421,8 @@ $profileName = $isLoggedIn ? $_SESSION['user_profile_name'] : 'Login';
                 </table>
             </div>
             <!-- Modal para Detalhes do Usuário -->
-            <div class="modal fade" id="detalhesUsuarioModal" tabindex="-1" role="dialog" aria-labelledby="detalhesUsuarioModalLabel" aria-hidden="true">
+            <div class="modal fade" id="detalhesUsuarioModal" tabindex="-1" role="dialog"
+                aria-labelledby="detalhesUsuarioModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -454,11 +493,14 @@ $profileName = $isLoggedIn ? $_SESSION['user_profile_name'] : 'Login';
                         <h2 class="ftco-heading-2">Dúvidas?</h2>
                         <div class="block-23 mb-3">
                             <ul>
-                                <li style="color: #fff"><span class="icon icon-map-marker"> </span><span class="text">Rua Carlos De
+                                <li style="color: #fff"><span class="icon icon-map-marker"> </span><span
+                                        class="text">Rua Carlos De
                                         Carvalho, 200</span>
                                 </li>
-                                <li><a href="#"><span class="icon icon-phone"> </span><span class="text">+2 392 3929 210</span></a></li>
-                                <li><a href="#"><span class="icon icon-envelope"> </span><span class="text">contato@belchior.com</span></a>
+                                <li><a href="#"><span class="icon icon-phone"> </span><span class="text">+2 392 3929
+                                            210</span></a></li>
+                                <li><a href="#"><span class="icon icon-envelope"> </span><span
+                                            class="text">contato@belchior.com</span></a>
                                 </li>
                             </ul>
                         </div>
@@ -470,8 +512,9 @@ $profileName = $isLoggedIn ? $_SESSION['user_profile_name'] : 'Login';
                     <p>
                         Copyright &copy;
                         <script>
-                            document.write(new Date().getFullYear());
-                        </script> All rights reserved <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="#" target="_blank">Belchior</a>
+                        document.write(new Date().getFullYear());
+                        </script> All rights reserved <i class="icon-heart color-danger" aria-hidden="true"></i> by <a
+                            href="#" target="_blank">Belchior</a>
                     </p>
                 </div>
             </div>
@@ -481,204 +524,205 @@ $profileName = $isLoggedIn ? $_SESSION['user_profile_name'] : 'Login';
     <!-- loader -->
     <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
             <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
-            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" />
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+                stroke="#F96D00" />
         </svg></div>
 </body>
 
 
 <script>
-    // Function to show the Profile section
-    function showProfile() {
-        document.getElementById("profileSection").classList.remove("hidden");
-        document.getElementById("adicionarProdutoSection").classList.add("hidden");
-        document.getElementById("todosProdutosSection").classList.add("hidden");
-        document.getElementById("solicitacoesSection").classList.add("hidden");
-        document.getElementById("listarUsuariosSection").classList.add("hidden");
+// Function to show the Profile section
+function showProfile() {
+    document.getElementById("profileSection").classList.remove("hidden");
+    document.getElementById("adicionarProdutoSection").classList.add("hidden");
+    document.getElementById("todosProdutosSection").classList.add("hidden");
+    document.getElementById("solicitacoesSection").classList.add("hidden");
+    document.getElementById("listarUsuariosSection").classList.add("hidden");
 
-    }
+}
 
-    // Function to show the Adicionar Produto section
-    function showAddProduto() {
-        document.getElementById("profileSection").classList.add("hidden");
-        document.getElementById("adicionarProdutoSection").classList.remove("hidden");
-        document.getElementById("todosProdutosSection").classList.add("hidden");
-        document.getElementById("solicitacoesSection").classList.add("hidden");
-        document.getElementById("listarUsuariosSection").classList.add("hidden");
-    }
+// Function to show the Adicionar Produto section
+function showAddProduto() {
+    document.getElementById("profileSection").classList.add("hidden");
+    document.getElementById("adicionarProdutoSection").classList.remove("hidden");
+    document.getElementById("todosProdutosSection").classList.add("hidden");
+    document.getElementById("solicitacoesSection").classList.add("hidden");
+    document.getElementById("listarUsuariosSection").classList.add("hidden");
+}
 
-    // Function to show the Todos Produtos section
-    function showTodosProdutos() {
-        document.getElementById("profileSection").classList.add("hidden");
-        document.getElementById("adicionarProdutoSection").classList.add("hidden");
-        document.getElementById("todosProdutosSection").classList.remove("hidden");
-        document.getElementById("solicitacoesSection").classList.add("hidden");
-        document.getElementById("listarUsuariosSection").classList.add("hidden");
-    }
+// Function to show the Todos Produtos section
+function showTodosProdutos() {
+    document.getElementById("profileSection").classList.add("hidden");
+    document.getElementById("adicionarProdutoSection").classList.add("hidden");
+    document.getElementById("todosProdutosSection").classList.remove("hidden");
+    document.getElementById("solicitacoesSection").classList.add("hidden");
+    document.getElementById("listarUsuariosSection").classList.add("hidden");
+}
 
-    // Function to show the Solicitacoes section
-    function showSolicitacoes() {
-        document.getElementById("listarUsuariosSection").classList.add("hidden");
-        document.getElementById("profileSection").classList.add("hidden");
-        document.getElementById("adicionarProdutoSection").classList.add("hidden");
-        document.getElementById("todosProdutosSection").classList.add("hidden");
-        document.getElementById("solicitacoesSection").classList.remove("hidden");
-        document.getElementById("listarUsuariosSection").classList.add("hidden");
-    }
+// Function to show the Solicitacoes section
+function showSolicitacoes() {
+    document.getElementById("listarUsuariosSection").classList.add("hidden");
+    document.getElementById("profileSection").classList.add("hidden");
+    document.getElementById("adicionarProdutoSection").classList.add("hidden");
+    document.getElementById("todosProdutosSection").classList.add("hidden");
+    document.getElementById("solicitacoesSection").classList.remove("hidden");
+    document.getElementById("listarUsuariosSection").classList.add("hidden");
+}
 
-    function showListarUsuarios() {
-        document.getElementById("listarUsuariosSection").classList.add("hidden");
-        document.getElementById("profileSection").classList.add("hidden");
-        document.getElementById("adicionarProdutoSection").classList.add("hidden");
-        document.getElementById("todosProdutosSection").classList.add("hidden");
-        document.getElementById("solicitacoesSection").classList.add("hidden");
-        document.getElementById("listarUsuariosSection").classList.remove("hidden");
-    }
+function showListarUsuarios() {
+    document.getElementById("listarUsuariosSection").classList.add("hidden");
+    document.getElementById("profileSection").classList.add("hidden");
+    document.getElementById("adicionarProdutoSection").classList.add("hidden");
+    document.getElementById("todosProdutosSection").classList.add("hidden");
+    document.getElementById("solicitacoesSection").classList.add("hidden");
+    document.getElementById("listarUsuariosSection").classList.remove("hidden");
+}
 </script>
 
 <!-- Script de gerenciamento de solicitações -->
 <script>
-    // Simule as solicitações recebidas do banco de dados
-    var solicitacoes = <?php require_once "../controller/listarSolicitacoesController.php"; ?>;
+// Simule as solicitações recebidas do banco de dados
+var solicitacoes = <?php require_once "../controller/listarSolicitacoesController.php"; ?>;
 
-    document.addEventListener('DOMContentLoaded', function() {
-        var solicitacoesTableBody = document.getElementById('solicitacoesTableBody');
+document.addEventListener('DOMContentLoaded', function() {
+    var solicitacoesTableBody = document.getElementById('solicitacoesTableBody');
 
-        // Adiciona dinamicamente as linhas da tabela com base nas solicitações
-        solicitacoes.forEach(function(solicitacao) {
-            var row = solicitacoesTableBody.insertRow();
-            row.insertCell(0).innerHTML = solicitacao.nomeUsuarioCliente;
-            row.insertCell(1).innerHTML = solicitacao.cpfUsuarioCliente;
-            row.insertCell(2).innerHTML = solicitacao.emailUsuarioCliente;
-            row.insertCell(3).innerHTML = solicitacao.telefoneUsuarioCliente;
-            row.insertCell(4).innerHTML = solicitacao.mensagemUsuarioCliente;
+    // Adiciona dinamicamente as linhas da tabela com base nas solicitações
+    solicitacoes.forEach(function(solicitacao) {
+        var row = solicitacoesTableBody.insertRow();
+        row.insertCell(0).innerHTML = solicitacao.nomeUsuarioCliente;
+        row.insertCell(1).innerHTML = solicitacao.cpfUsuarioCliente;
+        row.insertCell(2).innerHTML = solicitacao.emailUsuarioCliente;
+        row.insertCell(3).innerHTML = solicitacao.telefoneUsuarioCliente;
+        row.insertCell(4).innerHTML = solicitacao.mensagemUsuarioCliente;
 
-            // Adiciona botões de "Aceitar" e "Recusar"
-            var cellOpcoes = row.insertCell(5);
-            var btnAceitar = criarBotao('Aceitar', function() {
-                aceitarSolicitacao(solicitacao.fkIdUsuario);
-            });
-            cellOpcoes.appendChild(btnAceitar);
-
-            var btnRecusar = criarBotao('Recusar', function() {
-                recusarSolicitacao(solicitacao.fkIdUsuario);
-            });
-            cellOpcoes.appendChild(btnRecusar);
+        // Adiciona botões de "Aceitar" e "Recusar"
+        var cellOpcoes = row.insertCell(5);
+        var btnAceitar = criarBotao('Aceitar', function() {
+            aceitarSolicitacao(solicitacao.fkIdUsuario);
         });
+        cellOpcoes.appendChild(btnAceitar);
+
+        var btnRecusar = criarBotao('Recusar', function() {
+            recusarSolicitacao(solicitacao.fkIdUsuario);
+        });
+        cellOpcoes.appendChild(btnRecusar);
     });
+});
 
-    function aceitarSolicitacao(id) {
-        // Simule a lógica de aceitar a solicitação
-        console.log('Solicitação aceita com ID:', id);
-        //popup de confirmação
-        var confirmacao = confirm("Tem certeza que deseja aceitar a solicitação?");
-        if (confirmacao) {
-            // Criar um objeto FormData com o parâmetro 'id'
-            const formData = new FormData();
-            formData.append('idUsuario', id);
-
-            // Fazer a solicitação POST usando fetch
-            fetch('../controller/alterarStatusUserController.php', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Erro na solicitação.');
-                    }
-                    return response.text();
-                })
-                .then(data => {
-                    alert('Solicitação Aceita!')
-                    window.onload(solicitacoesTableBody);
-                    console.log('Resposta do servidor:', data);
-                })
-                .catch(error => {
-                    console.error('Erro:', error);
-                });
-        } else {
-
-        }
-    }
-
-
-    function recusarSolicitacao(id) {
-        // Simule a lógica de recusar a solicitação
-        console.log('Solicitação recusada com ID:', id);
-
+function aceitarSolicitacao(id) {
+    // Simule a lógica de aceitar a solicitação
+    console.log('Solicitação aceita com ID:', id);
+    //popup de confirmação
+    var confirmacao = confirm("Tem certeza que deseja aceitar a solicitação?");
+    if (confirmacao) {
         // Criar um objeto FormData com o parâmetro 'id'
-        var confirmacao = confirm("Tem certeza que deseja recusar a solicitação?");
-        if (confirmacao) {
+        const formData = new FormData();
+        formData.append('idUsuario', id);
 
-            const formData = new FormData();
-            formData.append('idUsuario', id);
+        // Fazer a solicitação POST usando fetch
+        fetch('../controller/alterarStatusUserController.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro na solicitação.');
+                }
+                return response.text();
+            })
+            .then(data => {
+                alert('Solicitação Aceita!')
+                window.onload(solicitacoesTableBody);
+                console.log('Resposta do servidor:', data);
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+            });
+    } else {
 
-            // Fazer a solicitação POST usando fetch
-            fetch('../controller/deleteSolicitacaoAfiliarController.php', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Erro na solicitação.');
-                    }
-                    return response.text();
-                })
-                .then(data => {
-                    alert('Solicitação recusada!')
-                    console.log('Resposta do servidor:', data);
-                })
-                .catch(error => {
-                    console.error('Erro:', error);
-                });
-        } else {
-
-        }
     }
+}
 
-    // Função auxiliar para criar botões
-    function criarBotao(texto, onClick) {
-        var btn = document.createElement('button');
-        btn.innerHTML = texto;
-        btn.classList.add('btn', 'btn-primary', 'me-1');
-        btn.addEventListener('click', onClick);
-        return btn;
+
+function recusarSolicitacao(id) {
+    // Simule a lógica de recusar a solicitação
+    console.log('Solicitação recusada com ID:', id);
+
+    // Criar um objeto FormData com o parâmetro 'id'
+    var confirmacao = confirm("Tem certeza que deseja recusar a solicitação?");
+    if (confirmacao) {
+
+        const formData = new FormData();
+        formData.append('idUsuario', id);
+
+        // Fazer a solicitação POST usando fetch
+        fetch('../controller/deleteSolicitacaoAfiliarController.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro na solicitação.');
+                }
+                return response.text();
+            })
+            .then(data => {
+                alert('Solicitação recusada!')
+                console.log('Resposta do servidor:', data);
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+            });
+    } else {
+
     }
+}
+
+// Função auxiliar para criar botões
+function criarBotao(texto, onClick) {
+    var btn = document.createElement('button');
+    btn.innerHTML = texto;
+    btn.classList.add('btn', 'btn-primary', 'me-1');
+    btn.addEventListener('click', onClick);
+    return btn;
+}
 </script>
 
 <!-- Script  usuários -->
 <script>
-    var usuarios = <?php include_once "../controller/usuarioClienteController.php"; ?>;
+var usuarios = <?php include_once "../controller/usuarioClienteController.php"; ?>;
 
-    document.addEventListener('DOMContentLoaded', function() {
-        var usuariosTableBody = document.getElementById('usuariosTableBody');
+document.addEventListener('DOMContentLoaded', function() {
+    var usuariosTableBody = document.getElementById('usuariosTableBody');
 
-        // Adiciona dinamicamente as linhas da tabela com base nos usuários
-        usuarios.forEach(function(usuario) {
-            var row = usuariosTableBody.insertRow();
-            row.insertCell(0).innerHTML = usuario.nomeUsuario;
-            row.insertCell(1).innerHTML = usuario.apelidoUsuario;
-            row.insertCell(2).innerHTML = usuario.telefoneUsuario;
-            row.insertCell(3).innerHTML = usuario.emailUsuario;
-            row.insertCell(4).innerHTML = usuario.cpfUsuario;
-            row.insertCell(5).innerHTML = usuario.dataNascimentoUsuario;
+    // Adiciona dinamicamente as linhas da tabela com base nos usuários
+    usuarios.forEach(function(usuario) {
+        var row = usuariosTableBody.insertRow();
+        row.insertCell(0).innerHTML = usuario.nomeUsuario;
+        row.insertCell(1).innerHTML = usuario.apelidoUsuario;
+        row.insertCell(2).innerHTML = usuario.telefoneUsuario;
+        row.insertCell(3).innerHTML = usuario.emailUsuario;
+        row.insertCell(4).innerHTML = usuario.cpfUsuario;
+        row.insertCell(5).innerHTML = usuario.dataNascimentoUsuario;
 
-            // Adiciona botão de "Detalhes" com atributo data-toggle para abrir o modal
-            var cellDetalhes = row.insertCell(6);
-            var btnDetalhes = document.createElement('button');
-            btnDetalhes.innerHTML = 'Detalhes';
-            btnDetalhes.setAttribute('data-toggle', 'modal');
-            btnDetalhes.setAttribute('data-target', '#detalhesUsuarioModal');
-            btnDetalhes.addEventListener('click', function() {
-                mostrarDetalhesUsuario(usuario);
-            });
-            cellDetalhes.appendChild(btnDetalhes);
+        // Adiciona botão de "Detalhes" com atributo data-toggle para abrir o modal
+        var cellDetalhes = row.insertCell(6);
+        var btnDetalhes = document.createElement('button');
+        btnDetalhes.innerHTML = 'Detalhes';
+        btnDetalhes.setAttribute('data-toggle', 'modal');
+        btnDetalhes.setAttribute('data-target', '#detalhesUsuarioModal');
+        btnDetalhes.addEventListener('click', function() {
+            mostrarDetalhesUsuario(usuario);
         });
+        cellDetalhes.appendChild(btnDetalhes);
     });
+});
 
-    function mostrarDetalhesUsuario(usuario) {
-        // Exibe as informações do usuário no modal
-        var detalhesUsuarioModalBody = document.getElementById('detalhesUsuarioModalBody');
-        detalhesUsuarioModalBody.innerHTML = `
+function mostrarDetalhesUsuario(usuario) {
+    // Exibe as informações do usuário no modal
+    var detalhesUsuarioModalBody = document.getElementById('detalhesUsuarioModalBody');
+    detalhesUsuarioModalBody.innerHTML = `
             <form method="POST" id="editarUsuarioForm">
                 <input type="Hidden" id= "Id" name="inputId"value ="${usuario.idUsuario}">
                 <p><strong>Nome:</strong> </p>
@@ -695,100 +739,100 @@ $profileName = $isLoggedIn ? $_SESSION['user_profile_name'] : 'Login';
                 <input type="Date" id= "Birthday" name="inputBirthday"value ="${usuario.dataNascimentoUsuario}">
             </form>
         `;
-    }
+}
 
-    function editarUsuario() {
+function editarUsuario() {
 
-        var confirmacao = confirm("Tem Certeza Que deseja Editar esses Dados");
+    var confirmacao = confirm("Tem Certeza Que deseja Editar esses Dados");
 
-        if (confirmacao) {
-
-
-            // Obtém os valores dos campos do formulário
-            var idUsuario = document.getElementById('Id').value;
-            var nomeUsuario = document.getElementById('Name').value;
-            var apelidoUsuario = document.getElementById('Username').value;
-            var telefoneUsuario = document.getElementById('Phone').value;
-            var emailUsuario = document.getElementById('EmailAddress').value;
-            var cpfUsuario = document.getElementById('CPF').value;
-            var dataNascimentoUsuario = document.getElementById('Birthday').value;
+    if (confirmacao) {
 
 
-            // Cria um objeto FormData com os dados do usuário
-            var formData = new FormData();
-            formData.append('inputId', idUsuario);
-            formData.append('inputFirstName', nomeUsuario);
-            formData.append('inputUsername', apelidoUsuario);
-            formData.append('inputPhone', telefoneUsuario);
-            formData.append('inputEmailAddres', emailUsuario);
-            formData.append('inputCPF', cpfUsuario);
-            formData.append('inputBirthday', dataNascimentoUsuario);
+        // Obtém os valores dos campos do formulário
+        var idUsuario = document.getElementById('Id').value;
+        var nomeUsuario = document.getElementById('Name').value;
+        var apelidoUsuario = document.getElementById('Username').value;
+        var telefoneUsuario = document.getElementById('Phone').value;
+        var emailUsuario = document.getElementById('EmailAddress').value;
+        var cpfUsuario = document.getElementById('CPF').value;
+        var dataNascimentoUsuario = document.getElementById('Birthday').value;
 
-            // Fazer a solicitação POST usando fetch
-            fetch('../controller/updatePerfilAdmController.php', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Erro na solicitação.');
-                    }
-                    return response.text();
-                })
-                .then(data => {
-                    // Lógica para lidar com a resposta do servidor, se necessário
-                    alert('Usuário editado com sucesso!');
-                    location.reload();
-                    console.log('Resposta do servidor:', data);
-                    // Redireciona para a página de perfilAdministrador.php
-                    //     window.location.href = '../view/perfilAdministrador.php';
-                })
-                .catch(error => {
-                    // Lógica para lidar com erros
-                    console.error('Erro:', error);
-                });
-        } else {
 
-        }
-    }
+        // Cria um objeto FormData com os dados do usuário
+        var formData = new FormData();
+        formData.append('inputId', idUsuario);
+        formData.append('inputFirstName', nomeUsuario);
+        formData.append('inputUsername', apelidoUsuario);
+        formData.append('inputPhone', telefoneUsuario);
+        formData.append('inputEmailAddres', emailUsuario);
+        formData.append('inputCPF', cpfUsuario);
+        formData.append('inputBirthday', dataNascimentoUsuario);
 
-    function apagarUsuario() {
-        // Lógica para apagar o usuário (pode ser implementada posteriormente)
-        alert('Implemente a lógica de exclusão aqui.');
-        // Simule a lógica de recusar a solicitação
-        console.log('Solicitação recusada com ID:', id);
-
-        // Criar um objeto FormData com o parâmetro 'id'
-        var confirmacao = confirm("Tem certeza que deseja recusar a solicitação?");
-        if (confirmacao) {
-
-            const formData = new FormData();
-            formData.append('idUsuario', idUsuario);
-
-            // Fazer a solicitação POST usando fetch
-            fetch('../controller/deleteSolicitacaoAfiliarController.php', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Erro na solicitação.');
-                    }
-                    return response.text();
-                })
-                .then(data => {
-                    alert('Solicitação recusada!')
-                    console.log('Resposta do servidor:', data);
-                })
-                .catch(error => {
-                    console.error('Erro:', error);
-                });
-        } else {
-
-        }
-
+        // Fazer a solicitação POST usando fetch
+        fetch('../controller/updatePerfilAdmController.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro na solicitação.');
+                }
+                return response.text();
+            })
+            .then(data => {
+                // Lógica para lidar com a resposta do servidor, se necessário
+                alert('Usuário editado com sucesso!');
+                location.reload();
+                console.log('Resposta do servidor:', data);
+                // Redireciona para a página de perfilAdministrador.php
+                //     window.location.href = '../view/perfilAdministrador.php';
+            })
+            .catch(error => {
+                // Lógica para lidar com erros
+                console.error('Erro:', error);
+            });
+    } else {
 
     }
+}
+
+function apagarUsuario() {
+    // Lógica para apagar o usuário (pode ser implementada posteriormente)
+    alert('Implemente a lógica de exclusão aqui.');
+    // Simule a lógica de recusar a solicitação
+    console.log('Solicitação recusada com ID:', id);
+
+    // Criar um objeto FormData com o parâmetro 'id'
+    var confirmacao = confirm("Tem certeza que deseja recusar a solicitação?");
+    if (confirmacao) {
+
+        const formData = new FormData();
+        formData.append('idUsuario', idUsuario);
+
+        // Fazer a solicitação POST usando fetch
+        fetch('../controller/deleteSolicitacaoAfiliarController.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro na solicitação.');
+                }
+                return response.text();
+            })
+            .then(data => {
+                alert('Solicitação recusada!')
+                console.log('Resposta do servidor:', data);
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+            });
+    } else {
+
+    }
+
+
+}
 </script>
 
 

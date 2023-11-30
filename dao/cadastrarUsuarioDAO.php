@@ -22,13 +22,17 @@ class RegistroDAO {
             // A senha foi confirmada e o email não existe, então prossiga com a inserção no banco de dados
             $senhaHash = password_hash($dadosPost['password'], PASSWORD_DEFAULT);
 
-            $inserirQuery = "INSERT INTO usuarios (nomeUsuario,  emailUsuario, cpfUsuario, dataNascimentoUsuario, senhaUsuario) VALUES (:nome, :email, :cpf, :dataNascimento, :senha)";
+            // Adicione o caminho padrão para a imagem do perfil
+            $CaminhoImagemPerfil = "../assets/img/PERFIL/perfil-user.png";
+
+            $inserirQuery = "INSERT INTO usuarios (nomeUsuario,  emailUsuario, cpfUsuario, dataNascimentoUsuario, senhaUsuario, perfilImageUsuario) VALUES (:nome, :email, :cpf, :dataNascimento, :senha, :perfilImage)";
             $inserirInstrucao = $this->db->prepare($inserirQuery);
             $inserirInstrucao->bindParam(':nome', $dadosPost['nomeUsuario'], PDO::PARAM_STR);
             $inserirInstrucao->bindParam(':email', $dadosPost['emailUsuario'], PDO::PARAM_STR);
             $inserirInstrucao->bindParam(':cpf', $dadosPost['cpfUsuario'], PDO::PARAM_INT);
             $inserirInstrucao->bindParam(':dataNascimento', $dadosPost['dataNascimentoUsuario'], PDO::PARAM_STR);
             $inserirInstrucao->bindParam(':senha', $senhaHash, PDO::PARAM_STR);
+            $inserirInstrucao->bindParam(':perfilImage', $CaminhoImagemPerfil, PDO::PARAM_STR);
 
             $inserirInstrucao->execute();
 

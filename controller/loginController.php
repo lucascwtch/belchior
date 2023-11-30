@@ -62,6 +62,7 @@
             $_SESSION['user_cpf'] = $user['cpfUsuario'];
             $_SESSION['user_data_nascimento'] = $user['dataNascimentoUsuario'];
             $_SESSION['user_adm'] = $user['statusUsuario'];
+            $_SESSION['user_perfil_imagem'] = $user['perfilImageUsuario'];
 
             // ... outras variáveis de sessão
 

@@ -25,7 +25,8 @@ class UserProfileController {
                 $_SESSION['user_cpf'],
                 $_SESSION['user_data_nascimento'],
                 $_SESSION['user_telefone'],
-                $_SESSION['user_adm']
+                $_SESSION['user_adm'],
+                $_SESSION['user_perfil_imagem']
             );
         }
 
@@ -51,4 +52,4 @@ $profileDataNascimento = $userProfileModel -> getProfileDataNascimento();
 $profileID = $userProfileModel -> getProfileId();
 $profileTelefone = $userProfileModel -> getProfileTelefone();
 $profileAdm = $userProfileModel -> getProfileAdm();
-
+$profileImage = $userProfileModel -> getProfileImage();

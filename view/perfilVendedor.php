@@ -168,11 +168,28 @@ $profileName = $isLoggedIn ? $_SESSION['user_profile_name'] : 'Login';
                         <div class="card-header">Foto da Loja</div>
                         <div class="card-body text-center">
                             <!-- Profile picture image-->
-                            <img class="img-account-profile rounded-circle mb-2" src="../assets/img/perfil-user.png" alt="">
+                            <img class="img-account-profile rounded-circle mb-2" src="<?php echo "$profileImage";?>"
+                            
+                         
+                                alt="">
+
+                                
                             <!-- Profile picture help block-->
                             <div class="small font-italic text-muted mb-4">JPG ou PNG não pode ser maior que 5 MB</div>
                             <!-- Profile picture upload button-->
-                            <button class="btn btn-primary" type="button">Trocar de Imagem</button>
+                            <form method="POST" action="../controller/alterarImagemPerfilUsuarioController.php"
+                                enctype="multipart/form-data">
+                                <input type="hidden" name="inputId" id="inputId" value="<?php echo $profileID; ?>">
+                                <label for="imagePerfil"
+                                    style="cursor: pointer; text-decoration: underline; color: blue;">
+                                    Escolher imagem
+                                    <!-- Campo de upload de arquivo -->
+                                    <input type="file" id="imagePerfil" name="imagePerfil" style="display: none;"
+                                        accept="image/*">
+                                </label>
+                                <br>
+                                <button class="btn btn-primary" type="submit">Trocar de Imagem</button>
+                            </form>
                         </div>
                     </div>
                 </div>

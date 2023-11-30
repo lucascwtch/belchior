@@ -7,12 +7,8 @@ Class UsuarioClienteModel{
 
     public function __construct($conexao){
 
-        $this->dao = new UsuarioClienteDAO($conexao);
+        $this->dao = new UsuarioVendedorDAO($conexao);
 
-    }
-
-    public function getClienteByStats(){
-        return $this->dao->getClientes();
     }
 
     public function getClienteVendedor(){
