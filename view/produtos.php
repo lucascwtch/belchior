@@ -76,7 +76,9 @@ include_once('navbar.php');
                                 <div class="text py-3 pb-4 px-3">
                                     <div class="d-flex">
                                         <div class="cat">
-                                            <span><?= $product['categoriaProduto'] ?></span>
+                                            <span><?= $product['categoriaProduto'] ?></span><br>
+                                            <span>Vendedor: <?= $product['nomeUsuario'] ?></span>
+
                                         </div>
                                         <div class="rating">
                                             <p class="text-right mb-0">
@@ -93,8 +95,9 @@ include_once('navbar.php');
                                         <p class="price"><span>R$ <?= number_format($product['precoProduto'], 2) ?></span></p>
                                     </div>
                                     <p class="bottom-area d-flex px-3">
-                                        <a href="#" class="add-to-cart text-center py-2 mr-1"><span>Add to cart <i
-                                                    class="ion-ios-add ml-1"></i></span></a>
+                                        <form class="form-horizontal" metho="post" action="#" >
+                                        <button type="submit" class="add-to-cart text-center py-2 mr-1"><span>Add to cart <i
+                                                    class="ion-ios-add ml-1"></i></span></a></button>
                                         <a href="#" class="buy-now text-center py-2">Buy now<span><i
                                                     class="ion-ios-cart ml-1"></i></span></a>
                                     </p>

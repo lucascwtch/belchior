@@ -716,7 +716,7 @@ $profileName = $isLoggedIn ? $_SESSION['user_profile_name'] : 'Login';
                         <div class="card">
                              <img src="../assets/img/produtos/<?= $product['imagemProduto'] ?>" class="card-img-top" alt="Imagem do Produto">
                             <!--<img src="../assets/img/product-1.png" class="card-img-top" alt="Imagem do Produto"> -->
-                            <div class="card-body">
+                           < <div class="card-body">
                                 <h5 class="card-title"><?= $product['nomeProduto'] ?></h5>
                                 <p class="card-text"><?= $product['descricaoProduto'] ?></p>
                              <!--<p class="card-text"><?= $product['idProduto'] ?></p>-->

@@ -238,7 +238,7 @@ $profileName = $isLoggedIn ? $_SESSION['user_profile_name'] : 'Login';
             <div class="container mt-5">
                 <h2>Formulário de Adição de Produto</h2>
 
-                <form id="productForm" action="../controller/inserirProdutoController.php" method="post" enctype="multipart/form-data">
+                <form id="productForm" action="../controller/inserirProdutosByIController.php" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="nomeProduto">Nome do Produto:</label>
                         <input type="text" id="nomeProduto" name="nomeProduto" class="form-control" required>
@@ -306,24 +306,24 @@ $profileName = $isLoggedIn ? $_SESSION['user_profile_name'] : 'Login';
                 <!-- Este exemplo usa um loop simples para iterar sobre os produtos -->
                 <!-- Você pode usar um loop dinâmico baseado nos dados do seu backend -->
                 <?php
-                $arrayProducts = [
-                    ['nome' => 'Produto 1', 'descricao' => 'Descrição do Produto 1', 'preco' => 19.99, 'quantidade' => 10, 'tamanho' => 'XL'],
-                    ['nome' => 'Produto 2', 'descricao' => 'Descrição do Produto 2', 'preco' => 29.99, 'quantidade' => 5, 'tamanho' => 'L'],
-                    // Adicione mais produtos conforme necessário
-                ];
+                    require_once "../controller/listarProdutosGeralClienteController.php";
 
-                foreach ($arrayProducts as $product) {
+                    // Adicione mais produtos conforme necessário
+                
+
+                foreach ($produtosDoUsuario as $product) {
                 ?>
                     <div class="col-md-4 mb-4">
                         <div class="card">
-                            <!-- <img src="<?= $product['imagem'] ?>" class="card-img-top" alt="Imagem do Produto"> -->
-                            <img src="../assets/img/product-1.png" class="card-img-top" alt="Imagem do Produto">
+                        <img src="../assets/img/produtos/<?= $product['imagemProduto'] ?>" class="card-img-top" alt="Imagem do Produto">
+                           <!-- <img src="../assets/img/product-1.png" class="card-img-top" alt="Imagem do Produto"> -->
                             <div class="card-body">
-                                <h5 class="card-title"><?= $product['nome'] ?></h5>
-                                <p class="card-text"><?= $product['descricao'] ?></p>
-                                <p class="card-text">Preço: R$ <?= number_format($product['preco'], 2) ?></p>
-                                <p class="card-text">Quantidade em Estoque: <?= $product['quantidade'] ?></p>
-                                <p class="card-text">Tamanho: <?= $product['tamanho'] ?></p>
+                                <h5 class="card-title"><?= $product['nomeProduto'] ?></h5>
+                                <p class="card-text"><?= $product['descricaoProduto'] ?></p>
+                             <!--<p class="card-text"><?= $product['idProduto'] ?></p>-->
+                                <p class="card-text">Preço: R$ <?= number_format($product['precoProduto'], 2) ?></p>
+                                <p class="card-text">Quantidade em Estoque: <?= $product['estoqueProduto'] ?></p>
+                                <p class="card-text">Tamanho: <?= $product['tamanhoProduto'] ?></p>
                                 <!-- Adicione mais informações conforme necessário -->
 
                                 <!-- Botões para editar e excluir -->

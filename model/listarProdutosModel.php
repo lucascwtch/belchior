@@ -20,7 +20,10 @@ Class ListarProdutosModel{
     }
 
     public function listarProdutosGeral(){
-        $sql  = $this->conexao->prepare("SELECT*FROM produtos");
+        $sql  = $this->conexao->prepare("SELECT produtos.*, usuarios.nomeUsuario 
+        FROM produtos
+        INNER JOIN usuarios ON produtos.fkUsuario = usuarios.idUsuario
+        WHERE usuarios.idUsuario = produtos.fkUsuario");
         $sql -> execute();
         return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
