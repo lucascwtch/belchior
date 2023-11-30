@@ -139,7 +139,7 @@ function getProductDetails($productId, $conexao)
                             <span class="cart-total-price">R$ <?= $totalPrice ?></span>
                         </p>
                     </div>
-                    <p class="text-center"><a href="checkout.html" class="btn btn-primary py-3 px-4">Finalizar Compra</a></p>
+                    <p class="text-center"><a href="pagamento.php" class="btn btn-primary py-3 px-4">Finalizar Compra</a></p>
                 </div>
             </div>
         </div>
@@ -230,46 +230,45 @@ function getProductDetails($productId, $conexao)
 
 
     <script>
-$(document).ready(function() {
-    $('.minus').click(function(e) {
-        e.preventDefault();
-        var $input = $(this).parent().find('input');
-        var count = parseInt($input.val()) - 1;
-        count = count < 1 ? 1 : count;
-        $input.val(count);
-        $input.change();
-        return false;
-    });
-    $('.plus').click(function(e) {
-        e.preventDefault();
-        var $input = $(this).parent().find('input');
-        $input.val(parseInt($input.val()) + 1);
-        $input.change();
-        return false;
-    });
+        $(document).ready(function() {
+            $('.minus').click(function(e) {
+                e.preventDefault();
+                var $input = $(this).parent().find('input');
+                var count = parseInt($input.val()) - 1;
+                count = count < 1 ? 1 : count;
+                $input.val(count);
+                $input.change();
+                return false;
+            });
+            $('.plus').click(function(e) {
+                e.preventDefault();
+                var $input = $(this).parent().find('input');
+                $input.val(parseInt($input.val()) + 1);
+                $input.change();
+                return false;
+            });
 
-    $('.quantity').on('change', function() {
-        var quantidade = parseInt($(this).val());
-        var preco = parseFloat($(this).data('price'));
-        if (!isNaN(quantidade) && !isNaN(preco)) {
-            var total = quantidade * preco;
+            $('.quantity').on('change', function() {
+                var quantidade = parseInt($(this).val());
+                var preco = parseFloat($(this).data('price'));
+                if (!isNaN(quantidade) && !isNaN(preco)) {
+                    var total = quantidade * preco;
 
-            // Atualiza o preço total do produto
-            $(this).closest('tr').find('.product-total').text(total.toFixed(2));
+                    // Atualiza o preço total do produto
+                    $(this).closest('tr').find('.product-total').text(total.toFixed(2));
 
-            // Atualiza o preço total do carrinho
-            var precoTotal = 0;
-            $('.product-total').each(function() {
-                var productTotal = parseFloat($(this).text());
-                if (!isNaN(productTotal)) {
-                    precoTotal += productTotal;
+                    // Atualiza o preço total do carrinho
+                    var precoTotal = 0;
+                    $('.product-total').each(function() {
+                        var productTotal = parseFloat($(this).text());
+                        if (!isNaN(productTotal)) {
+                            precoTotal += productTotal;
+                        }
+                    });
+                    $('.cart-total-price').text(precoTotal.toFixed(2));
                 }
             });
-            $('.cart-total-price').text(precoTotal.toFixed(2));
-        }
-    });
-});
-
+        });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 

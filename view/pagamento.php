@@ -1,43 +1,55 @@
 <?php
-// Step 1: Require the library from your Composer vendor folder
-// require_once '../vendor/autoload.php';
+require_once '../vendor/autoload.php';
+require_once 'navbar.php';
+require_once '../controller/config.php'; // Inclui o arquivo de configuração
 
-// use MercadoPago\Client\Payment\PaymentClient;
-// use MercadoPago\Exceptions\MPApiException;
-// use MercadoPago\MercadoPagoConfig;
+// SDK do MercadoPago
+use MercadoPago\Client\Preference\PreferenceClient;
+use MercadoPago\MercadoPagoConfig;
 
-// // Step 2: Set production or sandbox access token
-// MercadoPagoConfig::setAccessToken("APP_USR-3908918862209501-112119-5f1b8b567d783951a50e316dd34a088e-1284764382");
+//Adicione as credenciais
+MercadoPagoConfig::setAccessToken("APP_USR-3908918862209501-112119-5f1b8b567d783951a50e316dd34a088e-1284764382");
 
-// // Step 3: Initialize the API client
-// $client = new PaymentClient();
+$client = new PreferenceClient();
+$items = array();
 
-// try {
+// Loop pelos produtos no carrinho
+foreach ($_SESSION['cart'] as $productId) {
+    // Consulta SQL para obter os detalhes do produto
+    $sql = "SELECT nomeProduto, precoProduto FROM produtos WHERE idProduto = ?";
+    $stmt = $conexao->prepare($sql);
+    $stmt->bindParam(1, $productId);
 
-//     // Step 4: Create the request array
-//     $request = [
-//         "transaction_amount" => 100,
-//         "token" => "YOUR_CARD_TOKEN",
-//         "description" => "description",
-//         "installments" => 1,
-//         "payment_method_id" => "visa",
-//         "payer" => [
-//             "email" => "user@test.com",
-//         ]
-//     ];
+    $stmt->execute();
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-//     // Step 5: Make the request
-//     $payment = $client->create($request);
-//     echo $payment->id;
+    // Obtém a quantidade do produto no carrinho
+    $quantity = 1; // Valor padrão
+    if (isset($_SESSION['cart_quantity'][$productId])) {
+        $quantity = $_SESSION['cart_quantity'][$productId];
+    }
 
-//     // Step 6: Handle exceptions
-// } catch (MPApiException $e) {
-//     echo "Status code: " . $e->getApiResponse()->getStatusCode() . "\n";
-//     echo "Content: " . $e->getApiResponse()->getContent() . "\n";
-// } catch (\Exception $e) {
-//     echo $e->getMessage();
-// }
+    $item = array(
+        "title" => $row["nomeProduto"],
+        "quantity" => $quantity,
+        "currency_id" => "BRL",
+        "unit_price" => $row["precoProduto"]
+    );
+    array_push($items, $item);
+}
+
+$preference = $client->create([
+    "items" => $items
+]);
+
+// Obtendo o ID da preferência
+$preference_id = $preference->id;
+
+// Gera o HTML dinamicamente
+
+
 ?>
+
 
 
 <!DOCTYPE html>
@@ -71,33 +83,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-Ljzmr5Wd6Wh+RSRBRU5tJj9PQ6ry5wi0S0RBi6UBOe2WiDxoUGZrlyYtr0JdPZ5e1u/f0DVx+uPW1vOqoaVm4w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
+<style>
+    .pagar {
+        background-color: #009ee3;
+    }
+
+    .pagar:hover {
+        background-color: #009ee3;
+    }
+</style>
 
 <body>
 
     <!-- Conteúdo da Página -->
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <div class="container">
-            <a class="navbar-brand mx-auto" href="#">Belchior</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="../index.php">Início</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="produtos.php">Produtos</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="contato.php">Contato</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
 
     <div class="hero-wrap hero-bread" style="background-image: url('../assets/img/bg_6.jpg');">
         <div class="container">
@@ -195,52 +193,15 @@
                     <div class="row mt-5 pt-3 d-flex">
                         <div class="col-md-6 d-flex">
                             <div class="cart-detail cart-total bg-light p-3 p-md-4">
-                                <h3 class="billing-heading mb-4">Total do Carrinho</h3>
-                                <p class="d-flex">
-                                    <span>Subtotal</span>
-                                    <span>R$20.60</span>
-                                </p>
-                                <p class="d-flex">
-                                    <span>Entrega</span>
-                                    <span>R$0.00</span>
-                                </p>
-                                <p class="d-flex">
-                                    <span>Desconto</span>
-                                    <span>R$3.00</span>
-                                </p>
-                                <hr>
-                                <p class="d-flex total-price">
-                                    <span>Total</span>
-                                    <span>R$17.60</span>
-                                </p>
+                                <h2>Junte-se a Nós!</h2>
+                                <p>Crie uma conta e solicite afiliação para vender seus produtos conosco!</p>
+
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="cart-detail bg-light p-3 p-md-4">
                                 <h3 class="billing-heading mb-4">Método de Pagamento</h3>
-                                <div class="form-group">
-                                    <div class="col-md-12">
-                                        <div class="radio">
-                                            <label><input type="radio" name="optradio" class="mr-2"> Transferência Bancária
-                                                Direta</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-12">
-                                        <div class="radio">
-                                            <label><input type="radio" name="optradio" class="mr-2"> Pagamento por Cheque
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-12">
-                                        <div class="radio">
-                                            <label><input type="radio" name="optradio" class="mr-2"> Paypal</label>
-                                        </div>
-                                    </div>
-                                </div>
+                                <p>Pode ser escolhido na plataforma MERCADO PAGO.</p>
                                 <div class="form-group">
                                     <div class="col-md-12">
                                         <div class="checkbox">
@@ -248,8 +209,10 @@
                                                 condições</label>
                                         </div>
                                     </div>
-                                </div>
-                                <div id="wallet_container"></div>
+                                </div><?php
+                                        echo "<h2>Pagar com Mercado Pago</h2>";
+                                        echo "<button id='payButton' class='btn btn-primary pagar py-3 px-4'></button>";
+                                        ?>
                             </div>
                         </div>
                     </div>
@@ -340,9 +303,30 @@
             <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" />
         </svg></div>
 
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
 
     <script>
+        // Configura o Mercado Pago
+        const mp = new MercadoPago('APP_USR-183ee0c3-6ae2-476f-8fc5-bbd2526dc8cf', {
+            locale: 'pt-BR'
+        });
 
+        // Adiciona o botão de pagamento
+        mp.checkout({
+            preference: {
+                id: '<?php echo $preference_id; ?>'
+            },
+            render: {
+                container: '#payButton', // Indica onde o botão de pagamento será exibido
+                label: 'Pagar',
+            },
+            on: {
+                close: function() {
+                    // Trata o evento de fechamento do modal
+                    alert('Você fechou o modal de pagamento!');
+                }
+            }
+        });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -364,20 +348,6 @@
 
     <script src="https://sdk.mercadopago.com/js/v2"></script>
 
-    <script>
-        const mp = new MercadoPago('TEST-010a02be-9506-4354-bb5b-b05f8b8c1dc2');
-        const bricksBuilder = mp.bricks();
-
-
-        mp.bricks().create("wallet", "wallet_container", {
-            initialization: {
-                preferenceId: "1284764382-c3233a7c-8eee-4432-93b6-e6b40dcb4115",
-                redirectMode: "modal",
-
-            },
-
-        });
-    </script>
 
 </body>
 
