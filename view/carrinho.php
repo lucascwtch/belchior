@@ -2,6 +2,8 @@
 include_once('navbar.php');
 require_once('../controller/config.php');
 
+
+
 function getProductDetails($productId, $conexao)
 {
     $sql = "SELECT * FROM produtos WHERE idProduto = $productId";
@@ -82,16 +84,14 @@ function getProductDetails($productId, $conexao)
 
                                         if ($product) {
                                             echo "<tr class='text-center'>";
-                                            echo "<td class='product-remove'><a href='#'><span class='ion-ios-close'></span></a></td>";
+                                            echo "<td class='product-remove'><a href='../controller/removerDoCarrinhoController.php?id={$productId}'><span class='ion-ios-close'></span></a></td>";
                                             echo "<td class='image-prod'><img class='img-fluid' src='../assets/img/produtos/{$product['imagemProduto']}' alt='Colorlib Template' style='max-width: 100px; max-height: 100px;'></td>";
                                             echo "<td class='product-name'><h3>{$product['nomeProduto']}</h3><p>{$product['descricaoProduto']}</p></td>";
                                             echo "<td class='price'>R$ <span class='unit-price'>{$product['precoProduto']}</span></td>";
 
-                                            // Adicionei a entrada para escolher a quantidade
                                             echo "<td class='quantity'><div class='input-group mb-3'><input type='text' name='quantity' class='quantity form-control input-number' value='1' min='1' max='100' data-price='" . floatval($product['precoProduto']) . "'></div></td>";
 
 
-                                            // Ajuste no cálculo do valor total do produto
                                             $quantity = 1; // Valor padrão
                                             if (isset($_SESSION['cart_quantity'][$productId])) {
                                                 $quantity = $_SESSION['cart_quantity'][$productId];
@@ -107,7 +107,7 @@ function getProductDetails($productId, $conexao)
 
                                     echo "<tr class='text-center'>";
                                     echo "<td colspan='5' class='total-price'><span>Total</span></td>";
-                                    echo "<td class='total'>R$ <span class='cart-total'>{$totalPrice}</span></td>";
+                                    echo "<td class='total'>R$ <span class='cart-total-price'>{$totalPrice}</span></td>";
                                     echo "</tr>";
                                 } else {
                                     echo "<tr class='text-center'>";
@@ -136,7 +136,7 @@ function getProductDetails($productId, $conexao)
                         <hr>
                         <p class="d-flex total-price">
                             <span>Total</span>
-                            <span>R$ <?= $totalPrice ?></span>
+                            <span class="cart-total-price">R$ <?= $totalPrice ?></span>
                         </p>
                     </div>
                     <p class="text-center"><a href="checkout.html" class="btn btn-primary py-3 px-4">Finalizar Compra</a></p>
@@ -265,7 +265,7 @@ $(document).ready(function() {
                     precoTotal += productTotal;
                 }
             });
-            $('.cart-total').text(precoTotal.toFixed(2));
+            $('.cart-total-price').text(precoTotal.toFixed(2));
         }
     });
 });
